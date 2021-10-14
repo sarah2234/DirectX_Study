@@ -1,0 +1,6 @@
+.vs/
+Debug
+2105.sln
+2105.vcxproj
+2105.vcxproj.filters
+2105.vcxproj.user

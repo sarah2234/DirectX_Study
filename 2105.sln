@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2105", "2105.vcxproj", "{570E41FB-A033-4AA8-8C40-B8FBBE7C9462}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Shaders", "_Shaders", "{589C34DE-A405-4AE8-B709-3B8420571A2A}"
+	ProjectSection(SolutionItems) = preProject
+		..\_Shaders\004_Effect.fx = ..\_Shaders\004_Effect.fx
+		..\_Shaders\005_WVP.fx = ..\_Shaders\005_WVP.fx
+		..\_Shaders\006_Rect.fx = ..\_Shaders\006_Rect.fx
+		..\_Shaders\007_Texture.fx = ..\_Shaders\007_Texture.fx
+		..\_Shaders\008_Sprite.fx = ..\_Shaders\008_Sprite.fx
+		..\_Shaders\009_Sprite.fx = ..\_Shaders\009_Sprite.fx
+		..\_Shaders\010_Bounding.fx = ..\_Shaders\010_Bounding.fx
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{570E41FB-A033-4AA8-8C40-B8FBBE7C9462}.Debug|x86.ActiveCfg = Debug|Win32
+		{570E41FB-A033-4AA8-8C40-B8FBBE7C9462}.Debug|x86.Build.0 = Debug|Win32
+		{570E41FB-A033-4AA8-8C40-B8FBBE7C9462}.Release|x86.ActiveCfg = Release|Win32
+		{570E41FB-A033-4AA8-8C40-B8FBBE7C9462}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7136611-32E5-4FD5-85B0-6670BF9DFB6F}
+	EndGlobalSection
+EndGlobal
