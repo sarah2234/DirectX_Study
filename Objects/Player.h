@@ -24,6 +24,8 @@ public:
 	D3DXVECTOR2 Position() { return player->Position(); }
 	D3DXVECTOR2 Scale();
 
+	void Jump();
+
 	bool Attacking() { return attack; }
 	void Attacked();
 
@@ -64,6 +66,7 @@ private:
 
 	float autoMovingTime;
 	bool bMove;
+	bool bJump;
 	float moveSpeed;
 	bool attack;
 	bool lifting;

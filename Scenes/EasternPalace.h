@@ -27,9 +27,10 @@ public:
 
 	void CreateRoomLine(int x1, int y1, int x2, int y2, int room);
 	void CreateHallLine(int x1, int y1, int x2, int y2, int room, bool open);
+	void CreateJumpLine(int x1, int y1, int x2, int y2, int room);
 	template <typename T>
-	void RoomLineCollision(RoomLine line, int lineIndex, T object);
-	void HallLineCollision(HallLine line, int lineIndex);
+	bool RoomLineCollision(RoomLine line, int lineIndex, T object);
+	bool HallLineCollision(HallLine line, int lineIndex);
 
 private:
 	Sprite* eastern_palace;
@@ -38,6 +39,7 @@ private:
 	Sprite* base_floor;
 	vector<RoomLine>roomLines[21];
 	vector<HallLine>hallLines[21];
+	vector<RoomLine>jumpLines[21];
 	bool on;
 
 	vector<Enemy*> enemies[21];
@@ -49,7 +51,8 @@ private:
 	vector<Vase*> vases[21];
 	vector<Chest*> chests[21];
 
-	float time;
+	float armo_knights_time;
+	float jump_time;
 	int currentRoom;
 };
 

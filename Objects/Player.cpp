@@ -3,7 +3,7 @@
 #include <math.h>
 
 Player::Player(D3DXVECTOR2 position, D3DXVECTOR2 scale)
-	:moveSpeed(200.0f), focusOffset(-180,-120), bMove(false), autoMovingTime(0.0),
+	:moveSpeed(200.0f), focusOffset(-180,-120), bMove(false), bJump(false), autoMovingTime(0.0),
 	attack(false), lifting(false), throwing(false), pose(false), stop(false),
 	left(false), right(false), bottom(false), top(true),
 	magic(0), rupee(0), bomb(0), arrow(0), key(0), stamina(10), bossKey(0), map(0), compass(0), bow(0),
@@ -206,6 +206,38 @@ Player::Player(D3DXVECTOR2 position, D3DXVECTOR2 scale)
 		player->AddClip(clip);
 	}
 
+	spriteFile= Textures + L"Legend of Zelda/LinkJump.png";
+	//Jump-top (19)
+	clip = new Clip(PlayMode::End);
+	clip->Scale(0.1, 0.1);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 487, 391, 644, 642), 0.1f); // x: 157, y: 251
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 742, 357, 904, 642), 0.1f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 992, 317, 1153, 642), 0.2f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 742, 357, 904, 642), 0.1f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 487, 391, 644, 642), 0.1f);
+	clip->Scale(0.1, 0.1);
+	player->AddClip(clip);
+	//Jump-bottom (20)
+	clip = new Clip(PlayMode::End);
+	clip->Scale(0.1, 0.1);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 497, 774, 639, 1035), 0.1f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 782, 737, 837, 1035), 0.1f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 1036, 709, 1178, 1035), 0.2f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 782, 737, 837, 1035), 0.1f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 497, 774, 639, 1035), 0.1f);
+	clip->Scale(0.1, 0.1);
+	player->AddClip(clip);
+	//Jump-left (21)
+	clip = new Clip(PlayMode::End);
+	clip->Scale(0.1, 0.1);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 500, 1141, 648, 1427), 0.1f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 771, 1115, 919, 1427), 0.1f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 1041, 1074, 1188, 1427), 0.2f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 771, 1115, 919, 1427), 0.1f);
+	clip->AddFrame(new Sprite(spriteFile, shaderFile, 500, 1141, 648, 1427), 0.1f);
+	clip->Scale(0.1, 0.1);
+	player->AddClip(clip);
+
 	player->Position(position);
 	player->Scale(scale);
 	player->Play(1);
@@ -259,7 +291,7 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 		bMove = true;
 	}
 
-	if (!attack && !pose /*&& !stop*/ && !throwing && !autoMovingTime) // autoMovingTime이 0일 때 입력받기
+	if (!attack && !pose /*&& !stop*/ && !throwing && !bJump && !autoMovingTime) // autoMovingTime이 0일 때 입력받기
 	{
 		if (Key->Press('S') && bLineCollisionIndex[2] == -1) // 아래쪽으로 이동
 		{
@@ -286,9 +318,9 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 			
 			left = true;
 			right = false;
-			if (!Key->Press('S'))
+			if (!Key->Press('S') || bLineCollisionIndex[2] != -1)
 				bottom = false;
-			if (!Key->Press('W'))
+			if (!Key->Press('W') || bLineCollisionIndex[3] != -1)
 				top = false;
 		}
 		if (Key->Press('D') && bLineCollisionIndex[1] == -1) // 오른쪽으로 이동
@@ -297,9 +329,9 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 			
 			left = false;
 			right = true;
-			if (!Key->Press('S'))
+			if (!Key->Press('S') || bLineCollisionIndex[2] != -1)
 				bottom = false;
-			if (!Key->Press('W'))
+			if (!Key->Press('W') || bLineCollisionIndex[3] != -1)
 				top = false;
 		}
 		
@@ -367,10 +399,12 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 			else
 				position.x -= moveSpeed * Timer->Elapsed() / sqrt(2);
 			player->RotationDegree(0, 0, 0);
-			if (!lifting)
-				player->Play(5); // 그냥 걷는 모션
-			else
+			if (bJump)
+				player->Play(19); // jump
+			else if (lifting)
 				player->Play(14); // 항아리 들고 걷는 모션
+			else
+				player->Play(5); // 그냥 걷는 모션
 		}
 		if (right)
 		{
@@ -379,10 +413,12 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 			else
 				position.x += moveSpeed * Timer->Elapsed() / sqrt(2);
 			player->RotationDegree(0, 180, 0);
-			if (!lifting)
-				player->Play(5);
-			else
+			if (bJump)
+				player->Play(19);
+			else if (lifting)
 				player->Play(14);
+			else
+				player->Play(5);
 		}
 
 		if (bottom)
@@ -391,10 +427,13 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 				position.y -= moveSpeed * Timer->Elapsed();
 			else
 				position.y -= moveSpeed * Timer->Elapsed() / sqrt(2);
-			if (!lifting && !left && !right)
-				player->Play(4);
-			else if (!left && !right)
-				player->Play(13);
+			if (bJump)
+				player->Play(20);
+			else if (lifting && !left && !right)
+				player->Play(13); // 항아리 들고 걷는 모션
+			if (!left && !right)
+				player->Play(4); // 그냥 걷는 모션
+			
 		}
 		if (top)
 		{
@@ -402,10 +441,12 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 				position.y += moveSpeed * Timer->Elapsed();
 			else
 				position.y += moveSpeed * Timer->Elapsed() / sqrt(2);
-			if (!lifting && !left && !right)
-				player->Play(3);
-			else if (!left && !right)
+			if (bJump)
+				player->Play(21);
+			else if (lifting && !left && !right)
 				player->Play(12);
+			else if (!left && !right)
+				player->Play(3);
 		}
 	}
 	else if (bMove == false) // 가만히 서있는 모션
@@ -441,6 +482,9 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 				player->Play(9);
 		}
 	}
+
+	if (bJump && player->IsLastClip())
+		bJump = false;
 
 	if (!stop && stamina > 0)
 	{
@@ -517,6 +561,19 @@ void Player::Position(D3DXVECTOR2 position)
 D3DXVECTOR2 Player::Scale()
 {
 	return D3DXVECTOR2(player->Scale().x * player->TextureSize().x, player->Scale().y * player->TextureSize().y);
+}
+
+void Player::Jump()
+{
+	bJump = true;
+	if (left)
+		AutoMoving("left", 1, 0.6);
+	else if (right)
+		AutoMoving("right", 1, 0.6);
+	else if (top)
+		AutoMoving("top", 1, 0.6);
+	else if (bottom)
+		AutoMoving("bottom", 1, 0.6);
 }
 
 void Player::Attacked()

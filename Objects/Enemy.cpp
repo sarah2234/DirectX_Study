@@ -290,8 +290,6 @@ void Enemy::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 		return;
 
 	D3DXVECTOR2 position = enemy->Position();
-	enemy->Update(V, P);
-	slash->Update(V, P);
 
 	// left right bottom top
 	positionVector[0].x = enemy->Position().x - enemy->TextureSize().x * scale.x / 2;
@@ -375,6 +373,8 @@ void Enemy::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 	}
 
 	enemy->Position(position);
+	enemy->Update(V, P);
+	slash->Update(V, P);
 }
 
 void Enemy::Render()
