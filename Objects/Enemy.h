@@ -25,6 +25,9 @@ public:
 
 	string GetType() { return type; }
 
+	void SetBBase(bool b);
+	bool GetBBase() { return bBase; }
+
 	bool IsLastClip() { return enemy->IsLastClip(); }
 
 	Sprite* GetSprite();
@@ -55,6 +58,7 @@ private:
 	int deadNum;
 	bool dead;
 	bool onScene;
+	bool bBase;
 
 	// ¼± Ãæµ¹
 	D3DXVECTOR2 positionVector[4]; // left, right, bottom, top

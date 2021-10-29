@@ -26,13 +26,13 @@ public:
 
 	void Jump();
 
-	bool Attacking() { return attack; }
+	bool Attacking() { return bAttack; }
 	void Attacked();
 
 	void Lift(bool b);
-	bool IsLifting() { return lifting; }
+	bool GetBLifting() { return bLifting; }
 	void Throw(bool b);
-	bool IsThrowing() { return throwing; }
+	bool GetBThrowing() { return bThrowing; }
 	void Pose(bool b);
 
 	bool IsLastClip() { return player->IsLastClip(); }
@@ -53,9 +53,15 @@ public:
 	int GetTopBLineCollisionIndex() { return bLineCollisionIndex[3]; }
 
 	void AutoMoving(string direction, float speed, float time); // 플레이어 자동 움직임(방 이동할 때 등)
-	bool IsAutoMoving();
+	bool GetBAutoMoving();
 
-	float IsInvincible() { return invincibleTime; }
+	float GetBInvincibleTime() { return invincibleTime; }
+
+	void SetBBase(bool b);
+	bool GetBBase() { return bBase; }
+
+	int GetDirection();
+	bool GetBMove() { return bMove; }
 
 private:
 	Animation* player;
@@ -68,15 +74,16 @@ private:
 	bool bMove;
 	bool bJump;
 	float moveSpeed;
-	bool attack;
-	bool lifting;
-	bool throwing;
-	bool pose;
-	bool stop;
-	bool left;
-	bool right;
-	bool bottom; // 얼굴 앞면이 보이는 쪽
-	bool top;
+	bool bAttack;
+	bool bAttacked;
+	bool bLifting;
+	bool bThrowing;
+	bool bPose;
+	bool bStop;
+	bool bLeft;
+	bool bRight;
+	bool bBottom; // 얼굴 앞면이 보이는 쪽
+	bool bTop;
 
 	int magic;
 	int rupee;
@@ -91,6 +98,8 @@ private:
 	int bow;
 
 	float invincibleTime;
+
+	bool bBase;
 
 	D3DXVECTOR2 focusOffset;
 };

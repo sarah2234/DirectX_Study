@@ -4,7 +4,7 @@
 #include <math.h>
 
 Enemy::Enemy(string type, D3DXVECTOR2 scale, bool onScene)
-	:moveSpeed(200), direction(-1)
+	:moveSpeed(200), direction(-1), bBase(false)
 {
 	srand(time(NULL));
 	enemy = new Animation;
@@ -92,11 +92,31 @@ Enemy::Enemy(string type, D3DXVECTOR2 scale, bool onScene)
 		clip->AddFrame(new Sprite(spriteFile, shaderFile, 457, 328, 473, 344), 0.3f);
 		enemy->AddClip(clip);
 
+		clip = new Clip(PlayMode::Loop);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 440, 328, 456, 344), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 457, 328, 473, 344), 0.3f);
+		enemy->AddClip(clip);
+
+		clip = new Clip(PlayMode::Loop);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 440, 328, 456, 344), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 457, 328, 473, 344), 0.3f);
+		enemy->AddClip(clip);
+
 		stamina = 1;
 	}
 
 	else if (type == "big ball")
 	{
+		clip = new Clip(PlayMode::Loop);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 482, 311, 512, 343), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 514, 311, 544, 343), 0.3f);
+		enemy->AddClip(clip);
+
+		clip = new Clip(PlayMode::Loop);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 482, 311, 512, 343), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 514, 311, 544, 343), 0.3f);
+		enemy->AddClip(clip);
+
 		clip = new Clip(PlayMode::Loop);
 		clip->AddFrame(new Sprite(spriteFile, shaderFile, 482, 311, 512, 343), 0.3f);
 		clip->AddFrame(new Sprite(spriteFile, shaderFile, 514, 311, 544, 343), 0.3f);
@@ -306,12 +326,17 @@ void Enemy::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 		Dead();
 	}
 	if (Sprite::Obb(player->GetSprite(), enemy->GetSprite())
-		&& player->GetItem("stamina") > 0 && !player->IsInvincible())
+		&& player->GetItem("stamina") > 0 && !player->GetBInvincibleTime())
 	{
-		if (player->Attacking()) //선 & 면 충돌로 해결보기
-			Attacked(player->Direction());
-		else if (stamina > 0)
-			player->Attacked();
+		if ((player->GetBBase() == true && bBase == true) || (player->GetBBase() == false && bBase == false))
+		{
+			if (player->Attacking()) //선 & 면 충돌로 해결보기
+				Attacked(player->Direction());
+			else if (stamina > 0)
+			{
+				player->Attacked();
+			}
+		}
 	}
 
 	//적들 이동하는 거
@@ -335,38 +360,38 @@ void Enemy::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 	switch (direction) // 계속 움직이기 위해 이동 부분은 밖으로 빼냄
 	{
 	case 0:
-		position.x -= moveSpeed * Timer->Elapsed() / 5; //left
+		position.x -= moveSpeed * Timer->Elapsed() / 3; //left
 		enemy->Play(0);
 		enemy->RotationDegree(0, 180, 0);
 		break;
 	case 1:
-		position.x += moveSpeed * Timer->Elapsed() / 5; //right
+		position.x += moveSpeed * Timer->Elapsed() / 3; //right
 		enemy->Play(0);
 		enemy->RotationDegree(0, 0, 0);
 		break;
 	case 2:
-		position.y -= moveSpeed * Timer->Elapsed() / 5; //bottom
+		position.y -= moveSpeed * Timer->Elapsed() / 3; //bottom
 		enemy->Play(1);
 		break;
 	case 3:
-		position.y += moveSpeed * Timer->Elapsed() / 5; //top
+		position.y += moveSpeed * Timer->Elapsed() / 3; //top
 		enemy->Play(2);
 		break;
 	case 4:
-		position.x += moveSpeed * Timer->Elapsed() / 5;
-		position.y += moveSpeed * Timer->Elapsed() / 5;
+		position.x += moveSpeed * Timer->Elapsed() / 3; // 우측 상단
+		position.y += moveSpeed * Timer->Elapsed() / 3;
 		break;
 	case 5:
-		position.x -= moveSpeed * Timer->Elapsed() / 5;
-		position.y += moveSpeed * Timer->Elapsed() / 5;
+		position.x -= moveSpeed * Timer->Elapsed() / 3; // 좌측 하단
+		position.y += moveSpeed * Timer->Elapsed() / 3;
 		break;
 	case 6:
-		position.x += moveSpeed * Timer->Elapsed() / 5;
-		position.y -= moveSpeed * Timer->Elapsed() / 5;
+		position.x += moveSpeed * Timer->Elapsed() / 3; // 우측 하단
+		position.y -= moveSpeed * Timer->Elapsed() / 3;
 		break;
 	case 7:
-		position.x -= moveSpeed * Timer->Elapsed() / 5;
-		position.y -= moveSpeed * Timer->Elapsed() / 5;
+		position.x -= moveSpeed * Timer->Elapsed() / 3; // 좌측 하단
+		position.y -= moveSpeed * Timer->Elapsed() / 3;
 		break;
 	default:
 		break;
@@ -442,6 +467,11 @@ void Enemy::OnScene(bool b)
 void Enemy::MoveSpeed(float n)
 {
 	moveSpeed = n;
+}
+
+void Enemy::SetBBase(bool b)
+{
+	bBase = b;
 }
 
 Sprite* Enemy::GetSprite()

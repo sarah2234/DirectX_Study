@@ -19,18 +19,20 @@ public:
 	void SetPosition(D3DXVECTOR2 position);
 	D3DXVECTOR2 GetPosition() { return eastern_palace->Position(); }
 
-	void CreateEnemy(string type, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool onScene);
+	void CreateEnemy(string type, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool onScene, bool bBase);
 	void CreateVase(string type, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool boundary);
 	void CreateChest(string size, string item, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool boundary);
 	void CreateButton(string type, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool boundary);
 	void CreateDoor(D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool open, bool upsideDown);
 
-	void CreateRoomLine(int x1, int y1, int x2, int y2, int room);
+	void CreateRoomLine(int x1, int y1, int x2, int y2, int room, bool base);
 	void CreateHallLine(int x1, int y1, int x2, int y2, int room, bool open);
 	void CreateJumpLine(int x1, int y1, int x2, int y2, int room);
+	void CreateStairLine(int x1, int y1, int x2, int y2, int room);
+	// (player의 direction과 일치) none-0, left-1, right-2, bottom-3, top-4
 	template <typename T>
-	bool RoomLineCollision(RoomLine line, int lineIndex, T object);
-	bool HallLineCollision(HallLine line, int lineIndex);
+	int RoomLineCollision(RoomLine line, int lineIndex, T object); 
+	int HallLineCollision(HallLine line, int lineIndex, float speed, float time);
 
 private:
 	Sprite* eastern_palace;
@@ -40,6 +42,7 @@ private:
 	vector<RoomLine>roomLines[21];
 	vector<HallLine>hallLines[21];
 	vector<RoomLine>jumpLines[21];
+	vector<HallLine>stairLines[21];
 	bool on;
 
 	vector<Enemy*> enemies[21];

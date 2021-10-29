@@ -30,93 +30,93 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	/// <summary>
 	/// Enemies
 	/// </summary>
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(584, 2182), 2, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(712, 2182), 2, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1672, 1990), 5, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1672, 1926), 5, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1608, 1894), 5, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(368, 1729), 6, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(320, 1681), 6, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(416, 1681), 6, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(368, 1635), 6, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(616, 1606), 8, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(680, 1606), 8, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(616, 1542), 8, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(680, 1542), 8, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(936, 1574), 9, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1096, 1574), 9, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1384, 1494), 10, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1480, 1510), 10, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1480, 1622), 10, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(136, 694), 15, true);
-	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(136, 614), 15, true);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(584, 2182), 2, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(712, 2182), 2, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1672, 1990), 5, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1672, 1926), 5, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1608, 1894), 5, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(368, 1729), 6, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(320, 1681), 6, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(416, 1681), 6, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(368, 1635), 6, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(616, 1606), 8, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(680, 1606), 8, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(616, 1542), 8, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(680, 1542), 8, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(936, 1574), 9, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1096, 1574), 9, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1384, 1494), 10, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1480, 1510), 10, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1480, 1622), 10, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(136, 694), 15, true, false);
+	CreateEnemy("skeleton", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(136, 614), 15, true, false);
 
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1031, 2453), 1, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1015, 2437), 1, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1031, 2421), 1, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(599, 2005), 2, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(695, 2005), 2, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1416, 2025), 4, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1480, 1976), 4, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1448, 1640), 10, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1448, 1432), 10, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(984, 1192), 13, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1000, 1208), 13, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1016, 1208), 13, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1032, 1208), 13, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1048, 1208), 13, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1064, 1192), 13, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(104, 440), 19, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(104, 424), 19, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(152, 440), 19, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(152, 424), 19, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(120, 408), 19, true);
-	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(136, 408), 19, true);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1031, 2453), 1, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1015, 2437), 1, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1031, 2421), 1, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(599, 2005), 2, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(695, 2005), 2, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1416, 2025), 4, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1480, 1976), 4, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1448, 1640), 10, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1448, 1432), 10, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(984, 1192), 13, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1000, 1208), 13, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1016, 1208), 13, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1032, 1208), 13, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1048, 1208), 13, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1064, 1192), 13, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(104, 440), 19, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(104, 424), 19, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(152, 440), 19, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(152, 424), 19, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(120, 408), 19, true, false);
+	CreateEnemy("jelly", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(136, 408), 19, true, false);
 
-	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 2139), 2, true);
-	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(920, 1403), 9, true);
-	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1128, 1403), 9, true);
-	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1000, 1179), 13, true);
-	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1048, 1179), 13, true);
-	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 699), 17, true);
-	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 651), 17, true);
-	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 603), 17, true);
+	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 2139), 2, true, false);
+	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(920, 1403), 9, true, false);
+	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1128, 1403), 9, true, false);
+	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1000, 1179), 13, true, false);
+	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1048, 1179), 13, true, false);
+	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 699), 17, true, false);
+	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 651), 17, true, false);
+	CreateEnemy("green eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 603), 17, true, false);
 
-	CreateEnemy("red eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(120, 587), 15, true);
-	CreateEnemy("red eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(120, 347), 19, true);
-	CreateEnemy("red eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(136, 347), 19, true);
+	CreateEnemy("red eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(120, 587), 15, true, false);
+	CreateEnemy("red eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(120, 347), 19, true, false);
+	CreateEnemy("red eye", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(136, 347), 19, true, false);
 
 	//중심: (128, 125)
-	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(80, 149), 20, true);
-	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(128, 149), 20, true);
-	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(176, 149), 20, true);
-	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(80, 101), 20, true);
-	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(128, 101), 20, true);
-	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(176, 101), 20, true);
+	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(80, 149), 20, true, false);
+	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(128, 149), 20, true, false);
+	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(176, 149), 20, true, false);
+	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(80, 101), 20, true, false);
+	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(128, 101), 20, true, false);
+	CreateEnemy("armo knight", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(176, 101), 20, true, false);
 
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1336, 1975), 4, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1336, 1927), 4, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1672, 1415), 12, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(638, 2039), 2, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 2049), 2, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(658, 2039), 2, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 2029), 2, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1112, 903), 14, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1192, 935), 14, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(888, 647), 18, true);
-	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(904, 647), 18, true);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1336, 1975), 4, true, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1336, 1927), 4, true, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1672, 1415), 12, true, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(638, 2039), 2, false, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 2049), 2, false, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(658, 2039), 2, false, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(648, 2029), 2, false, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1112, 903), 14, true, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1192, 935), 14, true, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(888, 647), 18, true, false);
+	CreateEnemy("flying object", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(904, 647), 18, true, false);
 
-	CreateEnemy("big ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1056, 1912), 3, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1055, 2125), 3, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1040, 2039), 3, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(301, 583), 16, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(346, 583), 16, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(393, 615), 16, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(359, 652), 16, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(359, 690), 16, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(407, 569), 16, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(439, 593), 16, true);
-	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(439, 713), 16, true); // 80
+	CreateEnemy("big ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1047, 1912), 3, true, true);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1053, 2125), 3, true, true);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1040, 2039), 3, true, true);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(301, 583), 16, true, false);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(346, 583), 16, true, false);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(393, 615), 16, true, false);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(359, 652), 16, true, false);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(359, 690), 16, true, false);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(407, 569), 16, true, false);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(439, 593), 16, true, false);
+	CreateEnemy("small ball", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(439, 713), 16, true, false); // 80
 	// end of enemies
 
 	/// <summary>
@@ -176,7 +176,7 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateVase("5 arrows", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(47.5, 430.5), 19, true);
 	CreateVase("5 arrows", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(207.5, 430.5), 19, true);
 	CreateVase("5 arrows", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(47.5, 398.5), 19, true);
-	
+
 	CreateVase("small key", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1735.5, 1926.5), 5, true);
 	// end of vases
 
@@ -206,50 +206,50 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	/// Lines
 	/// </summary>
 	// room 0
-	CreateRoomLine(1014, 2824, 1033, 2824, 0); // 0-0
-	CreateRoomLine(1014, 2824, 1014, 2806, 0); // 0-1
-	CreateRoomLine(1033, 2824, 1033, 2806, 0); // 0-2
-	CreateRoomLine(1014, 2806, 945, 2806, 0); // 0-3
-	CreateRoomLine(1033, 2806, 1102, 2806, 0); //0-4
-	CreateRoomLine(945, 2806, 945, 2774, 0); //1
-	CreateRoomLine(945, 2774, 874, 2774, 0); //2
-	CreateRoomLine(874, 2774, 874, 2649, 0); //3
-	CreateRoomLine(874, 2649, 895, 2649, 0); //4
-	CreateRoomLine(895, 2649, 918, 2649, 0); //5
-	CreateRoomLine(918, 2649, 918, 2713, 0); //6
-	CreateRoomLine(918, 2713, 1001, 2713, 0); //7
-	CreateRoomLine(1001, 2713, 1001, 2649, 0); //8
-	CreateRoomLine(1001, 2649, 1034, 2649, 0); //9
-	CreateRoomLine(1034, 2649, 1046, 2649, 0); //10
-	CreateRoomLine(1046, 2649, 1046, 2713, 0); //11
-	CreateRoomLine(1046, 2713, 1129, 2713, 0); //12
-	CreateRoomLine(1129, 2713, 1129 , 2649, 0); //13
-	CreateRoomLine(1129, 2649, 1162 , 2649, 0); //14
-	CreateRoomLine(1162, 2649, 1174, 2649, 0); //15
-	CreateRoomLine(1174, 2649, 1174, 2774, 0); //16
-	CreateRoomLine(1174, 2774, 1102, 2774, 0); //17
-	CreateRoomLine(1102, 2774, 1102, 2806, 0); //18
-	CreateRoomLine(1102, 2806, 1102, 2806, 0); //19
-	
+	CreateRoomLine(1014, 2824, 1033, 2824, 0, false); // 0-0
+	CreateRoomLine(1014, 2824, 1014, 2806, 0, false); // 0-1
+	CreateRoomLine(1033, 2824, 1033, 2806, 0, false); // 0-2
+	CreateRoomLine(1014, 2806, 945, 2806, 0, false); // 0-3
+	CreateRoomLine(1033, 2806, 1102, 2806, 0, false); //0-4
+	CreateRoomLine(945, 2806, 945, 2774, 0, false); //1
+	CreateRoomLine(945, 2774, 874, 2774, 0, false); //2
+	CreateRoomLine(874, 2774, 874, 2649, 0, false); //3
+	CreateRoomLine(874, 2649, 895, 2649, 0, false); //4
+	CreateRoomLine(895, 2649, 918, 2649, 0, false); //5
+	CreateRoomLine(918, 2649, 918, 2713, 0, false); //6
+	CreateRoomLine(918, 2713, 1001, 2713, 0, false); //7
+	CreateRoomLine(1001, 2713, 1001, 2649, 0, false); //8
+	CreateRoomLine(1001, 2649, 1034, 2649, 0, false); //9
+	CreateRoomLine(1034, 2649, 1046, 2649, 0, false); //10
+	CreateRoomLine(1046, 2649, 1046, 2713, 0, false); //11
+	CreateRoomLine(1046, 2713, 1129, 2713, 0, false); //12
+	CreateRoomLine(1129, 2713, 1129, 2649, 0, false); //13
+	CreateRoomLine(1129, 2649, 1162, 2649, 0, false); //14
+	CreateRoomLine(1162, 2649, 1174, 2649, 0, false); //15
+	CreateRoomLine(1174, 2649, 1174, 2774, 0, false); //16
+	CreateRoomLine(1174, 2774, 1102, 2774, 0, false); //17
+	CreateRoomLine(1102, 2774, 1102, 2806, 0, false); //18
+	CreateRoomLine(1102, 2806, 1102, 2806, 0, false); //19
+
 	CreateHallLine(886, 2649, 905, 2649, 0, true); // 0
 	CreateHallLine(1014, 2649, 1033, 2649, 0, false); // 1
 	CreateHallLine(1142, 2649, 1161, 2649, 0, true); // 2
 
 	// room 1
-	CreateRoomLine(880, 2551, 911, 2551, 1); // 20
-	CreateRoomLine(880, 2551, 880, 2511, 1); // 21
-	CreateRoomLine(911, 2551, 911, 2511, 1); // 22
-	CreateRoomLine(880, 2511, 911, 2511, 1); // 23
+	CreateRoomLine(880, 2551, 911, 2551, 1, false); // 20
+	CreateRoomLine(880, 2551, 880, 2511, 1, false); // 21
+	CreateRoomLine(911, 2551, 911, 2511, 1, false); // 22
+	CreateRoomLine(880, 2511, 911, 2511, 1, false); // 23
 
-	CreateRoomLine(992, 2551, 1055, 2551, 1); // 24
-	CreateRoomLine(992, 2551, 992, 2393, 1); // 25
-	CreateRoomLine(1055, 2551, 1055, 2393, 1); // 26
-	CreateRoomLine(992, 2393, 1055, 2393, 1); // 27
+	CreateRoomLine(992, 2551, 1055, 2551, 1, false); // 24
+	CreateRoomLine(992, 2551, 992, 2393, 1, false); // 25
+	CreateRoomLine(1055, 2551, 1055, 2393, 1, false); // 26
+	CreateRoomLine(992, 2393, 1055, 2393, 1, false); // 27
 
-	CreateRoomLine(1136, 2551, 1167, 2551, 1); // 28
-	CreateRoomLine(1136, 2551, 1136, 2511, 1); // 29
-	CreateRoomLine(1167, 2551, 1167, 2511, 1); // 30
-	CreateRoomLine(1136, 2511, 1167, 2511, 1); // 31
+	CreateRoomLine(1136, 2551, 1167, 2551, 1, false); // 28
+	CreateRoomLine(1136, 2551, 1136, 2511, 1, false); // 29
+	CreateRoomLine(1167, 2551, 1167, 2511, 1, false); // 30
+	CreateRoomLine(1136, 2511, 1167, 2511, 1, false); // 31
 
 	CreateHallLine(886, 2551, 905, 2551, 1, true); // 3
 	CreateHallLine(1014, 2551, 1033, 2551, 1, true); // 4
@@ -257,103 +257,137 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateHallLine(1014, 2393, 1033, 2393, 1, false); // 6
 
 	// room 2
-	CreateRoomLine(569, 2294, 726, 2294, 2); // 32
-	CreateRoomLine(569, 2294, 569, 1881, 2); // 33
-	CreateRoomLine(726, 2294, 726, 1881, 2); // 34
-	CreateRoomLine(569, 1881, 726, 1881, 2); // 35
+	CreateRoomLine(569, 2294, 726, 2294, 2, false); // 32
+	CreateRoomLine(569, 2294, 569, 1881, 2, false); // 33
+	CreateRoomLine(726, 2294, 726, 1881, 2, false); // 34
+	CreateRoomLine(569, 1881, 726, 1881, 2, false); // 35
 
-	CreateRoomLine(616, 2007, 623, 2007, 2); // 36
-	CreateRoomLine(672, 2007, 679, 2007, 2); // 37
-	CreateRoomLine(616, 2007, 616, 1999, 2); // 38
-	CreateRoomLine(679, 2007, 679, 1999, 2); // 39
-	CreateRoomLine(616, 1999, 592, 1999, 2); // 40
-	CreateRoomLine(679, 1999, 703, 1999, 2); // 41
-	CreateRoomLine(592, 1999, 592, 1920, 2); // 42
-	CreateRoomLine(703, 1999, 703, 1920, 2); // 43
-	CreateRoomLine(592, 1920, 703, 1920, 2); // 44
-	CreateRoomLine(623, 2007, 623, 1983, 2); // 45
-	CreateRoomLine(672, 2007, 672, 1983, 2); // 46
-	CreateRoomLine(623, 1983, 608, 1983, 2); // 47
-	CreateRoomLine(672, 1983, 687, 1983, 2); // 48
-	CreateRoomLine(608, 1983, 608, 1936, 2); // 49
-	CreateRoomLine(687, 1983, 687, 1936, 2); // 50
-	CreateRoomLine(608, 1936, 687, 1936, 2); // 51
-	CreateRoomLine(608, 2255, 623, 2255, 2); // 52
-	CreateRoomLine(608, 2255, 608, 2208, 2); // 53
-	CreateRoomLine(623, 2255, 623, 2208, 2); // 54
-	CreateRoomLine(608, 2208, 623, 2208, 2); // 55
+	CreateRoomLine(616, 2007, 623, 2007, 2, false); // 36
+	CreateRoomLine(672, 2007, 679, 2007, 2, false); // 37
+	CreateRoomLine(616, 2007, 616, 1999, 2, false); // 38
+	CreateRoomLine(679, 2007, 679, 1999, 2, false); // 39
+	CreateRoomLine(616, 1999, 592, 1999, 2, false); // 40
+	CreateRoomLine(679, 1999, 703, 1999, 2, false); // 41
+	CreateRoomLine(592, 1999, 592, 1920, 2, false); // 42
+	CreateRoomLine(703, 1999, 703, 1920, 2, false); // 43
+	CreateRoomLine(592, 1920, 703, 1920, 2, false); // 44
+	CreateRoomLine(623, 2007, 623, 1983, 2, false); // 45
+	CreateRoomLine(672, 2007, 672, 1983, 2, false); // 46
+	CreateRoomLine(623, 1983, 608, 1983, 2, false); // 47
+	CreateRoomLine(672, 1983, 687, 1983, 2, false); // 48
+	CreateRoomLine(608, 1983, 608, 1936, 2, false); // 49
+	CreateRoomLine(687, 1983, 687, 1936, 2, false); // 50
+	CreateRoomLine(608, 1936, 687, 1936, 2, false); // 51
+	CreateRoomLine(608, 2255, 623, 2255, 2, false); // 52
+	CreateRoomLine(608, 2255, 608, 2208, 2, false); // 53
+	CreateRoomLine(623, 2255, 623, 2208, 2, false); // 54
+	CreateRoomLine(608, 2208, 623, 2208, 2, false); // 55
 
 	CreateHallLine(727, 1950, 727, 1969, 2, true); // 7
 	CreateHallLine(630, 1881, 649, 1881, 2, true); // 8
 
 	// room 3
-	CreateRoomLine(929, 2294, 1166, 2294, 3); // 0
-	CreateRoomLine(929, 2294, 929, 2255, 3); // 1
-	CreateRoomLine(1166, 2294, 1166, 2255, 3); // 2	
-	CreateRoomLine(929, 2255, 1166, 2255, 3); // 3
-	CreateRoomLine(809, 2166, 1238, 2166, 3); // 4
-	CreateRoomLine(809, 2166, 809, 2135, 3); // 5
-	CreateRoomLine(1238, 2166, 1238, 2105, 3); // 6
-	CreateRoomLine(863, 2135, 1111, 2135, 3); // 7
-	CreateRoomLine(1111, 2135, 1111, 2105, 3); // 8
-	CreateRoomLine(1111, 2105, 1238, 2105, 3); // 9
-	CreateRoomLine(809, 2038, 1238, 2038, 3); // 10
-	CreateRoomLine(809, 2038, 809, 1921, 3); // 11
-	CreateRoomLine(832, 2015, 832, 1921, 3); // 12
-	CreateRoomLine(832, 2015, 1215, 2015, 3); // 13
-	CreateRoomLine(1215, 2015, 1215, 1921, 3); // 14
-	CreateRoomLine(1238, 2038, 1238, 1921, 3); // 15
-	CreateRoomLine(809, 1921, 832, 1921, 3); // 16
-	CreateRoomLine(1215, 1921, 1238, 1921, 3); // 17
-	CreateRoomLine(961, 1920, 1134, 1920, 3); // 18
-	CreateRoomLine(961, 1920, 961, 1881, 3); // 19
-	CreateRoomLine(1134, 1920, 1134, 1881, 3); // 20
-	CreateRoomLine(961, 1881, 1134, 1881, 3); // 21
+	CreateRoomLine(929, 2294, 1166, 2294, 3, false); // 0
+	CreateRoomLine(929, 2294, 929, 2255, 3, false); // 1
+	CreateRoomLine(1166, 2294, 1166, 2255, 3, false); // 2	
+	CreateRoomLine(929, 2255, 1166, 2255, 3, false); // 3
+	CreateRoomLine(809, 2166, 1238, 2166, 3, false); // 4
+	CreateRoomLine(809, 2166, 809, 2135, 3, false); // 5
+	CreateRoomLine(1238, 2166, 1238, 2105, 3, false); // 6
+	CreateRoomLine(809, 2135, 1111, 2135, 3, false); // 7
+	CreateRoomLine(1111, 2135, 1111, 2105, 3, false); // 8
+	CreateRoomLine(1111, 2105, 1238, 2105, 3, false); // 9
+	CreateRoomLine(809, 2038, 1238, 2038, 3, false); // 10
+	CreateRoomLine(809, 2038, 809, 1921, 3, false); // 11
+	CreateRoomLine(832, 2015, 832, 1921, 3, false); // 12
+	CreateRoomLine(832, 2015, 1215, 2015, 3, false); // 13
+	CreateRoomLine(1215, 2015, 1215, 1921, 3, false); // 14
+	CreateRoomLine(1238, 2038, 1238, 1921, 3, false); // 15
+	CreateRoomLine(809, 1921, 832, 1921, 3, false); // 16
+	CreateRoomLine(1215, 1921, 1238, 1921, 3, false); // 17
+	CreateRoomLine(961, 1920, 1134, 1920, 3, false); // 18
+	CreateRoomLine(961, 1920, 961, 1881, 3, false); // 19
+	CreateRoomLine(1134, 1920, 1134, 1881, 3, false); // 20
+	CreateRoomLine(961, 1881, 1134, 1881, 3, false); // 21
+	// 선 충돌에서 문제 있던 선분들
+	CreateRoomLine(929, 2294, 1166, 2294, 3, false); // 0
+	CreateRoomLine(929, 2294, 929, 2255, 3, false); // 1
+	CreateRoomLine(1166, 2294, 1166, 2255, 3, false); // 2	
+	CreateRoomLine(929, 2255, 1166, 2255, 3, false); // 3
+	CreateRoomLine(809, 2166, 1238, 2166, 3, false); // 4
+	CreateRoomLine(809, 2166, 809, 2135, 3, false); // 5
+	CreateRoomLine(1238, 2166, 1238, 2105, 3, false); // 6
+	CreateRoomLine(809, 2135, 1111, 2135, 3, false); // 7
+	CreateRoomLine(1111, 2135, 1111, 2105, 3, false); // 8
+	CreateRoomLine(1111, 2105, 1238, 2105, 3, false); // 9
 
-	CreateRoomLine(953, 2230, 960, 2230, 3); // 22
-	CreateRoomLine(960, 2230, 960, 2224, 3); // 23
-	CreateRoomLine(991, 2230, 991, 2224, 3); // 24
-	CreateRoomLine(991, 2230, 1104, 2230, 3); // 25
-	CreateRoomLine(1104, 2230, 1104, 2224, 3); // 26
-	CreateRoomLine(1135, 2230, 1135, 2224, 3); // 27
-	CreateRoomLine(1135, 2230, 1142, 2230, 3); // 28
-	CreateRoomLine(953, 2230, 953, 2193, 3); // 29
-	CreateRoomLine(1142, 2230, 1142, 2193, 3); // 30
-	CreateRoomLine(953, 2193, 1017, 2193, 3); // 31
-	CreateRoomLine(1078, 2193, 1142, 2193, 3); // 32
-	CreateRoomLine(1017, 2193, 1017, 1982, 3); // 33
-	CreateRoomLine(1078, 2193, 1078, 1982, 3); // 34
-	CreateRoomLine(833, 2110, 840, 2110, 3); // 35
-	CreateRoomLine(840, 2110, 840, 2104, 3); // 36
-	CreateRoomLine(871, 2110, 871, 2104, 3); // 37
-	CreateRoomLine(871, 2110, 878, 2110, 3); // 38
-	CreateRoomLine(833, 2110, 833, 1945, 3); // 39
-	CreateRoomLine(878, 2110, 878, 1982, 3); // 40
-	CreateRoomLine(878, 1982, 1017, 1982, 3); // 41
-	CreateRoomLine(1078, 1982, 1182, 1982, 3); // 42
-	CreateRoomLine(1182, 1982, 1182, 1945, 3); // 43
-	CreateRoomLine(833, 1945, 960, 1945, 3); // 44
-	CreateRoomLine(960, 1951, 960, 1945, 3); // 45
-	CreateRoomLine(991, 1951, 991, 1945, 3); // 46
-	CreateRoomLine(1104, 1951, 1104, 1945, 3); // 47
-	CreateRoomLine(1135, 1951, 1135, 1945, 3); // 48
-	CreateRoomLine(1135, 1945, 1182, 1945, 3); // 49
+	CreateRoomLine(953, 2230, 960, 2230, 3, true); // 22
+	CreateRoomLine(960, 2230, 960, 2224, 3, true); // 23
+	CreateRoomLine(991, 2230, 991, 2224, 3, true); // 24
+	CreateRoomLine(991, 2230, 1104, 2230, 3, true); // 25
+	CreateRoomLine(1104, 2230, 1104, 2224, 3, true); // 26
+	CreateRoomLine(1135, 2230, 1135, 2224, 3, true); // 27
+	CreateRoomLine(1135, 2230, 1142, 2230, 3, true); // 28
+	CreateRoomLine(953, 2230, 953, 2193, 3, true); // 29
+	CreateRoomLine(1142, 2230, 1142, 2193, 3, true); // 30
+	CreateRoomLine(953, 2193, 1017, 2193, 3, true); // 31
+	CreateRoomLine(1078, 2193, 1142, 2193, 3, true); // 32
+	CreateRoomLine(1017, 2193, 1017, 1982, 3, true); // 33
+	CreateRoomLine(1078, 2193, 1078, 1982, 3, true); // 34
+	CreateRoomLine(833, 2110, 840, 2110, 3, true); // 35
+	CreateRoomLine(840, 2110, 840, 2104, 3, true); // 36
+	CreateRoomLine(871, 2110, 871, 2104, 3, true); // 37
+	CreateRoomLine(871, 2110, 878, 2110, 3, true); // 38
+	CreateRoomLine(833, 2110, 833, 1945, 3, true); // 39
+	CreateRoomLine(878, 2110, 878, 1982, 3, true); // 40
+	CreateRoomLine(878, 1982, 1017, 1982, 3, true); // 41
+	CreateRoomLine(1078, 1982, 1182, 1982, 3, true); // 42
+	CreateRoomLine(1182, 1982, 1182, 1945, 3, true); // 43
+	CreateRoomLine(833, 1945, 960, 1945, 3, true); // 44
+	CreateRoomLine(960, 1951, 960, 1945, 3, true); // 45
+	CreateRoomLine(991, 1951, 991, 1945, 3, true); // 46
+	CreateRoomLine(1104, 1951, 1104, 1945, 3, true); // 47
+	CreateRoomLine(1135, 1951, 1135, 1945, 3, true); // 48
+	CreateRoomLine(1135, 1945, 1182, 1945, 3, true); // 49
 
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true); // 0
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
-	CreateHallLine(1014, 1881, 1033, 1881, 3, true); // 11
+	CreateRoomLine(1016, 2191, 1031, 2191, 3, true); // 50
+	CreateRoomLine(1031, 2191, 1031, 2144, 3, true); // 51
+	CreateRoomLine(1016, 2144, 1031, 2144, 3, true); // 52
+	CreateRoomLine(1064, 2175, 1079, 2175, 3, true); // 53
+	CreateRoomLine(1064, 2175, 1064, 2104, 3, true); // 54
+	CreateRoomLine(1064, 2104, 1079, 2104, 3, true); // 55
+	CreateRoomLine(1016, 2111, 1031, 2111, 3, true); // 56
+	CreateRoomLine(1031, 2111, 1031, 2064, 3, true); // 57
+	CreateRoomLine(1016, 2064, 1031, 2064, 3, true); // 58
+	CreateRoomLine(1064, 2079, 1079, 2079, 3, true); // 59
+	CreateRoomLine(1064, 2079, 1064, 1984, 3, true); // 60
+	CreateRoomLine(1064, 1984, 1079, 1984, 3, true); // 61
+	CreateRoomLine(1016, 2047, 1031, 2047, 3, true); // 62
+	CreateRoomLine(1031, 2047, 1031, 1984, 3, true); // 63
+	CreateRoomLine(1016, 1984, 1031, 1984, 3, true); // 64
 
-	CreateJumpLine(991, 2255, 1025, 2255, 3);
-	CreateJumpLine(991, 2752, 1025, 2752, 0);
+	CreateHallLine(1014, 2294, 1033, 2294, 3, true);
+	CreateHallLine(809, 1969, 809, 1951, 3, true);
+	CreateHallLine(1238, 1969, 1238, 1951, 3, true);
+	CreateHallLine(1014, 1881, 1033, 1881, 3, true);
+
+	CreateStairLine(960, 2255, 991, 2255, 3);
+	CreateStairLine(1104, 2255, 1135, 2255, 3);
+	CreateStairLine(960, 2224, 991, 2224, 3);
+	CreateStairLine(1104, 2224, 1135, 2224, 3);
+	CreateStairLine(840, 2135, 871, 2134, 3);
+	CreateStairLine(840, 2104, 871, 2104, 3);
+	CreateStairLine(960, 1951, 991, 1951, 3);
+	CreateStairLine(960, 1920, 991, 1920, 3);
+	CreateStairLine(1104, 1951, 1135, 1951, 3);
+	CreateStairLine(1104, 1920, 1135, 1920, 3);
+
+	CreateJumpLine(991, 2255, 1025, 2255, 3); // 0
+	CreateJumpLine(1071, 2255, 1104, 2255, 3); // 1
+	CreateJumpLine(959, 2166, 991, 2166, 3); // 2
+	CreateJumpLine(1104, 2166, 1136, 2166, 3); // 3
+	CreateJumpLine(991, 1920, 1025, 1920, 3); // 4
+	CreateJumpLine(1071, 1920, 1104, 1920, 3); // 1
 }
 
 EasternPalace::~EasternPalace()
@@ -380,6 +414,8 @@ EasternPalace::~EasternPalace()
 		hallLines[i].clear();
 	for (int i = 0; i < jumpLines->size(); i++)
 		jumpLines[i].clear();
+	for (int i = 0; i < stairLines->size(); i++)
+		stairLines[i].clear();
 }
 
 void EasternPalace::Update()
@@ -397,46 +433,71 @@ void EasternPalace::Update()
 	/// </summary>
 	for (int i = 0; i < roomLines[currentRoom].size(); i++)
 	{
-		roomLines[currentRoom][i].line->Update(V, P);
-		// 선 충돌 처리
-		RoomLineCollision(roomLines[currentRoom][i], i, player);
-		for (Enemy* enemy : enemies[currentRoom])
+		if (roomLines[currentRoom][i].base == false) // 1층에 대한 선
 		{
-			if (enemy->GetType() != "flying object" || (enemy->GetType() == "flying object" && i < 4)) // 선이 복잡?할 때 flying object가 선들에 끼여서 움직이는 범위를 방 전체로 둠
-				RoomLineCollision(roomLines[currentRoom][i], i, enemy);
+			if (player->GetBBase() == false) // 플레이어가 1층에 있을 때
+			{
+				roomLines[currentRoom][i].line->Update(V, P);
+				// 선 충돌 처리
+				RoomLineCollision(roomLines[currentRoom][i], i, player);
+			}
+
+
+			for (Enemy* enemy : enemies[currentRoom])
+			{
+				if (enemy->GetType() != "flying object" || (enemy->GetType() == "flying object" && i < 4)) // 선이 복잡?할 때 flying object가 선들에 끼여서 움직이는 범위를 방 전체로 둠
+					RoomLineCollision(roomLines[currentRoom][i], i, enemy);
+			}
 		}
-	} 
+		else if (roomLines[currentRoom][i].base == true) // 지하에 대한 선
+		{
+			if (player->GetBBase() == true) // 플레이어가 지하에 있을 때
+			{
+				roomLines[currentRoom][i].line->Update(V, P);
+				// 선 충돌 처리
+				RoomLineCollision(roomLines[currentRoom][i], i, player);
+			}
+			// 공 굴러가는 거 선 충돌
+		}
+	}
 	// roomLines 아래에 hallLines 둬서 플레이어의 선 충돌 상태 업데이트
 	for (int i = 0; i < hallLines[currentRoom].size(); i++)
 	{
 		hallLines[currentRoom][i].line->Update(V, P);
-		if (!player->IsAutoMoving()) // 플레이어가 자동으로 움직이고 있으면 선 충돌 검사 안 하기
-			HallLineCollision(hallLines[currentRoom][i], i);
+		if (player->GetBAutoMoving() == false) // 플레이어가 자동으로 움직이고 있으면 선 충돌 검사 안 하기
+			HallLineCollision(hallLines[currentRoom][i], i, 1, 1.6);
+	}
+	// 계단 선 충돌
+	for (int i = 0; i < stairLines[currentRoom].size(); i++)
+	{
+		stairLines[currentRoom][i].line->Update(V, P);
+		if (!player->GetBAutoMoving()) // 플레이어가 자동으로 움직이고 있으면 선 충돌 검사 안 하기
+			if (HallLineCollision(stairLines[currentRoom][i], i, 0.5, 1.4) != -1)
+			{
+				player->SetBBase(!player->GetBBase());
+			}
 	}
 	// 이동 반경 설정 end	
 
 	/// <summary>
 	/// 점프 조건 충족시키기
 	/// </summary>
-	// 1초 이상 선 충돌 상태면 점프
 	for (int i = 0; i < jumpLines[currentRoom].size(); i++)
 	{
 		jumpLines[currentRoom][i].line->Update(V, P);
-		if (RoomLineCollision(jumpLines[currentRoom][i], i, player) == true)
-			jump_time += Timer->Elapsed();
-		else
+		if (player->GetBMove() == true && !player->GetBLifting() && RoomLineCollision(jumpLines[currentRoom][i], i, player) == player->GetDirection())
+		{
+			player->Jump();
 			jump_time = 0;
-	}
-	if (jump_time > 1)
-	{
-		player->Jump();
-		jump_time = 0;
+			player->SetBBase(true);
+		}
 	}
 	// 점프 end
 
 	/// <summary>
 	/// currentRoom(현재 있는 방) 설정
 	/// </summary>
+	// Caution: hallLines 건드리면 segment fault
 	// room 0
 	if (hallLines[0][1].line->FirstVertexPos().y > player->BottomPosition().y)
 	{
@@ -459,7 +520,7 @@ void EasternPalace::Update()
 
 	// room 3
 	else if (hallLines[3][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < hallLines[3][11].line->FirstVertexPos().y)
+		&& player->TopPosition().y < hallLines[3][3].line->FirstVertexPos().y)
 	{
 		currentRoom = 3;
 	}
@@ -498,11 +559,24 @@ void EasternPalace::Update()
 		doors[1][3]->Play(1); // 문 열림
 	}
 	// 문 열리는 시기 결정 end
-	
+
+	/// <summary>
+	/// 버튼 상호작용
+	/// </summary>
+	if (Sprite::Obb(player->GetSprite(), buttons[2][0]))
+	{
+		for (Enemy* enemy : enemies[currentRoom])
+		{
+			if (enemy->GetType() == "flying object")
+				enemy->OnScene(true);
+		}
+	}
+	// 버튼 end
+
 	/// <summary>
 	/// 공 움직임
 	/// </summary>
-	/*for (Enemy* ball : enemies[3])
+	for (Enemy* ball : enemies[3])
 	{
 		ball->Direction(2);
 
@@ -511,7 +585,7 @@ void EasternPalace::Update()
 			ball->Position(ball->Position().x, (2814 - 1912) * 2.5 + Height / 2);
 		}
 	}
-	for (Enemy* ball : enemies[16])
+	/*for (Enemy* ball : enemies[16])
 	{
 		if (ball->Direction() == 1 && ball->Position().x >= (495 - 1023) * 2.5 + Width / 2)
 			ball->Position((301 - 1023) * 2.5 + Width / 2, ball->Position().y);
@@ -599,7 +673,12 @@ void EasternPalace::Render()
 	/// 방마다 다른 오브젝트 Render
 	/// </summary>
 	for (RoomLine roomLine : roomLines[currentRoom])
-		roomLine.line->Render();
+	{
+		if (!player->GetBBase() && !roomLine.base)
+			roomLine.line->Render();
+		else if (player->GetBBase() && roomLine.base)
+			roomLine.line->Render();
+	}
 	for (HallLine hallLine : hallLines[currentRoom])
 		hallLine.line->Render();
 	for (RoomLine jumpLine : jumpLines[currentRoom])
@@ -615,7 +694,7 @@ void EasternPalace::Render()
 		button->Render();
 	for (Enemy* enemy : enemies[currentRoom])
 		enemy->Render();
-	
+
 	// 이전 방
 	for (Vase* vase : vases[abs((currentRoom - 1) % 21)])
 		vase->Render(); // vase.cpp 내 선 충돌 처리해서 항아리 있는 위치에 플레이어가 안 겹치도록 하기
@@ -640,16 +719,14 @@ void EasternPalace::Render()
 	/// <summary>
 	/// player 위치에 따라 지형 렌더링 순서 정하기
 	/// </summary>
-	if (true) //계단 내려가기 전
+	if (!player->GetBBase()) //계단 내려가기 전
 	{
 		first_floor->Render();
+		player->Render();
 	}
-	for (int i = 0; i < buttons->size(); i++)
-		for (Sprite* button : buttons[i])
-			button->Render();
-	player->Render();
-	if (false) //계단 내려가서 밑층에 위치할 때 (임시로 false 설정)
+	if (player->GetBBase()) //계단 내려가서 밑층에 위치할 때 (임시로 false 설정)
 	{
+		player->Render();
 		first_floor->Render();
 	}
 	hall->Render();
@@ -669,10 +746,11 @@ void EasternPalace::SetPosition(D3DXVECTOR2 position)
 	//base->Position(position);
 }
 
-void EasternPalace::CreateEnemy(string type, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool onScene)
+void EasternPalace::CreateEnemy(string type, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool onScene, bool bBase)
 {
 	Enemy* enemy = new Enemy(type, scale, onScene);
 	enemy->Position((position.x - 1023) * 2.5 + Width / 2, (2811 - position.y) * 2.5 + Height / 2);
+	enemy->SetBBase(bBase);
 	enemies[room].push_back(enemy);
 	if (type == "armo knight")
 		armo_knights.push_back(enemy);
@@ -743,13 +821,13 @@ void EasternPalace::CreateDoor(D3DXVECTOR2 scale, D3DXVECTOR2 position, int room
 	doors[room].push_back(door);
 }
 
-void EasternPalace::CreateRoomLine(int x1, int y1, int x2, int y2, int room)
+void EasternPalace::CreateRoomLine(int x1, int y1, int x2, int y2, int room, bool base)
 {
 	D3DXVECTOR2 position1 = D3DXVECTOR2((x1 - 1023) * 2.5 + Width / 2, (2811 - y1) * 2.5 + Height / 2);
 	D3DXVECTOR2 position2 = D3DXVECTOR2((x2 - 1023) * 2.5 + Width / 2, (2811 - y2) * 2.5 + Height / 2);
 	Line* line = new Line(position1, position2);
 	D3DXVECTOR2* intersection = new D3DXVECTOR2(0, 0);
-	roomLines[room].push_back({ line, intersection });
+	roomLines[room].push_back({ line, intersection, base });
 }
 
 void EasternPalace::CreateHallLine(int x1, int y1, int x2, int y2, int room, bool open)
@@ -769,15 +847,23 @@ void EasternPalace::CreateJumpLine(int x1, int y1, int x2, int y2, int room)
 	jumpLines[room].push_back({ line, intersection });
 }
 
+void EasternPalace::CreateStairLine(int x1, int y1, int x2, int y2, int room)
+{
+	D3DXVECTOR2 position1 = D3DXVECTOR2((x1 - 1023) * 2.5 + Width / 2, (2811 - y1) * 2.5 + Height / 2);
+	D3DXVECTOR2 position2 = D3DXVECTOR2((x2 - 1023) * 2.5 + Width / 2, (2811 - y2) * 2.5 + Height / 2);
+	Line* line = new Line(position1, position2);
+	stairLines[room].push_back({ line, D3DXVECTOR2(0, 0), true });
+}
+
 template<typename T>
-bool EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
+int EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 {
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 1. 플레이어 위 선분
 	if (line.line->SegmentIntersection(object->Position(), object->TopPosition(), line.line->FirstVertexPos(), line.line->SecondVertexPos(), *line.intersection))
 	{
 		object->LineCollision(true, lineIndex, *line.intersection, "top");
-		return true;
+		return 4;
 	}
 
 	else if (object->GetTopBLineCollisionIndex() == lineIndex && // 서로 평행한 선분 2개 위치할 경우 인덱스가 작은 선과 충돌했는데 인덱스가 큰 선과는 충돌하지 않으므로 최종적으로 플레이어가 선 충돌하지 않았다고 판별하는 거... 방지
@@ -787,14 +873,14 @@ bool EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 			!line.line->InBoundingRectangle(*line.intersection, object->BottomPosition(), object->TopPosition())))
 	{
 		object->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "top");
-		return false;
+		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 2. 플레이어 아래
 	if (line.line->SegmentIntersection(object->Position(), object->BottomPosition(), line.line->FirstVertexPos(), line.line->SecondVertexPos(), *line.intersection))
 	{
 		object->LineCollision(true, lineIndex, *line.intersection, "bottom");
-		return true;
+		return 3;
 	}
 
 	else if (object->GetBottomBLineCollisionIndex() == lineIndex &&
@@ -804,14 +890,14 @@ bool EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 			!line.line->InBoundingRectangle(*line.intersection, object->TopPosition(), object->BottomPosition())))
 	{
 		object->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "bottom");
-		return false;
+		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 3. 플레이어 왼쪽
 	if (line.line->SegmentIntersection(object->Position(), object->LeftPosition(), line.line->FirstVertexPos(), line.line->SecondVertexPos(), *line.intersection))
 	{
 		object->LineCollision(true, lineIndex, *line.intersection, "left");
-		return true;
+		return 1;
 	}
 
 	else if (object->GetLeftBLineCollisionIndex() == lineIndex &&
@@ -821,14 +907,14 @@ bool EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 			!line.line->InBoundingRectangle(*line.intersection, object->RightPosition(), object->LeftPosition())))
 	{
 		object->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "left");
-		return false;
+		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 4. 플레이어 오른쪽
 	if (line.line->SegmentIntersection(object->Position(), object->RightPosition(), line.line->FirstVertexPos(), line.line->SecondVertexPos(), *line.intersection))
 	{
 		object->LineCollision(true, lineIndex, *line.intersection, "right");
-		return true;
+		return 2;
 	}
 
 	else if (object->GetRightBLineCollisionIndex() == lineIndex &&
@@ -838,11 +924,11 @@ bool EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 			!line.line->InBoundingRectangle(*line.intersection, object->LeftPosition(), object->RightPosition())))
 	{
 		object->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "right");
-		return false;
+		return 0;
 	}
 }
 
-bool EasternPalace::HallLineCollision(HallLine line, int lineIndex)
+int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, float time)
 {
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 1. 플레이어 위 선분
@@ -851,13 +937,13 @@ bool EasternPalace::HallLineCollision(HallLine line, int lineIndex)
 		if (line.open)
 		{
 			player->LineCollision(false, lineIndex, line.intersection, "top");
-			player->AutoMoving("top", 1, 1.6);
-			return true;
+			player->AutoMoving("top", speed, time);
+			return 4;
 		}
 		else
 		{
 			player->LineCollision(true, lineIndex, line.intersection, "top");
-			return false;
+			return 0;
 		}
 	}
 
@@ -868,7 +954,7 @@ bool EasternPalace::HallLineCollision(HallLine line, int lineIndex)
 			!line.line->InBoundingRectangle(line.intersection, player->TopPosition(), player->BottomPosition())))
 	{
 		player->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "top");
-		return false;
+		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 2. 플레이어 아래 선분
@@ -877,13 +963,13 @@ bool EasternPalace::HallLineCollision(HallLine line, int lineIndex)
 		if (line.open)
 		{
 			player->LineCollision(false, lineIndex, line.intersection, "bottom");
-			player->AutoMoving("bottom", 1, 1.6);
-			return true;
+			player->AutoMoving("bottom", speed, time);
+			return 3;
 		}
 		else
 		{
 			player->LineCollision(true, lineIndex, line.intersection, "bottom");
-			return false;
+			return 0;
 		}
 	}
 
@@ -894,7 +980,7 @@ bool EasternPalace::HallLineCollision(HallLine line, int lineIndex)
 			!line.line->InBoundingRectangle(line.intersection, player->TopPosition(), player->BottomPosition())))
 	{
 		player->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "bottom");
-		return false;
+		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 3. 플레이어 왼쪽
@@ -903,13 +989,13 @@ bool EasternPalace::HallLineCollision(HallLine line, int lineIndex)
 		if (line.open)
 		{
 			player->LineCollision(false, lineIndex, line.intersection, "left");
-			player->AutoMoving("left", 1, 1.6);
-			return true;
+			player->AutoMoving("left", speed, time);
+			return 1;
 		}
 		else
 		{
 			player->LineCollision(true, lineIndex, line.intersection, "left");
-			return false;
+			return 0;
 		}
 	}
 
@@ -920,7 +1006,7 @@ bool EasternPalace::HallLineCollision(HallLine line, int lineIndex)
 			!line.line->InBoundingRectangle(line.intersection, player->RightPosition(), player->LeftPosition())))
 	{
 		player->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "left");
-		return false;
+		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 4. 플레이어 오른쪽
@@ -929,13 +1015,13 @@ bool EasternPalace::HallLineCollision(HallLine line, int lineIndex)
 		if (line.open)
 		{
 			player->LineCollision(false, lineIndex, line.intersection, "right");
-			player->AutoMoving("right", 1, 1.6);
-			return true;
+			player->AutoMoving("right", speed, time);
+			return 2;
 		}
 		else
 		{
 			player->LineCollision(true, lineIndex, line.intersection, "right");
-			return false;
+			return 0;
 		}
 	}
 
@@ -946,6 +1032,6 @@ bool EasternPalace::HallLineCollision(HallLine line, int lineIndex)
 			!line.line->InBoundingRectangle(line.intersection, player->LeftPosition(), player->RightPosition())))
 	{
 		player->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "right");
-		return false;
+		return 0;
 	}
 }

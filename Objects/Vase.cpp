@@ -161,7 +161,7 @@ void Vase::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 	if (Sprite::Obb(player->GetSprite(), vase) && !lifted) //항아리 아직 안 들린 상태
 	{
 		player->Position(player->Position());
-		if (Key->Down('C') && !player->IsLifting()) //항아리 들기
+		if (Key->Down('C') && !player->GetBLifting()) //항아리 들기
 		{
 			player->Lift(true);
 			item->Scale(vase->Scale());

@@ -78,6 +78,7 @@ typedef struct RoomLine
 {
 	Line* line;
 	D3DXVECTOR2* intersection;
+	bool base;
 } RoomLine;
 
 typedef struct HallLine
