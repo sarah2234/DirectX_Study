@@ -46,11 +46,17 @@ public:
 	D3DXVECTOR2 RightPosition() { return positionVector[1]; }
 	D3DXVECTOR2 BottomPosition() { return positionVector[2]; }
 	D3DXVECTOR2 TopPosition() { return positionVector[3]; }
-	void LineCollision(bool b, int lineIndex, D3DXVECTOR2 intersection, string direction);
+	void LineCollision(bool b, int lineIndex, string direction);
 	int GetLeftBLineCollisionIndex() { return bLineCollisionIndex[0]; }
 	int GetRightBLineCollisionIndex() { return bLineCollisionIndex[1]; }
 	int GetBottomBLineCollisionIndex() { return bLineCollisionIndex[2]; }
 	int GetTopBLineCollisionIndex() { return bLineCollisionIndex[3]; }
+
+	void ObjectCollision(bool b, int objectIndex, string direction);
+	int GetLeftBObjectCollisionIndex() { return bObjectCollisionIndex[0]; }
+	int GetRightBObjectCollisionIndex() { return bObjectCollisionIndex[1]; }
+	int GetBottomBObjectCollisionIndex() { return bObjectCollisionIndex[2]; }
+	int GetTopBObjectCollisionIndex() { return bObjectCollisionIndex[3]; }
 
 	void AutoMoving(string direction, float speed, float time); // 플레이어 자동 움직임(방 이동할 때 등)
 	bool GetBAutoMoving();
@@ -67,8 +73,9 @@ private:
 	Animation* player;
 	D3DXVECTOR2 scale; // player 생성할 때 크기 입력받은 거 저장
 	D3DXVECTOR2 positionVector[4]; // left, right, bottom, top
-	D3DXVECTOR2 intersection[4];
+	D3DXVECTOR2 autoMovingPlace; // 자동으로 해당 위치까지 움직임
 	int bLineCollisionIndex[4];
+	int bObjectCollisionIndex[4];
 
 	float autoMovingTime;
 	bool bMove;

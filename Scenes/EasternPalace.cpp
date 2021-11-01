@@ -4,7 +4,7 @@
 #include <math.h>
 
 EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
-	:Scene(values, position), on(false), enemyMoveSpeed(200), armo_knights_time(0), jump_time(0), currentRoom(0)
+	:Scene(values, position), on(false), enemyMoveSpeed(200), armo_knights_time(0), currentRoom(0)
 {
 	//wstring spriteFile = Textures + L"Legend of Zelda/Eastern Palace Parts.png";
 	wstring shaderFile = Shaders + L"009_Sprite.fx";
@@ -403,10 +403,8 @@ EasternPalace::~EasternPalace()
 		doors[i].clear();
 	for (int i = 0; i < buttons->size(); i++)
 		buttons[i].clear();
-	for (int i = 0; i < vases->size(); i++)
-		vases[i].clear();
-	for (int i = 0; i < chests->size(); i++)
-		chests[i].clear();
+	for (int i = 0; i < objects->size(); i++)
+		objects[i].clear();
 
 	for (int i = 0; i < roomLines->size(); i++)
 		roomLines[i].clear();
@@ -488,7 +486,6 @@ void EasternPalace::Update()
 		if (player->GetBMove() == true && !player->GetBLifting() && RoomLineCollision(jumpLines[currentRoom][i], i, player) == player->GetDirection())
 		{
 			player->Jump();
-			jump_time = 0;
 			player->SetBBase(true);
 		}
 	}
@@ -631,10 +628,12 @@ void EasternPalace::Update()
 	/// <summary>
 	/// 방마다 다른 오브젝트 Update
 	/// </summary>
-	for (Vase* vase : vases[currentRoom])
-		vase->Update(V, P); // vase.cpp 내 선 충돌 처리해서 항아리 있는 위치에 플레이어가 안 겹치도록 하기
-	for (Chest* chest : chests[currentRoom])
-		chest->Update(V, P); // 선 충돌 처리해서 상자 있는 위치에 플레이어가 안 겹치도록 하기(는 시간이 없어서 안 될 듯)
+	for (int i = 0; i < objects[currentRoom].size(); i++)
+	{
+		objects[currentRoom][i]->Update(V, P);
+		ObjectCollision(objects[currentRoom][i], i);
+		
+	}
 	for (Animation* door : doors[currentRoom])
 		door->Update(V, P);
 	for (Sprite* button : buttons[currentRoom])
@@ -643,20 +642,16 @@ void EasternPalace::Update()
 		enemy->Update(V, P);
 
 	// 이전 방
-	for (Vase* vase : vases[abs((currentRoom - 1) % 21)])
-		vase->Update(V, P); // vase.cpp 내 선 충돌 처리해서 항아리 있는 위치에 플레이어가 안 겹치도록 하기
-	for (Chest* chest : chests[abs((currentRoom - 1) % 21)])
-		chest->Update(V, P); // 선 충돌 처리해서 상자 있는 위치에 플레이어가 안 겹치도록 하기(는 시간이 없어서 안 될 듯)
+	for (Object* obj : objects[abs((currentRoom - 1) % 21)])
+		obj->Update(V, P);
 	for (Animation* door : doors[abs((currentRoom - 1) % 21)])
 		door->Update(V, P);
 	for (Sprite* button : buttons[abs((currentRoom - 1) % 21)])
 		button->Update(V, P);
 
 	// 다음 방
-	for (Vase* vase : vases[(currentRoom + 1) % 21])
-		vase->Update(V, P); // vase.cpp 내 선 충돌 처리해서 항아리 있는 위치에 플레이어가 안 겹치도록 하기
-	for (Chest* chest : chests[(currentRoom + 1) % 21])
-		chest->Update(V, P); // 선 충돌 처리해서 상자 있는 위치에 플레이어가 안 겹치도록 하기(는 시간이 없어서 안 될 듯)
+	for (Object* obj : objects[abs((currentRoom + 1) % 21)])
+		obj->Update(V, P);
 	for (Animation* door : doors[(currentRoom + 1) % 21])
 		door->Update(V, P);
 	for (Sprite* button : buttons[(currentRoom + 1) % 21])
@@ -684,10 +679,8 @@ void EasternPalace::Render()
 	for (RoomLine jumpLine : jumpLines[currentRoom])
 		jumpLine.line->Render();
 
-	for (Vase* vase : vases[currentRoom])
-		vase->Render(); // vase.cpp 내 선 충돌 처리해서 항아리 있는 위치에 플레이어가 안 겹치도록 하기
-	for (Chest* chest : chests[currentRoom])
-		chest->Render(); // 선 충돌 처리해서 상자 있는 위치에 플레이어가 안 겹치도록 하기(는 시간이 없어서 안 될 듯)
+	for (Object* obj : objects[currentRoom])
+		obj->Render();
 	for (Animation* door : doors[currentRoom])
 		door->Render();
 	for (Sprite* button : buttons[currentRoom])
@@ -696,20 +689,16 @@ void EasternPalace::Render()
 		enemy->Render();
 
 	// 이전 방
-	for (Vase* vase : vases[abs((currentRoom - 1) % 21)])
-		vase->Render(); // vase.cpp 내 선 충돌 처리해서 항아리 있는 위치에 플레이어가 안 겹치도록 하기
-	for (Chest* chest : chests[abs((currentRoom - 1) % 21)])
-		chest->Render(); // 선 충돌 처리해서 상자 있는 위치에 플레이어가 안 겹치도록 하기(는 시간이 없어서 안 될 듯)
+	for (Object* obj : objects[abs((currentRoom - 1) % 21)])
+		obj->Render();
 	for (Animation* door : doors[abs((currentRoom - 1) % 21)])
 		door->Render();
 	for (Sprite* button : buttons[abs((currentRoom - 1) % 21)])
 		button->Render();
 
 	// 다음 방
-	for (Vase* vase : vases[(currentRoom + 1) % 21])
-		vase->Render(); // vase.cpp 내 선 충돌 처리해서 항아리 있는 위치에 플레이어가 안 겹치도록 하기
-	for (Chest* chest : chests[(currentRoom + 1) % 21])
-		chest->Render(); // 선 충돌 처리해서 상자 있는 위치에 플레이어가 안 겹치도록 하기(는 시간이 없어서 안 될 듯)
+	for (Object* obj : objects[abs((currentRoom + 1) % 21)])
+		obj->Render();
 	for (Animation* door : doors[(currentRoom + 1) % 21])
 		door->Render();
 	for (Sprite* button : buttons[(currentRoom + 1) % 21])
@@ -763,7 +752,7 @@ void EasternPalace::CreateVase(string type, D3DXVECTOR2 scale, D3DXVECTOR2 posit
 	vase->Scale(scale);
 	vase->DrawBound(boundary);
 	vase->Position((position.x - 1023) * 2.5 + Width / 2, (2811 - position.y) * 2.5 + Height / 2);
-	vases[room].push_back(vase);
+	objects[room].push_back(vase);
 }
 
 void EasternPalace::CreateChest(string size, string item, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool boundary)
@@ -773,7 +762,7 @@ void EasternPalace::CreateChest(string size, string item, D3DXVECTOR2 scale, D3D
 	chest->Scale(scale);
 	chest->DrawBound(boundary);
 	chest->Position((position.x - 1023) * 2.5 + Width / 2, (2811 - position.y) * 2.5 + Height / 2);
-	chests[room].push_back(chest);
+	objects[room].push_back(chest);
 }
 
 void EasternPalace::CreateButton(string type, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool boundary)
@@ -862,7 +851,7 @@ int EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 	// 1. 플레이어 위 선분
 	if (line.line->SegmentIntersection(object->Position(), object->TopPosition(), line.line->FirstVertexPos(), line.line->SecondVertexPos(), *line.intersection))
 	{
-		object->LineCollision(true, lineIndex, *line.intersection, "top");
+		object->LineCollision(true, lineIndex, "top");
 		return 4;
 	}
 
@@ -872,14 +861,14 @@ int EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(*line.intersection, object->BottomPosition(), object->TopPosition())))
 	{
-		object->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "top");
+		object->LineCollision(false, lineIndex, "top");
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 2. 플레이어 아래
 	if (line.line->SegmentIntersection(object->Position(), object->BottomPosition(), line.line->FirstVertexPos(), line.line->SecondVertexPos(), *line.intersection))
 	{
-		object->LineCollision(true, lineIndex, *line.intersection, "bottom");
+		object->LineCollision(true, lineIndex, "bottom");
 		return 3;
 	}
 
@@ -889,14 +878,14 @@ int EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(*line.intersection, object->TopPosition(), object->BottomPosition())))
 	{
-		object->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "bottom");
+		object->LineCollision(false, lineIndex, "bottom");
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 3. 플레이어 왼쪽
 	if (line.line->SegmentIntersection(object->Position(), object->LeftPosition(), line.line->FirstVertexPos(), line.line->SecondVertexPos(), *line.intersection))
 	{
-		object->LineCollision(true, lineIndex, *line.intersection, "left");
+		object->LineCollision(true, lineIndex, "left");
 		return 1;
 	}
 
@@ -906,14 +895,14 @@ int EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(*line.intersection, object->RightPosition(), object->LeftPosition())))
 	{
-		object->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "left");
+		object->LineCollision(false, lineIndex, "left");
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 4. 플레이어 오른쪽
 	if (line.line->SegmentIntersection(object->Position(), object->RightPosition(), line.line->FirstVertexPos(), line.line->SecondVertexPos(), *line.intersection))
 	{
-		object->LineCollision(true, lineIndex, *line.intersection, "right");
+		object->LineCollision(true, lineIndex, "right");
 		return 2;
 	}
 
@@ -923,7 +912,7 @@ int EasternPalace::RoomLineCollision(RoomLine line, int lineIndex, T object)
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(*line.intersection, object->LeftPosition(), object->RightPosition())))
 	{
-		object->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "right");
+		object->LineCollision(false, lineIndex, "right");
 		return 0;
 	}
 }
@@ -936,13 +925,13 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 	{
 		if (line.open)
 		{
-			player->LineCollision(false, lineIndex, line.intersection, "top");
+			player->LineCollision(false, lineIndex, "top");
 			player->AutoMoving("top", speed, time);
 			return 4;
 		}
 		else
 		{
-			player->LineCollision(true, lineIndex, line.intersection, "top");
+			player->LineCollision(true, lineIndex, "top");
 			return 0;
 		}
 	}
@@ -953,7 +942,7 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(line.intersection, player->TopPosition(), player->BottomPosition())))
 	{
-		player->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "top");
+		player->LineCollision(false, lineIndex, "top");
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -962,13 +951,13 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 	{
 		if (line.open)
 		{
-			player->LineCollision(false, lineIndex, line.intersection, "bottom");
+			player->LineCollision(false, lineIndex, "bottom");
 			player->AutoMoving("bottom", speed, time);
 			return 3;
 		}
 		else
 		{
-			player->LineCollision(true, lineIndex, line.intersection, "bottom");
+			player->LineCollision(true, lineIndex, "bottom");
 			return 0;
 		}
 	}
@@ -979,7 +968,7 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(line.intersection, player->TopPosition(), player->BottomPosition())))
 	{
-		player->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "bottom");
+		player->LineCollision(false, lineIndex, "bottom");
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -988,13 +977,13 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 	{
 		if (line.open)
 		{
-			player->LineCollision(false, lineIndex, line.intersection, "left");
+			player->LineCollision(false, lineIndex, "left");
 			player->AutoMoving("left", speed, time);
 			return 1;
 		}
 		else
 		{
-			player->LineCollision(true, lineIndex, line.intersection, "left");
+			player->LineCollision(true, lineIndex, "left");
 			return 0;
 		}
 	}
@@ -1005,7 +994,7 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(line.intersection, player->RightPosition(), player->LeftPosition())))
 	{
-		player->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "left");
+		player->LineCollision(false, lineIndex, "left");
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1014,13 +1003,13 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 	{
 		if (line.open)
 		{
-			player->LineCollision(false, lineIndex, line.intersection, "right");
+			player->LineCollision(false, lineIndex, "right");
 			player->AutoMoving("right", speed, time);
 			return 2;
 		}
 		else
 		{
-			player->LineCollision(true, lineIndex, line.intersection, "right");
+			player->LineCollision(true, lineIndex, "right");
 			return 0;
 		}
 	}
@@ -1031,7 +1020,60 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(line.intersection, player->LeftPosition(), player->RightPosition())))
 	{
-		player->LineCollision(false, lineIndex, D3DXVECTOR2(0, 0), "right");
+		player->LineCollision(false, lineIndex, "right");
 		return 0;
 	}
+}
+
+int EasternPalace::ObjectCollision(Object* obj, int objIndex)
+{
+	int collision = 0;
+	if (!obj->Exist())
+		return collision;
+
+	// top
+	if (Sprite::Obb(obj->GetSprite(), player->GetSprite()) && obj->Position().y >= player->Position().y)
+	{
+		player->ObjectCollision(true, objIndex, "top");
+		collision = 4;
+	}
+	else if(player->GetTopBObjectCollisionIndex() == objIndex && obj->Position().y >= player->Position().y)
+	{
+		player->ObjectCollision(false, objIndex, "top");
+	}
+
+	// bottom
+	if (Sprite::Obb(obj->GetSprite(), player->GetSprite()) && obj->Position().y < player->Position().y)
+	{
+		player->ObjectCollision(true, objIndex, "bottom");
+		collision = 3;
+	}
+	else if (player->GetBottomBObjectCollisionIndex() == objIndex && obj->Position().y < player->Position().y)
+	{
+		player->ObjectCollision(false, objIndex, "bottom");
+	}
+
+	// right
+	if (Sprite::Obb(obj->GetSprite(), player->GetSprite()) && obj->Position().x >= player->Position().x)
+	{
+		player->ObjectCollision(true, objIndex, "right");
+		collision = 2;
+	}
+	else if (player->GetRightBObjectCollisionIndex() == objIndex && obj->Position().x >= player->Position().x)
+	{
+		player->ObjectCollision(false, objIndex, "right");
+	}
+
+	// left
+	if (Sprite::Obb(obj->GetSprite(), player->GetSprite()) && obj->Position().x < player->Position().x)
+	{
+		player->ObjectCollision(true, objIndex, "left");
+		collision = 1;
+	}
+	else if (player->GetLeftBObjectCollisionIndex() == objIndex && obj->Position().x < player->Position().x)
+	{
+		player->ObjectCollision(false, objIndex, "left");
+	}
+
+	return collision;
 }

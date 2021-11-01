@@ -187,6 +187,7 @@
     <ClInclude Include="Objects\Chest.h" />
     <ClInclude Include="Objects\Enemy.h" />
     <ClInclude Include="Objects\Fire.h" />
+    <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Objects\Player.h" />
     <ClInclude Include="Objects\Status.h" />
     <ClInclude Include="Objects\Vase.h" />

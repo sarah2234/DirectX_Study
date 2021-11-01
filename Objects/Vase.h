@@ -1,6 +1,7 @@
 #pragma once
+#include "Object.h"
 
-class Vase
+class Vase : public Object
 {
 public:
 	Vase(string itemType);
@@ -20,6 +21,8 @@ public:
 	void DrawBound(bool b);
 
 	Sprite* GetSprite() { return vase; }
+
+	bool Exist() { return lifted; }
 
 private:
 	Sprite* vase;

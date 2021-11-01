@@ -252,6 +252,7 @@ Player::Player(D3DXVECTOR2 position, D3DXVECTOR2 scale)
 	for (int i = 0; i < 4; i++)
 	{
 		bLineCollisionIndex[i] = -1; // -1이면 충돌한 선이 없는 상태
+		bObjectCollisionIndex[i] = -1;
 	}
 	// left right bottom top
 	positionVector[0].x = position.x - 4 * scale.x;
@@ -320,13 +321,14 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 			bAttacked = false;
 		}
 	}
-	else if (autoMovingTime > 0)
+	else if (autoMovingTime > 0) // 자동으로 플레이어가 정해진 시간(autoMovingTime)만큼 움직임
 	{
 		for (int i = 0; i < 4; i++)
 		{
 			if (bLineCollisionIndex[i] != -1 && bAttacked) // 공격받아서 튕기는데 벽이 있을 때
 			{
 				autoMovingTime = -1.0f;
+				break;
 			}
 		}
 		autoMovingTime -= Timer->Elapsed();
@@ -335,7 +337,7 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 
 	if (!bAttack && !bPose /*&& !stop*/ && !bThrowing && !bJump && !autoMovingTime) // autoMovingTime이 0일 때 입력받기
 	{
-		if (Key->Press('S') && bLineCollisionIndex[2] == -1) // 아래쪽으로 이동
+		if (Key->Press('S')) // 아래쪽으로 이동
 		{
 			bMove = true;
 
@@ -344,7 +346,7 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 			bBottom = true;
 			bTop = false;
 		}
-		if (Key->Press('W') && bLineCollisionIndex[3] == -1) // 위쪽으로 이동
+		if (Key->Press('W')) // 위쪽으로 이동
 		{
 			bMove = true;
 
@@ -354,7 +356,7 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 			bTop = true;
 		}
 
-		if (Key->Press('A') && bLineCollisionIndex[0] == -1) // 왼쪽으로 이동
+		if (Key->Press('A')) // 왼쪽으로 이동
 		{
 			bMove = true;
 			
@@ -365,7 +367,7 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 			if (!Key->Press('W') || bLineCollisionIndex[3] != -1)
 				bTop = false;
 		}
-		if (Key->Press('D') && bLineCollisionIndex[1] == -1) // 오른쪽으로 이동
+		if (Key->Press('D')) // 오른쪽으로 이동
 		{
 			bMove = true;
 			
@@ -436,10 +438,13 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 	{
 		if (bLeft)
 		{
-			if (!bTop && !bBottom)
-				position.x -= moveSpeed * Timer->Elapsed();
-			else
-				position.x -= moveSpeed * Timer->Elapsed() / sqrt(2);
+			if ((bLineCollisionIndex[0] == -1 && bObjectCollisionIndex[0] == -1) || autoMovingTime > 0)
+			{
+				if (!bTop && !bBottom)
+					position.x -= moveSpeed * Timer->Elapsed();
+				else
+					position.x -= moveSpeed * Timer->Elapsed() / sqrt(2);
+			}
 			player->RotationDegree(0, 0, 0);
 			if (bJump)
 				player->Play(21); // jump
@@ -450,10 +455,13 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 		}
 		if (bRight)
 		{
-			if (!bTop && !bBottom)
-				position.x += moveSpeed * Timer->Elapsed();
-			else
-				position.x += moveSpeed * Timer->Elapsed() / sqrt(2);
+			if ((bLineCollisionIndex[1] == -1 && bObjectCollisionIndex[1] == -1) || autoMovingTime > 0)
+			{
+				if (!bTop && !bBottom)
+					position.x += moveSpeed * Timer->Elapsed();
+				else
+					position.x += moveSpeed * Timer->Elapsed() / sqrt(2);
+			}
 			player->RotationDegree(0, 180, 0);
 			if (bJump)
 				player->Play(21);
@@ -465,10 +473,13 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 
 		if (bBottom)
 		{
-			if (!bLeft && !bRight)
-				position.y -= moveSpeed * Timer->Elapsed();
-			else
-				position.y -= moveSpeed * Timer->Elapsed() / sqrt(2);
+			if ((bLineCollisionIndex[2] == -1 && bObjectCollisionIndex[2] == -1) || autoMovingTime > 0)
+			{
+				if (!bLeft && !bRight)
+					position.y -= moveSpeed * Timer->Elapsed();
+				else
+					position.y -= moveSpeed * Timer->Elapsed() / sqrt(2);
+			}
 			if (bJump)
 				player->Play(20);
 			else if (bLifting && !bLeft && !bRight)
@@ -479,10 +490,13 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 		}
 		if (bTop)
 		{
-			if (!bLeft && !bRight)
-				position.y += moveSpeed * Timer->Elapsed();
-			else
-				position.y += moveSpeed * Timer->Elapsed() / sqrt(2);
+			if ((bLineCollisionIndex[3] == -1 && bObjectCollisionIndex[3] == -1) || autoMovingTime > 0)
+			{
+				if (!bLeft && !bRight)
+					position.y += moveSpeed * Timer->Elapsed();
+				else
+					position.y += moveSpeed * Timer->Elapsed() / sqrt(2);
+			}
 			if (bJump)
 				player->Play(19);
 			else if (bLifting && !bLeft && !bRight)
@@ -618,41 +632,19 @@ void Player::Jump()
 {
 	bJump = true;
 	if (bLeft)
-		AutoMoving("left", 1, 0.6);
+		AutoMoving("left", 1, 0.5);
 	else if (bRight)
-		AutoMoving("right", 1, 0.6);
+		AutoMoving("right", 1, 0.5);
 	else if (bTop)
-		AutoMoving("top", 1, 0.6);
+		AutoMoving("top", 1, 0.5);
 	else if (bBottom)
-		AutoMoving("bottom", 1, 0.6);
+		AutoMoving("bottom", 1, 0.5);
 }
 
 void Player::Attacked()
 {
 	D3DXVECTOR2 position = player->Position();
 	bAttacked = true;
-	/*while (time <= 1)
-	{
-		for (int i = 0; i < 4; i++)
-		{
-			if (bLineCollisionIndex[i] != -1)
-			{
-				player->Position(intersection[i] + player->Position() - positionVector[i]);
-				stamina--;
-				invincibleTime = 1;
-				return;
-			}
-		}
-		if (bottom)
-			player->Position(player->Position().x, player->Position().y + moveSpeed * Timer->Elapsed() / 2);
-		else if (top)
-			player->Position(player->Position().x, player->Position().y - moveSpeed * Timer->Elapsed() / 2);
-		else if (left)
-			player->Position(player->Position().x + moveSpeed * Timer->Elapsed() / 2, player->Position().y);
-		else if (right)
-			player->Position(player->Position().x - moveSpeed * Timer->Elapsed() / 2, player->Position().y);
-		time += Timer->Elapsed();
-	}*/
 
 	stamina--;
 	invincibleTime = 1;
@@ -751,7 +743,7 @@ int Player::GetItem(string itemType)
 		return bow;
 }
 
-void Player::LineCollision(bool b, int lineIndex, D3DXVECTOR2 intersection, string direction)
+void Player::LineCollision(bool b, int lineIndex, string direction)
 {
 	int i;
 	if (direction == "left")
@@ -770,7 +762,27 @@ void Player::LineCollision(bool b, int lineIndex, D3DXVECTOR2 intersection, stri
 	}
 
 	bLineCollisionIndex[i] = lineIndex;
-	this->intersection[i] = intersection;
+}
+
+void Player::ObjectCollision(bool b, int objectIndex, string direction)
+{
+	int i;
+	if (direction == "left")
+		i = 0;
+	else if (direction == "right")
+		i = 1;
+	else if (direction == "bottom")
+		i = 2;
+	else if (direction == "top")
+		i = 3;
+
+	if (b == false)
+	{
+		bObjectCollisionIndex[i] = -1;
+		return;
+	}
+
+	bObjectCollisionIndex[i] = objectIndex;
 }
 
 void Player::AutoMoving(string direction, float speed, float time)

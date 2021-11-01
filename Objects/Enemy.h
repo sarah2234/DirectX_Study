@@ -41,7 +41,7 @@ public:
 	D3DXVECTOR2 RightPosition() { return positionVector[1]; }
 	D3DXVECTOR2 BottomPosition() { return positionVector[2]; }
 	D3DXVECTOR2 TopPosition() { return positionVector[3]; }
-	void LineCollision(bool b, int lineIndex, D3DXVECTOR2 intersection, string direction);
+	void LineCollision(bool b, int lineIndex, string direction);
 	int GetLeftBLineCollisionIndex() { return bLineCollisionIndex[0]; }
 	int GetRightBLineCollisionIndex() { return bLineCollisionIndex[1]; }
 	int GetBottomBLineCollisionIndex() { return bLineCollisionIndex[2]; }
@@ -62,6 +62,5 @@ private:
 
 	// ¼± Ãæµ¹
 	D3DXVECTOR2 positionVector[4]; // left, right, bottom, top
-	D3DXVECTOR2 intersection[4];
 	int bLineCollisionIndex[4];
 };

@@ -1,10 +1,8 @@
 #include "stdafx.h"
 #include "Chest.h"
 
-//extern Player* player;
-
 Chest::Chest(string size, string itemType, D3DXVECTOR2 scale)
-	:open(false)
+	:Object(), open(false)
 {
 	Clip* clip;
 	wstring textureFile = Textures + L"Legend of Zelda/Eastern Palace Parts.png";

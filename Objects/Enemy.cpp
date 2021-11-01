@@ -88,18 +88,18 @@ Enemy::Enemy(string type, D3DXVECTOR2 scale, bool onScene)
 	else if (type == "small ball")
 	{
 		clip = new Clip(PlayMode::Loop);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 440, 328, 456, 344), 0.3f);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 457, 328, 473, 344), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 440, 328, 456, 344), 0.2f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 457, 328, 473, 344), 0.2f);
 		enemy->AddClip(clip);
 
 		clip = new Clip(PlayMode::Loop);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 440, 328, 456, 344), 0.3f);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 457, 328, 473, 344), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 440, 328, 456, 344), 0.2f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 457, 328, 473, 344), 0.2f);
 		enemy->AddClip(clip);
 
 		clip = new Clip(PlayMode::Loop);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 440, 328, 456, 344), 0.3f);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 457, 328, 473, 344), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 440, 328, 456, 344), 0.2f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 457, 328, 473, 344), 0.2f);
 		enemy->AddClip(clip);
 
 		stamina = 1;
@@ -108,18 +108,18 @@ Enemy::Enemy(string type, D3DXVECTOR2 scale, bool onScene)
 	else if (type == "big ball")
 	{
 		clip = new Clip(PlayMode::Loop);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 482, 311, 512, 343), 0.3f);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 514, 311, 544, 343), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 482, 311, 512, 343), 0.2f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 514, 311, 544, 343), 0.2f);
 		enemy->AddClip(clip);
 
 		clip = new Clip(PlayMode::Loop);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 482, 311, 512, 343), 0.3f);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 514, 311, 544, 343), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 482, 311, 512, 343), 0.2f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 514, 311, 544, 343), 0.2f);
 		enemy->AddClip(clip);
 
 		clip = new Clip(PlayMode::Loop);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 482, 311, 512, 343), 0.3f);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 514, 311, 544, 343), 0.3f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 482, 311, 512, 343), 0.2f);
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 514, 311, 544, 343), 0.2f);
 		enemy->AddClip(clip);
 
 		stamina = 1;
@@ -489,7 +489,7 @@ void Enemy::Direction(int n)
 	direction = n;
 }
 
-void Enemy::LineCollision(bool b, int lineIndex, D3DXVECTOR2 intersection, string direction)
+void Enemy::LineCollision(bool b, int lineIndex, string direction)
 {
 	int i;
 	if (direction == "left")
@@ -508,5 +508,4 @@ void Enemy::LineCollision(bool b, int lineIndex, D3DXVECTOR2 intersection, strin
 	}
 
 	bLineCollisionIndex[i] = lineIndex;
-	this->intersection[i] = intersection;
 }

@@ -182,6 +182,9 @@
     <ClInclude Include="Systems\CMouse.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Object.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

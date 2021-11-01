@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "Objects/Enemy.h"
+#include "Objects/Object.h"
 #include "Objects/Chest.h"
 #include "Objects/Vase.h"
 
@@ -33,6 +34,7 @@ public:
 	template <typename T>
 	int RoomLineCollision(RoomLine line, int lineIndex, T object); 
 	int HallLineCollision(HallLine line, int lineIndex, float speed, float time);
+	int ObjectCollision(Object* obj, int objIndex);
 
 private:
 	Sprite* eastern_palace;
@@ -51,11 +53,9 @@ private:
 
 	vector<Animation*>doors[21];
 	vector<Sprite*> buttons[21]; // ÃÑ 21°³ÀÇ ¹æ
-	vector<Vase*> vases[21];
-	vector<Chest*> chests[21];
+	vector<Object*> objects[21]; // vase + chests
 
 	float armo_knights_time;
-	float jump_time;
 	int currentRoom;
 };
 
