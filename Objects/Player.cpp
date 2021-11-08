@@ -252,6 +252,7 @@ Player::Player(D3DXVECTOR2 position, D3DXVECTOR2 scale)
 	for (int i = 0; i < 4; i++)
 	{
 		bLineCollisionIndex[i] = -1; // -1이면 충돌한 선이 없는 상태
+		bHallCollisionIndex[i] = -1;
 		bObjectCollisionIndex[i] = -1;
 	}
 	// left right bottom top
@@ -263,6 +264,9 @@ Player::Player(D3DXVECTOR2 position, D3DXVECTOR2 scale)
 	positionVector[2].y = position.y - 12 * scale.y;
 	positionVector[3].x = position.x;
 	positionVector[3].y = position.y + 12 * scale.y;
+
+	for (int i = 0; i < 4; i++)
+		bNearBorder[i] = false;
 }
 
 Player::~Player()
@@ -438,7 +442,8 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 	{
 		if (bLeft)
 		{
-			if ((bLineCollisionIndex[0] == -1 && bObjectCollisionIndex[0] == -1) || autoMovingTime > 0)
+			if ((bLineCollisionIndex[0] == -1 && bHallCollisionIndex[0] == -1 && bObjectCollisionIndex[0] == -1) 
+				|| autoMovingTime > 0)
 			{
 				if (!bTop && !bBottom)
 					position.x -= moveSpeed * Timer->Elapsed();
@@ -455,7 +460,8 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 		}
 		if (bRight)
 		{
-			if ((bLineCollisionIndex[1] == -1 && bObjectCollisionIndex[1] == -1) || autoMovingTime > 0)
+			if ((bLineCollisionIndex[1] == -1 && bHallCollisionIndex[1] == -1 && bObjectCollisionIndex[1] == -1)
+				|| autoMovingTime > 0)
 			{
 				if (!bTop && !bBottom)
 					position.x += moveSpeed * Timer->Elapsed();
@@ -473,7 +479,8 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 
 		if (bBottom)
 		{
-			if ((bLineCollisionIndex[2] == -1 && bObjectCollisionIndex[2] == -1) || autoMovingTime > 0)
+			if ((bLineCollisionIndex[2] == -1 && bHallCollisionIndex[2] == -1 && bObjectCollisionIndex[2] == -1)
+				|| autoMovingTime > 0)
 			{
 				if (!bLeft && !bRight)
 					position.y -= moveSpeed * Timer->Elapsed();
@@ -490,7 +497,8 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 		}
 		if (bTop)
 		{
-			if ((bLineCollisionIndex[3] == -1 && bObjectCollisionIndex[3] == -1) || autoMovingTime > 0)
+			if ((bLineCollisionIndex[3] == -1 && bHallCollisionIndex[2] == -1 && bObjectCollisionIndex[3] == -1)
+				|| autoMovingTime > 0)
 			{
 				if (!bLeft && !bRight)
 					position.y += moveSpeed * Timer->Elapsed();
@@ -743,7 +751,7 @@ int Player::GetItem(string itemType)
 		return bow;
 }
 
-void Player::LineCollision(bool b, int lineIndex, string direction)
+void Player::LineCollision(bool b, int lineIndex, string direction, string type_of_line)
 {
 	int i;
 	if (direction == "left")
@@ -757,11 +765,17 @@ void Player::LineCollision(bool b, int lineIndex, string direction)
 	
 	if (b == false)
 	{
-		bLineCollisionIndex[i] = -1;
+		if (type_of_line == "room")
+			bLineCollisionIndex[i] = -1;
+		else if (type_of_line == "hall")
+			bHallCollisionIndex[i] = -1;
 		return;
 	}
 
-	bLineCollisionIndex[i] = lineIndex;
+	if (type_of_line == "room")
+		bLineCollisionIndex[i] = lineIndex;
+	else if (type_of_line == "hall")
+		bHallCollisionIndex[i] = lineIndex;
 }
 
 void Player::ObjectCollision(bool b, int objectIndex, string direction)
@@ -783,6 +797,21 @@ void Player::ObjectCollision(bool b, int objectIndex, string direction)
 	}
 
 	bObjectCollisionIndex[i] = objectIndex;
+}
+
+void Player::NearBorder(bool b, string direction)
+{
+	int i;
+	if (direction == "left")
+		i = 0;
+	else if (direction == "right")
+		i = 1;
+	else if (direction == "bottom")
+		i = 2;
+	else if (direction == "top")
+		i = 3;
+
+	bNearBorder[i] = b;
 }
 
 void Player::AutoMoving(string direction, float speed, float time)

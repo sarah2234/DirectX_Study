@@ -253,27 +253,27 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	/// Lines
 	/// </summary>
 	// room 0
-	CreateRoomLine(1014, 2824, 1033, 2824, 0, false); // 0-0
+	CreateRoomLine(1014, 2824, 1033, 2824, 0, false); // 0-0 bottom
+	CreateRoomLine(874, 2774, 874, 2649, 0, false); //3 left
+	CreateRoomLine(1174, 2649, 1174, 2774, 0, false); //16 right
+	CreateRoomLine(1001, 2649, 1034, 2649, 0, false); //9 top
 	CreateRoomLine(1014, 2824, 1014, 2806, 0, false); // 0-1
 	CreateRoomLine(1033, 2824, 1033, 2806, 0, false); // 0-2
 	CreateRoomLine(1014, 2806, 945, 2806, 0, false); // 0-3
 	CreateRoomLine(1033, 2806, 1102, 2806, 0, false); //0-4
 	CreateRoomLine(945, 2806, 945, 2774, 0, false); //1
 	CreateRoomLine(945, 2774, 874, 2774, 0, false); //2
-	CreateRoomLine(874, 2774, 874, 2649, 0, false); //3
 	CreateRoomLine(874, 2649, 895, 2649, 0, false); //4
 	CreateRoomLine(895, 2649, 918, 2649, 0, false); //5
 	CreateRoomLine(918, 2649, 918, 2713, 0, false); //6
 	CreateRoomLine(918, 2713, 1001, 2713, 0, false); //7
 	CreateRoomLine(1001, 2713, 1001, 2649, 0, false); //8
-	CreateRoomLine(1001, 2649, 1034, 2649, 0, false); //9
 	CreateRoomLine(1034, 2649, 1046, 2649, 0, false); //10
 	CreateRoomLine(1046, 2649, 1046, 2713, 0, false); //11
 	CreateRoomLine(1046, 2713, 1129, 2713, 0, false); //12
 	CreateRoomLine(1129, 2713, 1129, 2649, 0, false); //13
 	CreateRoomLine(1129, 2649, 1162, 2649, 0, false); //14
 	CreateRoomLine(1162, 2649, 1174, 2649, 0, false); //15
-	CreateRoomLine(1174, 2649, 1174, 2774, 0, false); //16
 	CreateRoomLine(1174, 2774, 1102, 2774, 0, false); //17
 	CreateRoomLine(1102, 2774, 1102, 2806, 0, false); //18
 	CreateRoomLine(1102, 2806, 1102, 2806, 0, false); //19
@@ -283,19 +283,17 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateHallLine(1142, 2649, 1161, 2649, 0, true); // 2
 
 	// room 1
-	CreateRoomLine(880, 2551, 911, 2551, 1, false); // 20
-	CreateRoomLine(880, 2551, 880, 2511, 1, false); // 21
+	CreateRoomLine(880, 2551, 911, 2551, 1, false); // 20 bottom
+	CreateRoomLine(880, 2551, 880, 2511, 1, false); // 21 left
+	CreateRoomLine(1167, 2551, 1167, 2511, 1, false); // 30 right
+	CreateRoomLine(992, 2393, 1055, 2393, 1, false); // 27 top
 	CreateRoomLine(911, 2551, 911, 2511, 1, false); // 22
 	CreateRoomLine(880, 2511, 911, 2511, 1, false); // 23
-
 	CreateRoomLine(992, 2551, 1055, 2551, 1, false); // 24
 	CreateRoomLine(992, 2551, 992, 2393, 1, false); // 25
 	CreateRoomLine(1055, 2551, 1055, 2393, 1, false); // 26
-	CreateRoomLine(992, 2393, 1055, 2393, 1, false); // 27
-
 	CreateRoomLine(1136, 2551, 1167, 2551, 1, false); // 28
 	CreateRoomLine(1136, 2551, 1136, 2511, 1, false); // 29
-	CreateRoomLine(1167, 2551, 1167, 2511, 1, false); // 30
 	CreateRoomLine(1136, 2511, 1167, 2511, 1, false); // 31
 
 	CreateHallLine(886, 2551, 905, 2551, 1, true); // 3
@@ -304,10 +302,10 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateHallLine(1014, 2393, 1033, 2393, 1, false); // 6
 
 	// room 2
-	CreateRoomLine(569, 2294, 726, 2294, 2, false); // 32
-	CreateRoomLine(569, 2294, 569, 1881, 2, false); // 33
-	CreateRoomLine(726, 2294, 726, 1881, 2, false); // 34
-	CreateRoomLine(569, 1881, 726, 1881, 2, false); // 35
+	CreateRoomLine(569, 2294, 726, 2294, 2, false); // 32 bottom
+	CreateRoomLine(569, 2294, 569, 1881, 2, false); // 33 left
+	CreateRoomLine(726, 2294, 726, 1881, 2, false); // 34 right
+	CreateRoomLine(569, 1881, 726, 1881, 2, false); // 35 top
 
 	CreateRoomLine(616, 2007, 623, 2007, 2, false); // 36
 	CreateRoomLine(672, 2007, 679, 2007, 2, false); // 37
@@ -334,13 +332,14 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateHallLine(630, 1881, 649, 1881, 2, true); // 8
 
 	// room 3
-	CreateRoomLine(929, 2294, 1166, 2294, 3, false); // 0
+	CreateRoomLine(929, 2294, 1166, 2294, 3, false); // 0 bottom
+	CreateRoomLine(809, 2166, 809, 2135, 3, false); // 5 left
+	CreateRoomLine(1238, 2166, 1238, 2105, 3, false); // 6 right
+	CreateRoomLine(961, 1881, 1134, 1881, 3, false); // 21 top
 	CreateRoomLine(929, 2294, 929, 2255, 3, false); // 1
 	CreateRoomLine(1166, 2294, 1166, 2255, 3, false); // 2	
 	CreateRoomLine(929, 2255, 1166, 2255, 3, false); // 3
 	CreateRoomLine(809, 2166, 1238, 2166, 3, false); // 4
-	CreateRoomLine(809, 2166, 809, 2135, 3, false); // 5
-	CreateRoomLine(1238, 2166, 1238, 2105, 3, false); // 6
 	CreateRoomLine(809, 2135, 1111, 2135, 3, false); // 7
 	CreateRoomLine(1111, 2135, 1111, 2105, 3, false); // 8
 	CreateRoomLine(1111, 2105, 1238, 2105, 3, false); // 9
@@ -355,18 +354,6 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateRoomLine(961, 1920, 1134, 1920, 3, false); // 18
 	CreateRoomLine(961, 1920, 961, 1881, 3, false); // 19
 	CreateRoomLine(1134, 1920, 1134, 1881, 3, false); // 20
-	CreateRoomLine(961, 1881, 1134, 1881, 3, false); // 21
-	// 선 충돌에서 문제 있던 선분들
-	CreateRoomLine(929, 2294, 1166, 2294, 3, false); // 0
-	CreateRoomLine(929, 2294, 929, 2255, 3, false); // 1
-	CreateRoomLine(1166, 2294, 1166, 2255, 3, false); // 2	
-	CreateRoomLine(929, 2255, 1166, 2255, 3, false); // 3
-	CreateRoomLine(809, 2166, 1238, 2166, 3, false); // 4
-	CreateRoomLine(809, 2166, 809, 2135, 3, false); // 5
-	CreateRoomLine(1238, 2166, 1238, 2105, 3, false); // 6
-	CreateRoomLine(809, 2135, 1111, 2135, 3, false); // 7
-	CreateRoomLine(1111, 2135, 1111, 2105, 3, false); // 8
-	CreateRoomLine(1111, 2105, 1238, 2105, 3, false); // 9
 
 	CreateRoomLine(953, 2230, 960, 2230, 3, true); // 22
 	CreateRoomLine(960, 2230, 960, 2224, 3, true); // 23
@@ -437,49 +424,47 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateJumpLine(1071, 1920, 1104, 1920, 3); // 1
 
 	// room 4
-	CreateRoomLine(1321, 2038, 1494, 2038, 4, false); // 0
+	CreateRoomLine(1321, 2038, 1494, 2038, 4, false); // 0 bottom
+	CreateRoomLine(1321, 2038, 1321, 1881, 4, false); // 2 left
+	CreateRoomLine(1494, 2038, 1494, 1881, 4, false); // 5 right
+	CreateRoomLine(1321, 1881, 1494, 1881, 4, false); // 7 top
 	CreateRoomLine(1350, 2009, 1465, 2009, 4, false); // 1
-	CreateRoomLine(1321, 2038, 1321, 1881, 4, false); // 2
 	CreateRoomLine(1350, 2038, 1350, 1910, 4, false); // 3
 	CreateRoomLine(1465, 2038, 1465, 1910, 4, false); // 4
-	CreateRoomLine(1494, 2038, 1494, 1881, 4, false); // 5
 	CreateRoomLine(1350, 1910, 1450, 1910, 4, false); // 6
-	CreateRoomLine(1321, 1881, 1494, 1881, 4, false); // 7
-
 	CreateHallLine(1321, 1970, 1321, 1949, 4, true); // 0
 	CreateHallLine(1494, 1970, 1494, 1949, 4, true); // 1
 	CreateHallLine(1397, 1881, 1418, 1881, 4, true); // 2
 
 	// room 5
-	CreateRoomLine(1577, 2038, 1750, 2038, 5, false); // 0
-	CreateRoomLine(1577, 2038, 1577, 1881, 5, false); // 1
-	CreateRoomLine(1750, 2038, 1750, 1881, 5, false); // 2
-	CreateRoomLine(1577, 1881, 1750, 1881, 5, false); // 3
+	CreateRoomLine(1577, 2038, 1750, 2038, 5, false); // 0 bottom
+	CreateRoomLine(1577, 2038, 1577, 1881, 5, false); // 1 left
+	CreateRoomLine(1750, 2038, 1750, 1881, 5, false); // 2 right
+	CreateRoomLine(1577, 1881, 1750, 1881, 5, false); // 3 top
 
 	CreateHallLine(1577, 1970, 1577, 1950, 5, true); // 0
 
 	// room 6
-	CreateRoomLine(297, 1782, 470, 1782, 6, false); // 0
-	CreateRoomLine(297, 1782, 297, 1625, 6, false); // 1
-	CreateRoomLine(470, 1782, 470, 1625, 6, false); // 2
-	CreateRoomLine(297, 1625, 470, 470, 6, false); // 3
+	CreateRoomLine(297, 1782, 470, 1782, 6, false); // 0 bottom
+	CreateRoomLine(297, 1782, 297, 1625, 6, false); // 1 left
+	CreateRoomLine(470, 1782, 470, 1625, 6, false); // 2 right
+	CreateRoomLine(297, 1625, 470, 470, 6, false); // 3 top
 
 	CreateHallLine(470, 1714, 470, 1693, 6, false); // 0
 	CreateHallLine(373, 1625, 394, 1625, 6, false); // 1
 
 	// room 7
-	CreateRoomLine(367, 1526, 408, 1526, 7, false); // 0
+	CreateRoomLine(367, 1526, 408, 1526, 7, false); // 0 bottom
+	CreateRoomLine(321, 1457, 321, 1502, 7, true); // 6 left
+	CreateRoomLine(446, 1502, 446, 1425, 7, true); // 7 right
+	CreateRoomLine(329, 1369, 406, 1369, 7, false); // 4 top
 	CreateRoomLine(367, 1526, 367, 1424, 7, false); // 1
 	CreateRoomLine(360, 1526, 367, 1526, 7, false); // 10
 	CreateRoomLine(360, 1432, 360, 1526, 7, false); // 11
 	CreateRoomLine(329, 1432, 329, 1369, 7, false); // 2
 	CreateRoomLine(406, 1526, 406, 1369, 7, false); // 3
-	CreateRoomLine(329, 1369, 406, 1369, 7, false); // 4
-
 	CreateRoomLine(321, 1502, 446, 1502, 7, true); // 5
-	CreateRoomLine(321, 1457, 321, 1502, 7, true); // 6
 	CreateRoomLine(321, 1457, 327, 1457, 7, true); // 12
-	CreateRoomLine(446, 1502, 446, 1425, 7, true); // 7
 	CreateRoomLine(361, 1463, 361, 1425, 7, true); // 8
 	CreateRoomLine(361, 1425, 446, 1425, 7, true); // 9
 
@@ -487,29 +472,28 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateHallLine(446, 1457, 446, 1438, 7, true); // 1
 
 	// room 8
-	CreateRoomLine(623, 1782, 656, 1782, 8, false); // 0
+	CreateRoomLine(623, 1782, 656, 1782, 8, false); // 0 bottom
+	CreateRoomLine(553, 1726, 553, 1503, 8, false); // 5 left
+	CreateRoomLine(726, 1726, 726, 1503, 8, false); // 8 right
+	CreateRoomLine(577, 1425, 702, 1425, 8, true); // 21 top
 	CreateRoomLine(623, 1782, 623, 1759, 8, false); // 1
 	CreateRoomLine(656, 1782, 656, 1759, 8, false); // 2
 	CreateRoomLine(553, 1726, 592, 1726, 8, false); // 3
 	CreateRoomLine(687, 1726, 726, 1726, 8, false); // 4
-	CreateRoomLine(553, 1726, 553, 1503, 8, false); // 5
 	CreateRoomLine(592, 1726, 592, 1648, 8, false); // 6
 	CreateRoomLine(687, 1726, 687, 1648, 8, false); // 7
-	CreateRoomLine(726, 1726, 726, 1503, 8, false); // 8
 	CreateRoomLine(592, 1648, 687, 1648, 8, false); // 9
 	CreateRoomLine(592, 1591, 687, 1591, 8, false); // 10
 	CreateRoomLine(592, 1591, 592, 1560, 8, false); // 11
 	CreateRoomLine(687, 1591, 687, 1560, 8, false); // 12
 	CreateRoomLine(592, 1560, 687, 1560, 8, false); // 13
 	CreateRoomLine(553, 1503, 726, 1503, 8, false); // 14
-
 	CreateRoomLine(625, 1727, 625, 1470, 8, true); // 15
 	CreateRoomLine(654, 1727, 654, 1470, 8, true); // 16
 	CreateRoomLine(577, 1470, 625, 1470, 8, true); // 17
 	CreateRoomLine(654, 1470, 702, 1470, 8, true); // 18
 	CreateRoomLine(577, 1470, 577, 1425, 8, true); // 19
 	CreateRoomLine(702, 1470, 702, 1425, 8, true); // 20
-	CreateRoomLine(577, 1425, 702, 1425, 8, true); // 21
 
 	CreateHallLine(629, 1782, 650, 1782, 8, true); // 0
 	CreateHallLine(553, 1713, 553, 1694, 8, true); // 1
@@ -720,87 +704,52 @@ void EasternPalace::Update()
 	/// currentRoom(현재 있는 방) 설정
 	/// </summary>
 	// Caution: hallLines / roomLines 건드리면 segment fault
-	// room 0
-	if (roomLines[0][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[0][9].line->FirstVertexPos().y
-		&& roomLines[0][3].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[0][16].line->FirstVertexPos().x)
+	for (int i = 0; i < 9; i++) // 현재 9번째 방까지 만듦
 	{
-		currentRoom = 0;
-	}
-	// room 1
-	else if (roomLines[1][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[1][7].line->FirstVertexPos().y
-		&& roomLines[1][1].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[1][10].line->FirstVertexPos().x)
-	{
-		currentRoom = 1;
-	}
-	// room 2
-	else if (roomLines[2][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[2][3].line->FirstVertexPos().y
-		&& roomLines[2][1].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[2][2].line->FirstVertexPos().x)
-	{
-		currentRoom = 2;
-	}
-	// room 3
-	else if (roomLines[3][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[3][21].line->FirstVertexPos().y
-		&& roomLines[3][5].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[3][6].line->FirstVertexPos().x)
-	{
-		currentRoom = 3;
-	}
-	// room 4
-	else if (roomLines[4][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[4][7].line->FirstVertexPos().y
-		&& roomLines[4][2].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[4][5].line->FirstVertexPos().x)
-	{
-		currentRoom = 4;
-	}
-	// room 5
-	else if (roomLines[5][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[5][3].line->FirstVertexPos().y
-		&& roomLines[5][1].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[5][2].line->FirstVertexPos().x)
-	{
-		currentRoom = 5;
-	}
-	// room 6
-	else if (roomLines[6][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[6][3].line->FirstVertexPos().y
-		&& roomLines[6][1].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[6][2].line->FirstVertexPos().x)
-	{
-		currentRoom = 6;
-	}
-	// room 7
-	else if (roomLines[7][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[7][4].line->FirstVertexPos().y
-		&& roomLines[7][6].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[7][7].line->FirstVertexPos().x)
-	{
-		currentRoom = 7;
-	}
-	// room 8
-	else if (roomLines[8][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[8][21].line->FirstVertexPos().y
-		&& roomLines[8][5].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[8][8].line->FirstVertexPos().x)
-	{
-		currentRoom = 8;
-	}
-	// room 9
-	else if (roomLines[9][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < roomLines[9][43].line->FirstVertexPos().y
-		&& roomLines[9][10].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < roomLines[9][13].line->FirstVertexPos().x)
-	{
-		currentRoom = 9;
+		float top = roomLines[i][3].line->FirstVertexPos().y;
+		float bottom = roomLines[i][0].line->FirstVertexPos().y;
+		float left = roomLines[i][1].line->FirstVertexPos().x;
+		float right = roomLines[i][2].line->FirstVertexPos().x;
+		// 0: bottom, 1: left, 2: right, 3: top
+		if (bottom < player->BottomPosition().y
+			&& player->TopPosition().y < top
+			&& left < player->LeftPosition().x
+			&& player->RightPosition().x < right)
+		{
+			currentRoom = i;
+		}
 	}
 	// currentRoom end
+
+	/// <summary>
+	/// 카메라 움직임 설정
+	/// </summary>
+	// 카메라 움직임을 제어하기 위해 방의 경계를 기준으로 두기
+	float top = roomLines[currentRoom][3].line->FirstVertexPos().y;
+	float bottom = roomLines[currentRoom][0].line->FirstVertexPos().y;
+	float left = roomLines[currentRoom][1].line->FirstVertexPos().x;
+	float right = roomLines[currentRoom][2].line->FirstVertexPos().x;
+	D3DXVECTOR2 PO = player->Position();
+	if (player->Position().y - bottom <= 100)
+		player->NearBorder(true, "bottom");
+	else
+		player->NearBorder(false, "bottom");
+
+	if (top - player->Position().y <= 100)
+		player->NearBorder(true, "top");
+	else
+		player->NearBorder(false, "top");
+
+	if (player->Position().x - left <= 100)
+		player->NearBorder(true, "left");
+	else
+		player->NearBorder(false, "left");
+
+	if (right - player->Position().x <= 100)
+		player->NearBorder(true, "right");
+	else
+		player->NearBorder(false, "right");
+	// 카메라 end
 
 	/// <summary>
 	/// 문(hall) 열리는 시기 결정
@@ -830,7 +779,7 @@ void EasternPalace::Update()
 			}
 		}
 	}
-	if (!player->Attacking() && Sprite::Obb(player->GetSprite(), buttons[1][0]))
+	if (!player->GetBAttacking() && Sprite::Obb(player->GetSprite(), buttons[1][0]))
 	{
 		hallLines[1][3].open = true;
 		doors[1][3]->Play(1); // 문 열림
@@ -997,22 +946,6 @@ void EasternPalace::Render()
 	base_floor->Render();
 
 	/// <summary>
-	/// player 위치에 따라 지형 렌더링 순서 정하기
-	/// </summary>
-	if (!player->GetBBase()) //계단 내려가기 전
-	{
-		first_floor->Render();
-		player->Render();
-	}
-	if (player->GetBBase()) //계단 내려가서 밑층에 위치할 때 (임시로 false 설정)
-	{
-		player->Render();
-		first_floor->Render();
-	}
-	hall->Render();
-	// player 위치에 따른 지형 렌더링 end
-
-	/// <summary>
 	/// 방마다 다른 오브젝트 Render
 	/// </summary>
 	// 이전 방
@@ -1053,6 +986,22 @@ void EasternPalace::Render()
 	for (Enemy* enemy : enemies[currentRoom])
 		enemy->Render();
 	// 방마다 다른 오브젝트 Render end
+
+	/// <summary>
+	/// player 위치에 따라 지형 렌더링 순서 정하기
+	/// </summary>
+	if (!player->GetBBase()) //계단 내려가기 전
+	{
+		first_floor->Render();
+		player->Render();
+	}
+	if (player->GetBBase()) //계단 내려가서 밑층에 위치할 때 (임시로 false 설정)
+	{
+		player->Render();
+		first_floor->Render();
+	}
+	hall->Render();
+	// player 위치에 따른 지형 렌더링 end
 
 	if (bBlackout)
 		blackout->Render();
@@ -1269,13 +1218,13 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 	{
 		if (line.open)
 		{
-			player->LineCollision(false, lineIndex, "top");
+			player->LineCollision(false, lineIndex, "top", "hall");
 			player->AutoMoving("top", speed, time);
 			return 4;
 		}
 		else
 		{
-			player->LineCollision(true, lineIndex, "top");
+			player->LineCollision(true, lineIndex, "top", "hall");
 			return 0;
 		}
 	}
@@ -1286,7 +1235,7 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(line.intersection, player->TopPosition(), player->BottomPosition())))
 	{
-		player->LineCollision(false, lineIndex, "top");
+		player->LineCollision(false, lineIndex, "top", "hall");
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1295,13 +1244,13 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 	{
 		if (line.open)
 		{
-			player->LineCollision(false, lineIndex, "bottom");
+			player->LineCollision(false, lineIndex, "bottom", "hall");
 			player->AutoMoving("bottom", speed, time);
 			return 3;
 		}
 		else
 		{
-			player->LineCollision(true, lineIndex, "bottom");
+			player->LineCollision(true, lineIndex, "bottom", "hall");
 			return 0;
 		}
 	}
@@ -1312,7 +1261,7 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(line.intersection, player->TopPosition(), player->BottomPosition())))
 	{
-		player->LineCollision(false, lineIndex, "bottom");
+		player->LineCollision(false, lineIndex, "bottom", "hall");
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1321,13 +1270,13 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 	{
 		if (line.open)
 		{
-			player->LineCollision(false, lineIndex, "left");
+			player->LineCollision(false, lineIndex, "left", "hall");
 			player->AutoMoving("left", speed, time);
 			return 1;
 		}
 		else
 		{
-			player->LineCollision(true, lineIndex, "left");
+			player->LineCollision(true, lineIndex, "left", "hall");
 			return 0;
 		}
 	}
@@ -1338,7 +1287,7 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(line.intersection, player->RightPosition(), player->LeftPosition())))
 	{
-		player->LineCollision(false, lineIndex, "left");
+		player->LineCollision(false, lineIndex, "left", "hall");
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1347,13 +1296,13 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 	{
 		if (line.open)
 		{
-			player->LineCollision(false, lineIndex, "right");
+			player->LineCollision(false, lineIndex, "right", "hall");
 			player->AutoMoving("right", speed, time);
 			return 2;
 		}
 		else
 		{
-			player->LineCollision(true, lineIndex, "right");
+			player->LineCollision(true, lineIndex, "right", "hall");
 			return 0;
 		}
 	}
@@ -1364,7 +1313,7 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 			// 교차점이 플레이어 위에 존재하지 않음
 			!line.line->InBoundingRectangle(line.intersection, player->LeftPosition(), player->RightPosition())))
 	{
-		player->LineCollision(false, lineIndex, "right");
+		player->LineCollision(false, lineIndex, "right", "hall");
 		return 0;
 	}
 }

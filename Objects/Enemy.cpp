@@ -330,7 +330,7 @@ void Enemy::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 	{
 		if ((player->GetBBase() == true && bBase == true) || (player->GetBBase() == false && bBase == false))
 		{
-			if (player->Attacking()) //선 & 면 충돌로 해결보기
+			if (player->GetBAttacking()) //선 & 면 충돌로 해결보기
 				Attacked(player->Direction());
 			else if (stamina > 0)
 			{

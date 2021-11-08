@@ -18,12 +18,11 @@ void InitScene()
 	wstring shaderFile = Shaders + L"009_Sprite.fx";
 	Clip* clip;
 
+	player = new Player(D3DXVECTOR2(Width / 2, Height / 2), D3DXVECTOR2(2.5f, 2.5f));
+
 	values = new SceneValues();
 	values->MainCamera = new Freedom();
 	D3DXMatrixIdentity(&values->Projection);
-
-	// player는 반드시 scenes 전에 만들도록 할 것 (totalIndex=0인 상태에서 player의 index를 맞춰야 함)
-	player = new Player(D3DXVECTOR2(Width / 2, Height / 2), D3DXVECTOR2(2.5f, 2.5f));
 
 	scenes.push_back(new GameOver(values, D3DXVECTOR2(65, 3270)));
 	scenes.push_back(new EasternPalace(values, D3DXVECTOR2(65, 3270)));
