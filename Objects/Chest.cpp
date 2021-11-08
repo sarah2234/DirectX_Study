@@ -2,7 +2,7 @@
 #include "Chest.h"
 
 Chest::Chest(string size, string itemType, D3DXVECTOR2 scale)
-	:Object(), open(false)
+	:Object(), exist(true)
 {
 	Clip* clip;
 	wstring textureFile = Textures + L"Legend of Zelda/Eastern Palace Parts.png";
@@ -70,7 +70,7 @@ void Chest::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 	chest->Update(V, P);
 	item->Update(V, P);
 
-	if (Sprite::Obb(player->GetSprite(), chest->GetSprite()) && !open && Key->Down('C')) //chest 연 후에 if문 실행되지 않도록 조정하기
+	if (Sprite::Obb(player->GetSprite(), chest->GetSprite()) && exist && Key->Down('C')) //chest 연 후에 if문 실행되지 않도록 조정하기
 	{//선 & 면 충돌로 해결보기
 		Open();
 		if (itemType == "boss key")
@@ -85,7 +85,7 @@ void Chest::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 			player->SetItem("rupee", 100);
 	}
 
-	if (open)
+	if (!exist) // chest가 열림
 	{
 		time += Timer->Elapsed();
 		chest->Play(1);
@@ -153,9 +153,9 @@ void Chest::DrawBound(bool b)
 
 void Chest::Open()
 {
-	if (open == false)
+	if (exist == true)
 	{
-		open = true;
+		exist = false;
 		time = 0;
 	}
 }

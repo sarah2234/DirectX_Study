@@ -4,7 +4,7 @@
 #include <math.h>
 
 EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
-	:Scene(values, position), on(false), enemyMoveSpeed(200), armo_knights_time(0), currentRoom(0)
+	:Scene(values, position), on(false), enemyMoveSpeed(200), armo_knights_time(0), currentRoom(0), bBlackout(false)
 {
 	//wstring spriteFile = Textures + L"Legend of Zelda/Eastern Palace Parts.png";
 	wstring shaderFile = Shaders + L"009_Sprite.fx";
@@ -26,6 +26,10 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	base_floor = new Sprite(Textures + L"Legend of Zelda/Eastern Palace Base Floor.png", shaderFile);
 	base_floor->Scale(2.5, 2.5);
 	base_floor->Position(position);
+
+	blackout = new Sprite(Textures + L"Legend of Zelda/Link.png", shaderFile, 22, 714, 422, 1114); // 중심: 222, 914
+	blackout->Scale(2.5, 2.5);
+	blackout->Position(Width / 2, Height / 2);
 
 	/// <summary>
 	/// Enemies
@@ -122,10 +126,21 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	/// <summary>
 	/// Create Button
 	/// </summary>
+	// room 0
 	CreateButton("yellow", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1015.5, 2694.5), 0, true);
+	// room 1
 	CreateButton("purple", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1015.5, 2487.5), 1, true);
+	// room 2
 	CreateButton("yellow", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(647.5, 2038.5), 2, true);
+	// room 4
+	CreateButton("purple", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1479.5, 1991.5), 4, true);
+	// room 9
+	CreateButton("purple", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(823.5, 1639.5), 9, true);
+	CreateButton("purple", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(823.5, 1639.5), 9, true);
+	CreateButton("purple", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1223.5, 1639.5), 9, true);
+	// room 12
 	CreateButton("yellow", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1663.5, 1446.5), 12, true);
+	// room 18
 	CreateButton("yellow", D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(871.5, 662.5), 18, true);
 	// end of buttons
 
@@ -193,13 +208,45 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	/// <summary>
 	/// Doors
 	/// </summary>
-	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(895.5, 2630.5), 0, true, false); // 0
-	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 2630.5), 0, false, false); // 1
-	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1151.5, 2630.5), 0, true, false); // 2
-	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(895.5, 2568.5), 1, true, true); // 3
-	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 2568.5), 1, false, true); // 4
-	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1151.5, 2568.5), 1, true, true); // 5
-	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 2374.5), 1, false, false); // 6
+	// room 0
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(895.5, 2630.5), 0, true, "top"); // 0
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 2630.5), 0, false, "top"); // 1
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1151.5, 2630.5), 0, true, "top"); // 2
+	// room 1
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(895.5, 2568.5), 1, true, "bottom"); // 0
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 2568.5), 1, false, "bottom"); // 1
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1151.5, 2568.5), 1, true, "bottom"); // 2
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 2374.5), 1, false, "top"); // 3
+	// room 3
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 2312.5), 3, true, "bottom"); // 0
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(789.5, 1960.5), 3, true, "left"); // 1
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1257.5, 1960.5), 3, false, "right"); // 2
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 1862.5), 3, true, "top"); // 3
+	// room 4
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1302.5, 1960.5), 4, false, "left"); // 0
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1513.5, 1960.5), 4, false, "right"); // 1
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1407.5, 1862.5), 4, true, "top"); // 2
+	// room 5
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1557.5, 1960.5), 5, true, "left"); // 0
+	// room 6
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(489.5, 1704.5), 6, false, "right"); // 0
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(383.5, 1606.5), 6, false, "top"); // 1
+	// room 7
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(383.5, 1546.5), 7, true, "bottom"); // 0
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(466.5, 1448.5), 7, true, "right"); // 1
+	// room 8
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(639.5, 1802.5), 8, true, "bottom"); // 0
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(533.5, 1704.5), 8, true, "left"); // 1
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(745.5, 1576.5), 8, true, "right"); // 2
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(556.5, 1448.5), 8, true, "left"); // 3
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(722.5, 1448.5), 8, true, "right"); // 4
+	// room 9
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 1802.5), 9, true, "bottom"); // 0
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(789.5, 1576.5), 9, false, "left"); // 1
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1257.5, 1576.5), 9, false, "right"); // 2
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(812.5, 1448.5), 9, true, "left"); // 3
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1234.5, 1448.5), 9, true, "right"); // 4
+	CreateDoor(D3DXVECTOR2(2.5, 2.5), D3DXVECTOR2(1023.5, 1350.5), 9, false, "top"); // 5
 	// end of doors
 
 	/// <summary>
@@ -388,6 +435,90 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateJumpLine(1104, 2166, 1136, 2166, 3); // 3
 	CreateJumpLine(991, 1920, 1025, 1920, 3); // 4
 	CreateJumpLine(1071, 1920, 1104, 1920, 3); // 1
+
+	// room 4
+	CreateRoomLine(1321, 2038, 1494, 2038, 4, false); // 0
+	CreateRoomLine(1350, 2009, 1465, 2009, 4, false); // 1
+	CreateRoomLine(1321, 2038, 1321, 1881, 4, false); // 2
+	CreateRoomLine(1350, 2038, 1350, 1910, 4, false); // 3
+	CreateRoomLine(1465, 2038, 1465, 1910, 4, false); // 4
+	CreateRoomLine(1494, 2038, 1494, 1881, 4, false); // 5
+	CreateRoomLine(1350, 1910, 1450, 1910, 4, false); // 6
+	CreateRoomLine(1321, 1881, 1494, 1881, 4, false); // 7
+
+	CreateHallLine(1321, 1970, 1321, 1949, 4, true); // 0
+	CreateHallLine(1494, 1970, 1494, 1949, 4, true); // 1
+	CreateHallLine(1397, 1881, 1418, 1881, 4, true); // 2
+
+	// room 9
+	CreateRoomLine(1001, 1782, 1046, 1782, 9, false); // 0
+	CreateRoomLine(1001, 1782, 1001, 1686, 9, false); // 1
+	CreateRoomLine(1046, 1782, 1046, 1686, 9, false); // 2
+	CreateRoomLine(1001, 1686, 857, 1686, 9, false); // 3
+	CreateRoomLine(1046, 1686, 1190, 1686, 9, false); // 4
+	CreateRoomLine(857, 1686, 857, 1654, 9, false); // 5
+	CreateRoomLine(1190, 1686, 1190, 1686, 9, false); // 6
+	CreateRoomLine(857, 1654, 809, 1654, 9, false); // 7
+	CreateRoomLine(1190, 1654, 1238, 1654, 9, false); // 8
+	CreateRoomLine(880, 1655, 1167, 1655, 9, false); // 9
+	CreateRoomLine(809, 1654, 809, 1559, 9, false); // 10
+	CreateRoomLine(880, 1655, 880, 1591, 9, false); // 11
+	CreateRoomLine(1167, 1655, 1167, 1591, 9, false); // 12
+	CreateRoomLine(1238, 1654, 1238, 1559, 9, false); // 13
+	CreateRoomLine(809, 1559, 848, 1559, 9, false); // 14
+	CreateRoomLine(848, 1559, 848, 1591, 9, false); // 15
+	CreateRoomLine(848, 1591, 880, 1591, 9, false); // 16
+	CreateRoomLine(1167, 1591, 1199, 1591, 9, false); // 17
+	CreateRoomLine(1199, 1591, 1199, 1559, 9, false); // 18
+	CreateRoomLine(1199, 1559, 1238, 1559, 9, false); // 19
+	CreateRoomLine(913, 1622, 1134, 1622, 9, false); // 20
+	CreateRoomLine(913, 1622, 913, 1526, 9, false); // 21
+	CreateRoomLine(1134, 1622, 1134, 1526, 9, false); // 22
+	CreateRoomLine(913, 1526, 833, 1526, 9, false); // 23
+	CreateRoomLine(1134, 1526, 1214, 1526, 9, false); // 24
+	CreateRoomLine(833, 1526, 833, 1424, 9, false); // 25
+	CreateRoomLine(1214, 1526, 1214, 1424, 9, false); // 26
+	CreateRoomLine(833, 1423, 863, 1393, 9, false); // 27
+	CreateRoomLine(1214, 1423, 1184, 1393, 9, false); // 28
+	CreateRoomLine(864, 1393, 950, 1393, 9, false); // 29
+	CreateRoomLine(1097, 1393, 1183, 1393, 9, false); // 30
+	CreateRoomLine(950, 1425, 950, 1393, 9, false); // 31
+	CreateRoomLine(1097, 1425, 1097, 1393, 9, false); // 32
+	CreateRoomLine(950, 1425, 976, 1425, 9, false); // 33
+	CreateRoomLine(976, 1425, 976, 1455, 9, false); // 34
+	CreateRoomLine(976, 1455, 1007, 1455, 9, false); // 35
+	CreateRoomLine(1007, 1455, 1007, 1425, 9, false); // 36
+	CreateRoomLine(1040, 1455, 1040, 1425, 9, false); // 37
+	CreateRoomLine(1040, 1455, 1071, 1455, 9, false); // 38
+	CreateRoomLine(1071, 1455, 1071, 1425, 9, false); // 39
+	CreateRoomLine(1071, 1425, 1097, 1425, 9, false); // 40
+	CreateRoomLine(983, 1400, 983, 1369, 9, false); // 41
+	CreateRoomLine(1064, 1400, 1064, 1369, 9, false); // 42
+	CreateRoomLine(983, 1369, 1064, 1369, 9, false); // 43
+
+	CreateRoomLine(992, 1591, 999, 1591, 9, false); // 44
+	CreateRoomLine(1048, 1591, 1055, 1591, 9, false); // 45
+	CreateRoomLine(992, 1591, 992, 1583, 9, false); // 46
+	CreateRoomLine(1055, 1591, 1055, 1583, 9, false); // 47
+	CreateRoomLine(960, 1583, 992, 1583, 9, false); // 48
+	CreateRoomLine(1055, 1583, 1087, 1583, 9, false); // 49
+	CreateRoomLine(960, 1583, 960, 1488, 9, false); // 50
+	CreateRoomLine(1087, 1583, 1087, 1488, 9, false); // 51
+	CreateRoomLine(960, 1488, 1087, 1488, 9, false); // 52
+	CreateRoomLine(999, 1591, 999, 1567, 9, false); // 53
+	CreateRoomLine(1048, 1591, 1048, 1567, 9, false); // 54
+	CreateRoomLine(976, 1567, 999, 1567, 9, false); // 55
+	CreateRoomLine(1048, 1567, 1071, 1567, 9, false); // 56
+	CreateRoomLine(976, 1567, 976, 1504, 9, false); // 57
+	CreateRoomLine(1071, 1567, 1071, 1504, 9, false); // 58
+	CreateRoomLine(976, 1504, 1071, 1504, 9, false); // 59
+
+	CreateHallLine(1014, 1782, 1033, 1782, 9, true); // 0
+	CreateHallLine(809, 1586, 809, 1565, 9, false); // 1
+	CreateHallLine(1238, 1586, 1238, 1565, 9, false); // 2
+	CreateHallLine(833, 1457, 833, 1438, 9, true); // 3	
+	CreateHallLine(1214, 1457, 1214, 1438, 9, true); // 4
+	CreateHallLine(1013, 1369, 1034, 1369, 9, false); // 5
 }
 
 EasternPalace::~EasternPalace()
@@ -396,6 +527,7 @@ EasternPalace::~EasternPalace()
 	SAFE_DELETE(hall);
 	SAFE_DELETE(first_floor);
 	SAFE_DELETE(base_floor);
+	SAFE_DELETE(blackout);
 
 	for (int i = 0; i < enemies->size(); i++)
 		enemies[i].clear();
@@ -478,6 +610,32 @@ void EasternPalace::Update()
 	// 이동 반경 설정 end	
 
 	/// <summary>
+	/// blackout 설정
+	/// </summary>
+	if (currentRoom == 1)
+		bBlackout = true;
+	else
+		bBlackout = false;
+
+	if (bBlackout)
+	{
+		if (player->Direction() == "left")
+			blackout->RotationDegree(0, 0, -90);
+		else if (player->Direction() == "right")
+			blackout->RotationDegree(0, 0, 90);
+		else if (player->Direction() == "bottom")
+			blackout->RotationDegree(0, 0, 0);
+		else if (player->Direction() == "top")
+			blackout->RotationDegree(180, 0, 0);
+
+		if (player->GetBMove())
+		{
+			blackout->Position(player->Position());
+		}
+	}
+	// blackout end
+
+	/// <summary>
 	/// 점프 조건 충족시키기
 	/// </summary>
 	for (int i = 0; i < jumpLines[currentRoom].size(); i++)
@@ -494,38 +652,51 @@ void EasternPalace::Update()
 	/// <summary>
 	/// currentRoom(현재 있는 방) 설정
 	/// </summary>
-	// Caution: hallLines 건드리면 segment fault
+	// Caution: hallLines / roomLines 건드리면 segment fault
 	// room 0
 	if (hallLines[0][1].line->FirstVertexPos().y > player->BottomPosition().y)
 	{
 		currentRoom = 0;
 	}
-
 	// room 1
 	else if (hallLines[1][0].line->FirstVertexPos().y < player->TopPosition().y
 		&& player->BottomPosition().y < hallLines[1][3].line->FirstVertexPos().y)
 	{
 		currentRoom = 1;
 	}
-
 	// room 2
 	else if (hallLines[2][0].line->FirstVertexPos().x > player->LeftPosition().x
 		&& player->BottomPosition().y < hallLines[2][1].line->FirstVertexPos().y)
 	{
 		currentRoom = 2;
 	}
-
 	// room 3
 	else if (hallLines[3][0].line->FirstVertexPos().y < player->BottomPosition().y
 		&& player->TopPosition().y < hallLines[3][3].line->FirstVertexPos().y)
 	{
 		currentRoom = 3;
 	}
+	// room 4
+	else if (player->TopPosition().y < hallLines[4][2].line->FirstVertexPos().y
+		&& hallLines[4][0].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < hallLines[4][1].line->FirstVertexPos().x)
+	{
+		currentRoom = 4;
+	}
+	// room 9
+	else if (hallLines[9][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < hallLines[9][5].line->FirstVertexPos().y
+		&& hallLines[9][1].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < hallLines[9][2].line->FirstVertexPos().x)
+	{
+		currentRoom = 9;
+	}
 	// currentRoom end
 
 	/// <summary>
 	/// 문(hall) 열리는 시기 결정
 	/// </summary>
+	// room 1
 	if (Sprite::Obb(player->GetSprite(), buttons[0][0]))
 	{
 		hallLines[0][1].open = true;
@@ -554,6 +725,34 @@ void EasternPalace::Update()
 	{
 		hallLines[1][3].open = true;
 		doors[1][3]->Play(1); // 문 열림
+	}
+	// room 2
+	if (!objects[2][2]->Exist()) // chest의 key 획득
+	{
+		if (HallLineCollision(hallLines[2][1], 1, 1, 1.6) != 0)
+		{
+			hallLines[2][1].open = true;
+			doors[2][1]->Play(1); // 문 열림
+		}
+	}
+	// room 4
+	if (Sprite::Obb(player->GetSprite(), buttons[4][0]))
+	{
+		hallLines[4][1].open = true;
+		hallLines[4][2].open = true;
+		doors[4][1]->Play(1);
+		doors[4][2]->Play(2);
+	}
+	// room 9
+	if (Sprite::Obb(player->GetSprite(), buttons[9][0]))
+	{
+		hallLines[9][1].open = true;
+		doors[9][1]->Play(1); // 문 열림
+	}
+	if (Sprite::Obb(player->GetSprite(), buttons[9][1]))
+	{
+		hallLines[9][2].open = true;
+		doors[9][2]->Play(1); // 문 열림
 	}
 	// 문 열리는 시기 결정 end
 
@@ -628,19 +827,6 @@ void EasternPalace::Update()
 	/// <summary>
 	/// 방마다 다른 오브젝트 Update
 	/// </summary>
-	for (int i = 0; i < objects[currentRoom].size(); i++)
-	{
-		objects[currentRoom][i]->Update(V, P);
-		ObjectCollision(objects[currentRoom][i], i);
-		
-	}
-	for (Animation* door : doors[currentRoom])
-		door->Update(V, P);
-	for (Sprite* button : buttons[currentRoom])
-		button->Update(V, P);
-	for (Enemy* enemy : enemies[currentRoom])
-		enemy->Update(V, P);
-
 	// 이전 방
 	for (Object* obj : objects[abs((currentRoom - 1) % 21)])
 		obj->Update(V, P);
@@ -656,6 +842,23 @@ void EasternPalace::Update()
 		door->Update(V, P);
 	for (Sprite* button : buttons[(currentRoom + 1) % 21])
 		button->Update(V, P);
+
+	// 현재 방
+	for (int i = 0; i < objects[currentRoom].size(); i++)
+	{
+		objects[currentRoom][i]->Update(V, P);
+		ObjectCollision(objects[currentRoom][i], i);
+
+	}
+	for (Animation* door : doors[currentRoom])
+		door->Update(V, P);
+	for (Sprite* button : buttons[currentRoom])
+		button->Update(V, P);
+	for (Enemy* enemy : enemies[currentRoom])
+		enemy->Update(V, P);
+
+	if (bBlackout)
+		blackout->Update(V, P);
 	// 방마다 다른 오브젝트 Update end
 }
 
@@ -667,6 +870,23 @@ void EasternPalace::Render()
 	/// <summary>
 	/// 방마다 다른 오브젝트 Render
 	/// </summary>
+	// 이전 방
+	for (Object* obj : objects[abs((currentRoom - 1) % 21)])
+		obj->Render();
+	for (Animation* door : doors[abs((currentRoom - 1) % 21)])
+		door->Render();
+	for (Sprite* button : buttons[abs((currentRoom - 1) % 21)])
+		button->Render();
+
+	// 다음 방
+	for (Object* obj : objects[abs((currentRoom + 1) % 21)])
+		obj->Render();
+	for (Animation* door : doors[(currentRoom + 1) % 21])
+		door->Render();
+	for (Sprite* button : buttons[(currentRoom + 1) % 21])
+		button->Render();
+
+	// 현재 방
 	for (RoomLine roomLine : roomLines[currentRoom])
 	{
 		if (!player->GetBBase() && !roomLine.base)
@@ -688,21 +908,8 @@ void EasternPalace::Render()
 	for (Enemy* enemy : enemies[currentRoom])
 		enemy->Render();
 
-	// 이전 방
-	for (Object* obj : objects[abs((currentRoom - 1) % 21)])
-		obj->Render();
-	for (Animation* door : doors[abs((currentRoom - 1) % 21)])
-		door->Render();
-	for (Sprite* button : buttons[abs((currentRoom - 1) % 21)])
-		button->Render();
-
-	// 다음 방
-	for (Object* obj : objects[abs((currentRoom + 1) % 21)])
-		obj->Render();
-	for (Animation* door : doors[(currentRoom + 1) % 21])
-		door->Render();
-	for (Sprite* button : buttons[(currentRoom + 1) % 21])
-		button->Render();
+	if (bBlackout)
+		blackout->Render();
 	// 방마다 다른 오브젝트 Render end
 
 	/// <summary>
@@ -780,7 +987,7 @@ void EasternPalace::CreateButton(string type, D3DXVECTOR2 scale, D3DXVECTOR2 pos
 	buttons[room].push_back(button);
 }
 
-void EasternPalace::CreateDoor(D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool open, bool upsideDown)
+void EasternPalace::CreateDoor(D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool open, string direction)
 {
 	wstring spriteFile = Textures + L"Legend of Zelda/Eastern Palace Parts.png";
 	wstring shaderFile = Shaders + L"009_Sprite.fx";
@@ -795,7 +1002,8 @@ void EasternPalace::CreateDoor(D3DXVECTOR2 scale, D3DXVECTOR2 position, int room
 	else
 	{
 		clip = new Clip(PlayMode::End);
-		clip->AddFrame(new Sprite(spriteFile, shaderFile, 36, 2, 68, 36), 0.1); // x: 32, y: 34
+		//clip->AddFrame(new Sprite(spriteFile, shaderFile, 36, 2, 68, 36), 0.1); // x: 32, y: 34
+		clip->AddFrame(new Sprite(spriteFile, shaderFile, 0, 1, 0, 1), 0.1); // 닫힌 문의 모습이 default
 		door->AddClip(clip); // closed
 
 		clip = new Clip(PlayMode::End);
@@ -805,8 +1013,14 @@ void EasternPalace::CreateDoor(D3DXVECTOR2 scale, D3DXVECTOR2 position, int room
 	door->Scale(scale);
 	door->Position((position.x - 1023) * 2.5 + Width / 2, (2811 - position.y) * 2.5 + Height / 2);
 	door->Play(0);
-	if (upsideDown)
+	if (direction == "top")
+		door->RotationDegree(0, 0, 0);
+	else if (direction == "bottom")
 		door->RotationDegree(180, 0, 0);
+	else if (direction == "right")
+		door->RotationDegree(0, 0, -90); // 반시계 방향
+	else if (direction == "left")
+		door->RotationDegree(0, 0, 90);
 	doors[room].push_back(door);
 }
 
@@ -1028,8 +1242,16 @@ int EasternPalace::HallLineCollision(HallLine line, int lineIndex, float speed, 
 int EasternPalace::ObjectCollision(Object* obj, int objIndex)
 {
 	int collision = 0;
-	if (!obj->Exist())
-		return collision;
+
+	if ((player->GetTopBObjectCollisionIndex() == objIndex || player->GetBottomBObjectCollisionIndex() == objIndex
+		|| player->GetRightBObjectCollisionIndex() == objIndex || player->GetLeftBObjectCollisionIndex() == objIndex)
+		&& !obj->Exist())
+	{
+		player->ObjectCollision(false, objIndex, "top");
+		player->ObjectCollision(false, objIndex, "bottom");
+		player->ObjectCollision(false, objIndex, "right");
+		player->ObjectCollision(false, objIndex, "left");
+	} // object가 없을 때 선 충돌 x
 
 	// top
 	if (Sprite::Obb(obj->GetSprite(), player->GetSprite()) && obj->Position().y >= player->Position().y)
@@ -1037,7 +1259,7 @@ int EasternPalace::ObjectCollision(Object* obj, int objIndex)
 		player->ObjectCollision(true, objIndex, "top");
 		collision = 4;
 	}
-	else if(player->GetTopBObjectCollisionIndex() == objIndex && obj->Position().y >= player->Position().y)
+	else if(player->GetTopBObjectCollisionIndex() == objIndex && obj->Position().y >= player->Position().y )
 	{
 		player->ObjectCollision(false, objIndex, "top");
 	}

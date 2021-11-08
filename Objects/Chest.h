@@ -16,12 +16,12 @@ public:
 
 	void Scale(float x, float y);
 	void Scale(D3DXVECTOR2 scale);
-	D3DXVECTOR2 Scale() { return chest->Scale(); }
+	D3DXVECTOR2 Scale() { return chest->TextureSize(); }
 
 	void DrawBound(bool b);
 
 	void Open();
-	bool Exist() { return open; }
+	bool Exist() { return exist; }
 
 	Sprite* GetSprite();
 
@@ -31,7 +31,7 @@ private:
 	Animation* chest;
 	Sprite* item;
 	string itemType;
-	bool open;
+	bool exist;
 
 	float time;
 };

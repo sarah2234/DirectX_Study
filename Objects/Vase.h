@@ -16,18 +16,19 @@ public:
 
 	void Scale(float x, float y);
 	void Scale(D3DXVECTOR2 scale);
-	D3DXVECTOR2 Scale() { return vase->Scale(); }
+	D3DXVECTOR2 Scale() { return vase->TextureSize(); }
 
 	void DrawBound(bool b);
 
 	Sprite* GetSprite() { return vase; }
 
-	bool Exist() { return lifted; }
+	bool Exist() { return exist; }
 
 private:
 	Sprite* vase;
 	Animation* item;
 	string itemType;
+	bool exist;
 	bool lifted;
 	bool itemObtainable;
 	float time;

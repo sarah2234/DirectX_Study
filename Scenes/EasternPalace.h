@@ -24,7 +24,7 @@ public:
 	void CreateVase(string type, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool boundary);
 	void CreateChest(string size, string item, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool boundary);
 	void CreateButton(string type, D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool boundary);
-	void CreateDoor(D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool open, bool upsideDown);
+	void CreateDoor(D3DXVECTOR2 scale, D3DXVECTOR2 position, int room, bool open, string direction);
 
 	void CreateRoomLine(int x1, int y1, int x2, int y2, int room, bool base);
 	void CreateHallLine(int x1, int y1, int x2, int y2, int room, bool open);
@@ -32,9 +32,9 @@ public:
 	void CreateStairLine(int x1, int y1, int x2, int y2, int room);
 	// (player의 direction과 일치) none-0, left-1, right-2, bottom-3, top-4
 	template <typename T>
-	int RoomLineCollision(RoomLine line, int lineIndex, T object); 
-	int HallLineCollision(HallLine line, int lineIndex, float speed, float time);
-	int ObjectCollision(Object* obj, int objIndex);
+	int RoomLineCollision(RoomLine line, int lineIndex, T object); // return 0 아니면 충돌 판정
+	int HallLineCollision(HallLine line, int lineIndex, float speed, float time); // return 0 아니면 충돌 판정
+	int ObjectCollision(Object* obj, int objIndex); // return 0 아니면 충돌 판정
 
 private:
 	Sprite* eastern_palace;
@@ -54,6 +54,9 @@ private:
 	vector<Animation*>doors[21];
 	vector<Sprite*> buttons[21]; // 총 21개의 방
 	vector<Object*> objects[21]; // vase + chests
+
+	Sprite* blackout;
+	bool bBlackout;
 
 	float armo_knights_time;
 	int currentRoom;

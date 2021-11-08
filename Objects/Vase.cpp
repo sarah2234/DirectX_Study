@@ -3,7 +3,7 @@
 #include <math.h>
 
 Vase::Vase(string itemType)
-	:Object(), lifted(false), itemObtainable(false), time(0)
+	:Object(), exist(true), lifted(false), itemObtainable(false), time(0)
 {
 	wstring spriteFile = Textures + L"Legend of Zelda/Items.png";
 	wstring shaderFile = Shaders + L"009_Sprite.fx";
@@ -158,19 +158,20 @@ void Vase::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 	vase->Update(V, P);
 	item->Update(V, P);
 	
-	if (Sprite::Obb(player->GetSprite(), vase) && !lifted) //항아리 아직 안 들린 상태
+	if (Sprite::Obb(player->GetSprite(), vase) && exist && !lifted) //항아리 아직 안 들린 상태
 	{
 		if (Key->Down('C') && !player->GetBLifting()) //항아리 들기
 		{
 			player->Lift(true);
+			lifted = true;
 			item->Scale(vase->Scale());
 			item->Play(1);
-			lifted = true;
+			exist = false;
 			itemObtainable = true;
 			vase->Position(0, 0);
 		}
 	}
-	if (lifted && Key->Down('C')) //항아리 들은 상태에서 던지기
+	if (!exist && lifted && Key->Down('C')) //항아리 들은 상태에서 던지기
 	{
 		player->Throw(true);
 		lifted = false;
