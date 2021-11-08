@@ -450,6 +450,73 @@ EasternPalace::EasternPalace(SceneValues* values, D3DXVECTOR2 position)
 	CreateHallLine(1494, 1970, 1494, 1949, 4, true); // 1
 	CreateHallLine(1397, 1881, 1418, 1881, 4, true); // 2
 
+	// room 5
+	CreateRoomLine(1577, 2038, 1750, 2038, 5, false); // 0
+	CreateRoomLine(1577, 2038, 1577, 1881, 5, false); // 1
+	CreateRoomLine(1750, 2038, 1750, 1881, 5, false); // 2
+	CreateRoomLine(1577, 1881, 1750, 1881, 5, false); // 3
+
+	CreateHallLine(1577, 1970, 1577, 1950, 5, true); // 0
+
+	// room 6
+	CreateRoomLine(297, 1782, 470, 1782, 6, false); // 0
+	CreateRoomLine(297, 1782, 297, 1625, 6, false); // 1
+	CreateRoomLine(470, 1782, 470, 1625, 6, false); // 2
+	CreateRoomLine(297, 1625, 470, 470, 6, false); // 3
+
+	CreateHallLine(470, 1714, 470, 1693, 6, false); // 0
+	CreateHallLine(373, 1625, 394, 1625, 6, false); // 1
+
+	// room 7
+	CreateRoomLine(367, 1526, 408, 1526, 7, false); // 0
+	CreateRoomLine(367, 1526, 367, 1424, 7, false); // 1
+	CreateRoomLine(360, 1526, 367, 1526, 7, false); // 10
+	CreateRoomLine(360, 1432, 360, 1526, 7, false); // 11
+	CreateRoomLine(329, 1432, 329, 1369, 7, false); // 2
+	CreateRoomLine(406, 1526, 406, 1369, 7, false); // 3
+	CreateRoomLine(329, 1369, 406, 1369, 7, false); // 4
+
+	CreateRoomLine(321, 1502, 446, 1502, 7, true); // 5
+	CreateRoomLine(321, 1457, 321, 1502, 7, true); // 6
+	CreateRoomLine(321, 1457, 327, 1457, 7, true); // 12
+	CreateRoomLine(446, 1502, 446, 1425, 7, true); // 7
+	CreateRoomLine(361, 1463, 361, 1425, 7, true); // 8
+	CreateRoomLine(361, 1425, 446, 1425, 7, true); // 9
+
+	CreateHallLine(374, 1526, 393, 1526, 7, true); // 0
+	CreateHallLine(446, 1457, 446, 1438, 7, true); // 1
+
+	// room 8
+	CreateRoomLine(623, 1782, 656, 1782, 8, false); // 0
+	CreateRoomLine(623, 1782, 623, 1759, 8, false); // 1
+	CreateRoomLine(656, 1782, 656, 1759, 8, false); // 2
+	CreateRoomLine(553, 1726, 592, 1726, 8, false); // 3
+	CreateRoomLine(687, 1726, 726, 1726, 8, false); // 4
+	CreateRoomLine(553, 1726, 553, 1503, 8, false); // 5
+	CreateRoomLine(592, 1726, 592, 1648, 8, false); // 6
+	CreateRoomLine(687, 1726, 687, 1648, 8, false); // 7
+	CreateRoomLine(726, 1726, 726, 1503, 8, false); // 8
+	CreateRoomLine(592, 1648, 687, 1648, 8, false); // 9
+	CreateRoomLine(592, 1591, 687, 1591, 8, false); // 10
+	CreateRoomLine(592, 1591, 592, 1560, 8, false); // 11
+	CreateRoomLine(687, 1591, 687, 1560, 8, false); // 12
+	CreateRoomLine(592, 1560, 687, 1560, 8, false); // 13
+	CreateRoomLine(553, 1503, 726, 1503, 8, false); // 14
+
+	CreateRoomLine(625, 1727, 625, 1470, 8, true); // 15
+	CreateRoomLine(654, 1727, 654, 1470, 8, true); // 16
+	CreateRoomLine(577, 1470, 625, 1470, 8, true); // 17
+	CreateRoomLine(654, 1470, 702, 1470, 8, true); // 18
+	CreateRoomLine(577, 1470, 577, 1425, 8, true); // 19
+	CreateRoomLine(702, 1470, 702, 1425, 8, true); // 20
+	CreateRoomLine(577, 1425, 702, 1425, 8, true); // 21
+
+	CreateHallLine(629, 1782, 650, 1782, 8, true); // 0
+	CreateHallLine(553, 1713, 553, 1694, 8, true); // 1
+	CreateHallLine(726, 1585, 726, 1566, 8, true); // 2
+	CreateHallLine(577, 1457, 577, 1438, 8, true); // 3
+	CreateHallLine(702, 1457, 702, 1438, 8, true); // 4
+
 	// room 9
 	CreateRoomLine(1001, 1782, 1046, 1782, 9, false); // 0
 	CreateRoomLine(1001, 1782, 1001, 1686, 9, false); // 1
@@ -612,7 +679,7 @@ void EasternPalace::Update()
 	/// <summary>
 	/// blackout 설정
 	/// </summary>
-	if (currentRoom == 1)
+	if (currentRoom == 4 || currentRoom == 5)
 		bBlackout = true;
 	else
 		bBlackout = false;
@@ -654,40 +721,82 @@ void EasternPalace::Update()
 	/// </summary>
 	// Caution: hallLines / roomLines 건드리면 segment fault
 	// room 0
-	if (hallLines[0][1].line->FirstVertexPos().y > player->BottomPosition().y)
+	if (roomLines[0][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[0][9].line->FirstVertexPos().y
+		&& roomLines[0][3].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[0][16].line->FirstVertexPos().x)
 	{
 		currentRoom = 0;
 	}
 	// room 1
-	else if (hallLines[1][0].line->FirstVertexPos().y < player->TopPosition().y
-		&& player->BottomPosition().y < hallLines[1][3].line->FirstVertexPos().y)
+	else if (roomLines[1][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[1][7].line->FirstVertexPos().y
+		&& roomLines[1][1].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[1][10].line->FirstVertexPos().x)
 	{
 		currentRoom = 1;
 	}
 	// room 2
-	else if (hallLines[2][0].line->FirstVertexPos().x > player->LeftPosition().x
-		&& player->BottomPosition().y < hallLines[2][1].line->FirstVertexPos().y)
+	else if (roomLines[2][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[2][3].line->FirstVertexPos().y
+		&& roomLines[2][1].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[2][2].line->FirstVertexPos().x)
 	{
 		currentRoom = 2;
 	}
 	// room 3
-	else if (hallLines[3][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < hallLines[3][3].line->FirstVertexPos().y)
+	else if (roomLines[3][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[3][21].line->FirstVertexPos().y
+		&& roomLines[3][5].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[3][6].line->FirstVertexPos().x)
 	{
 		currentRoom = 3;
 	}
 	// room 4
-	else if (player->TopPosition().y < hallLines[4][2].line->FirstVertexPos().y
-		&& hallLines[4][0].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < hallLines[4][1].line->FirstVertexPos().x)
+	else if (roomLines[4][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[4][7].line->FirstVertexPos().y
+		&& roomLines[4][2].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[4][5].line->FirstVertexPos().x)
 	{
 		currentRoom = 4;
 	}
+	// room 5
+	else if (roomLines[5][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[5][3].line->FirstVertexPos().y
+		&& roomLines[5][1].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[5][2].line->FirstVertexPos().x)
+	{
+		currentRoom = 5;
+	}
+	// room 6
+	else if (roomLines[6][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[6][3].line->FirstVertexPos().y
+		&& roomLines[6][1].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[6][2].line->FirstVertexPos().x)
+	{
+		currentRoom = 6;
+	}
+	// room 7
+	else if (roomLines[7][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[7][4].line->FirstVertexPos().y
+		&& roomLines[7][6].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[7][7].line->FirstVertexPos().x)
+	{
+		currentRoom = 7;
+	}
+	// room 8
+	else if (roomLines[8][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[8][21].line->FirstVertexPos().y
+		&& roomLines[8][5].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[8][8].line->FirstVertexPos().x)
+	{
+		currentRoom = 8;
+	}
 	// room 9
-	else if (hallLines[9][0].line->FirstVertexPos().y < player->BottomPosition().y
-		&& player->TopPosition().y < hallLines[9][5].line->FirstVertexPos().y
-		&& hallLines[9][1].line->FirstVertexPos().x < player->LeftPosition().x
-		&& player->RightPosition().x < hallLines[9][2].line->FirstVertexPos().x)
+	else if (roomLines[9][0].line->FirstVertexPos().y < player->BottomPosition().y
+		&& player->TopPosition().y < roomLines[9][43].line->FirstVertexPos().y
+		&& roomLines[9][10].line->FirstVertexPos().x < player->LeftPosition().x
+		&& player->RightPosition().x < roomLines[9][13].line->FirstVertexPos().x)
 	{
 		currentRoom = 9;
 	}
@@ -743,6 +852,26 @@ void EasternPalace::Update()
 		doors[4][1]->Play(1);
 		doors[4][2]->Play(2);
 	}
+	// room 6
+	for (int i = 0, cnt = 0; i < enemies[6].size(); i++)
+	{
+		if (enemies[6][i]->IsDead())
+			cnt++;
+		if (cnt == enemies[6].size())
+		{
+			doors[6][0]->Play(1);
+			hallLines[6][0].open = true;
+			doors[6][1]->Play(1);
+			hallLines[6][1].open = true;
+		}
+		else if (i == enemies[1].size() - 1)
+		{
+			doors[6][0]->Play(0); // 해당 방 몬스터 다 못 죽였으면 문 안 열림 
+			hallLines[6][0].open = false;
+			doors[6][1]->Play(0);
+			hallLines[6][1].open = false;
+		}
+	}
 	// room 9
 	if (Sprite::Obb(player->GetSprite(), buttons[9][0]))
 	{
@@ -761,7 +890,7 @@ void EasternPalace::Update()
 	/// </summary>
 	if (Sprite::Obb(player->GetSprite(), buttons[2][0]))
 	{
-		for (Enemy* enemy : enemies[currentRoom])
+		for (Enemy* enemy : enemies[2])
 		{
 			if (enemy->GetType() == "flying object")
 				enemy->OnScene(true);
@@ -795,33 +924,33 @@ void EasternPalace::Update()
 	/// <summary>
 	/// 원형으로 움직이는 몬스터 업데이트(해당 코드 위치 바꿔서 업데이트 시기를 플레이어가 방에 입장하면 하는 걸로)
 	/// </summary>
-	if (abs(player->Position().x - armo_knights[0]->Position().x) <= 200 && abs(player->Position().y - armo_knights[0]->Position().y) <= 200)
-	{
-		armo_knights_time = 0;
+	//if (abs(player->Position().x - armo_knights[0]->Position().x) <= 200 && abs(player->Position().y - armo_knights[0]->Position().y) <= 200)
+	//{
+	//	armo_knights_time = 0;
 
-		if (Key->Press('S') && abs(player->Position().x - armo_knights[0]->Position().x) >= 100 && abs(player->Position().y - armo_knights[0]->Position().y) >= 100)
-		{
-			for (Enemy* enemy : armo_knights)
-				enemy->Play(1);
+	//	if (Key->Press('S') && abs(player->Position().x - armo_knights[0]->Position().x) >= 100 && abs(player->Position().y - armo_knights[0]->Position().y) >= 100)
+	//	{
+	//		for (Enemy* enemy : armo_knights)
+	//			enemy->Play(1);
 
-			armo_knights_time += Timer->Elapsed();
-			if (armo_knights_time <= 6)
-			{
-				armo_knights[0]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 2.35619) * 30 * 2.5,
-					(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 2.35619) * 30 * 2.5); //이거 각도 조정 (현재 45도)
-				armo_knights[1]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 3.14159) * 30 * 2.5,
-					(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 3.14159) * 30 * 2.5);
-				armo_knights[2]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 3.92699) * 30 * 2.5,
-					(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 3.92699) * 30 * 2.5);
-				armo_knights[3]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 4.71239) * 30 * 2.5,
-					(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 4.71239) * 30 * 2.5);
-				armo_knights[4]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time) * 30 * 2.5,
-					(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time) * 30 * 2.5);
-				armo_knights[5]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 0.785398) * 30 * 2.5,
-					(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 0.785398) * 30 * 2.5);
-			}
-		}
-	}
+	//		armo_knights_time += Timer->Elapsed();
+	//		if (armo_knights_time <= 6)
+	//		{
+	//			armo_knights[0]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 2.35619) * 30 * 2.5,
+	//				(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 2.35619) * 30 * 2.5); //이거 각도 조정 (현재 45도)
+	//			armo_knights[1]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 3.14159) * 30 * 2.5,
+	//				(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 3.14159) * 30 * 2.5);
+	//			armo_knights[2]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 3.92699) * 30 * 2.5,
+	//				(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 3.92699) * 30 * 2.5);
+	//			armo_knights[3]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 4.71239) * 30 * 2.5,
+	//				(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 4.71239) * 30 * 2.5);
+	//			armo_knights[4]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time) * 30 * 2.5,
+	//				(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time) * 30 * 2.5);
+	//			armo_knights[5]->Position((128 - 1023) * 2.5 + Width / 2 - sin(armo_knights_time + 0.785398) * 30 * 2.5,
+	//				(2811 - 125) * 2.5 + Height / 2 + cos(armo_knights_time + 0.785398) * 30 * 2.5);
+	//		}
+	//	}
+	//}
 	// armo kights moves end
 
 	/// <summary>
@@ -868,6 +997,22 @@ void EasternPalace::Render()
 	base_floor->Render();
 
 	/// <summary>
+	/// player 위치에 따라 지형 렌더링 순서 정하기
+	/// </summary>
+	if (!player->GetBBase()) //계단 내려가기 전
+	{
+		first_floor->Render();
+		player->Render();
+	}
+	if (player->GetBBase()) //계단 내려가서 밑층에 위치할 때 (임시로 false 설정)
+	{
+		player->Render();
+		first_floor->Render();
+	}
+	hall->Render();
+	// player 위치에 따른 지형 렌더링 end
+
+	/// <summary>
 	/// 방마다 다른 오브젝트 Render
 	/// </summary>
 	// 이전 방
@@ -907,25 +1052,10 @@ void EasternPalace::Render()
 		button->Render();
 	for (Enemy* enemy : enemies[currentRoom])
 		enemy->Render();
+	// 방마다 다른 오브젝트 Render end
 
 	if (bBlackout)
 		blackout->Render();
-	// 방마다 다른 오브젝트 Render end
-
-	/// <summary>
-	/// player 위치에 따라 지형 렌더링 순서 정하기
-	/// </summary>
-	if (!player->GetBBase()) //계단 내려가기 전
-	{
-		first_floor->Render();
-		player->Render();
-	}
-	if (player->GetBBase()) //계단 내려가서 밑층에 위치할 때 (임시로 false 설정)
-	{
-		player->Render();
-		first_floor->Render();
-	}
-	hall->Render();
 	// 지형 렌더링 end
 
 	ImGui::SliderFloat("Enemies Move Speed", &enemyMoveSpeed, 50, 400);
