@@ -18,6 +18,7 @@ private:
 	Sprite* map;
 	Sprite* compass;
 
+	D3DXVECTOR2 position;
 	D3DXVECTOR2 scale;
 
 	bool on;

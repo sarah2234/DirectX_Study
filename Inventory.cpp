@@ -17,6 +17,7 @@ Inventory::Inventory(D3DXVECTOR2 scale)
 	compass->Scale(0, 0);
 
 	this->scale = scale;
+	this->position = D3DXVECTOR2(0, 0);
 }
 
 Inventory::~Inventory()
@@ -32,7 +33,8 @@ void Inventory::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 	if (on == true)
 	{
 		inventory->Scale(scale);
-		inventory->Position(player->Position());
+		inventory->Position(position);
+		position = D3DXVECTOR2(player->Position().x, player->Position().y);
 
 		if (player->GetItem("map") == 1)
 		{
@@ -80,12 +82,9 @@ void Inventory::Render()
 		on = false;
 	}
 
-	ImGui::Text("magic: %d", player->GetItem("magic"));
-	ImGui::Text("rupee: %d", player->GetItem("rupee"));
-	ImGui::Text("bomb: %d", player->GetItem("bomb"));
-	ImGui::Text("arrow: %d", player->GetItem("arrow"));
-	ImGui::Text("key: %d", player->GetItem("key"));
 	ImGui::Text("stamina: %d", player->GetItem("stamina"));
+	ImGui::Text("rupee: %d", player->GetItem("rupee"));
+	ImGui::Text("key: %d", player->GetItem("key"));
 	ImGui::Text("compass: %d", player->GetItem("compass"));
 }
 

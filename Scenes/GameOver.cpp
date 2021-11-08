@@ -6,7 +6,7 @@ GameOver::GameOver(SceneValues* values, D3DXVECTOR2 position)
 {
 	game_over = new Sprite(Textures + L"Legend of Zelda/Game Over.png", Shaders + L"009_Sprite.fx");
 	game_over->Position(position);
-	game_over->Scale(0, 0);
+	game_over->Scale(1, 1);
 
 	on = false;
 }
@@ -28,11 +28,18 @@ void GameOver::Update()
 		game_over->Position(player->Position());
 		player->Scale(0, 0);
 	}
+	if (player->GetItem("stamina") > 0)
+	{
+		on = false;
+		game_over->Position(0, 0);
+		game_over->Scale(0, 0);
+	}
 }
 
 void GameOver::Render()
 {
-	game_over->Render();
+	if (on || player->GetItem("stamina") <= 0)
+		game_over->Render();
 }
 
 void GameOver::On(bool b)

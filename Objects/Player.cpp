@@ -577,13 +577,15 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 
 void Player::Render()
 {
-	ImGui::SliderFloat("Player Move Speed", &moveSpeed, 50, 400);
-	ImGui::Text("Player.X: %f", player->Position().x);
-	ImGui::Text("Player.Y: %f", player->Position().y);
-	if (stamina <= 0)
-	{
+	if (ImGui::Button("Reset player's stamina") == true)
+		stamina = 10;
+	if (ImGui::Button("Reset player's position") == true)
+		player->Position(Width / 2, Height / 2);
 
-	}
+	/*ImGui::SliderFloat("Player Move Speed", &moveSpeed, 50, 400);
+	ImGui::Text("Player.X: %f", player->Position().x);
+	ImGui::Text("Player.Y: %f", player->Position().y);*/
+
 	player->Render();
 }
 

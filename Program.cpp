@@ -54,12 +54,13 @@ void Update()
 	//Projection
 	D3DXMatrixOrthoOffCenterLH(&values->Projection, 0, (float)Width, 0, (float)Height, -1, 1);
 
-	for(Scene* scene:scenes)
-		scene->Update();
+	if (inventory->IsOn() == false)
+		for (Scene* scene : scenes)
+			scene->Update();
 
-	if (player->GetItem("stamina") > 0 /*&& inventory->IsOn() == false*/)
+	if (player->GetItem("stamina") > 0 && inventory->IsOn() == false)
 		player->Update(V, P);
-	else
+	else if (player->GetItem("stamina") <= 0)
 		scenes[0]->On(true);
 }
 

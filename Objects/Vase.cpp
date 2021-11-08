@@ -164,10 +164,7 @@ void Vase::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 		{
 			player->Lift(true);
 			lifted = true;
-			item->Scale(vase->Scale());
-			item->Play(1);
 			exist = false;
-			itemObtainable = true;
 			vase->Position(0, 0);
 		}
 	}
@@ -176,23 +173,48 @@ void Vase::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 		player->Throw(true);
 		lifted = false;
 	}
-	if (Sprite::Obb(player->GetSprite(), item->GetSprite()) && itemObtainable && item->IsLastClip()) //항아리의 아이템 먹기
-	{
-		item->Scale(0, 0);
-		if (itemType == "green rupee")
-			player->SetItem("rupee", 1);
-		else if (itemType == "blue rupee")
-			player->SetItem("rupee", 10);
-		else if (itemType == "5 arrows")
-			player->SetItem("arrow", 5);
-		else if (itemType == "small key")
-			player->SetItem("key", 1);
-		else if (itemType == "small magic powder")
-			player->SetItem("magic", 2);
-		else if (itemType == "heart")
-			player->SetItem("stamina", 1);
 
-		itemObtainable = false;
+	if (exist == false && lifted == false && time < 0.36f)
+	{
+		time += Timer->Elapsed();
+		if (time >= 0.36f)
+		{
+			itemObtainable = true;
+
+			if (player->Direction() == "left")
+				item->Position(player->Position().x - 50, player->Position().y);
+			else if (player->Direction() == "right")
+				item->Position(player->Position().x + 50, player->Position().y);
+			else if (player->Direction() == "top")
+				item->Position(player->Position().x, player->Position().y + 50);
+			else if (player->Direction() == "bottom")
+				item->Position(player->Position().x, player->Position().y - 50);
+		}
+	}
+
+	if (itemObtainable == true)
+	{
+		item->Scale(vase->Scale());
+		item->Play(1);
+
+		if (Sprite::Obb(player->GetSprite(), item->GetSprite()) && itemObtainable && item->IsLastClip()) //항아리의 아이템 먹기
+		{
+			item->Scale(0, 0);
+			if (itemType == "green rupee")
+				player->SetItem("rupee", 1);
+			else if (itemType == "blue rupee")
+				player->SetItem("rupee", 10);
+			else if (itemType == "5 arrows")
+				player->SetItem("arrow", 5);
+			else if (itemType == "small key")
+				player->SetItem("key", 1);
+			else if (itemType == "small magic powder")
+				player->SetItem("magic", 2);
+			else if (itemType == "heart")
+				player->SetItem("stamina", 1);
+
+			itemObtainable = false;
+		}
 	}
 }
 
