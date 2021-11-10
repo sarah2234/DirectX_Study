@@ -88,6 +88,9 @@
     <ClCompile Include="Systems\CMouse.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Door.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Systems\Keyboard.h">
@@ -183,6 +186,9 @@
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Object.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Door.h">
       <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>

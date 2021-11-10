@@ -4,7 +4,7 @@
 class Chest : public Object
 {
 public:
-	Chest(string size, string itemType, D3DXVECTOR2 scale);
+	Chest(string size, string itemType, D3DXVECTOR2 scale, bool base);
 	~Chest();
 
 	void Update(D3DXMATRIX& V, D3DXMATRIX& P);

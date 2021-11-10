@@ -2,7 +2,7 @@
 #include "Vase.h"
 #include <math.h>
 
-Vase::Vase(string itemType)
+Vase::Vase(string itemType, D3DXVECTOR2 scale, bool base)
 	:Object(), exist(true), lifted(false), itemObtainable(false), time(0)
 {
 	wstring spriteFile = Textures + L"Legend of Zelda/Items.png";
@@ -144,7 +144,19 @@ Vase::Vase(string itemType)
 		item->Scale(0, 0);
 		item->Play(0);
 	}
+	bBase = base;
 	this->itemType = itemType;
+
+	this->scale = scale;
+	// left right bottom top
+	positionVector[0].x = vase->Position().x - vase->TextureSize().x * scale.x / 2;
+	positionVector[0].y = vase->Position().y;
+	positionVector[1].x = vase->Position().x + vase->TextureSize().x * scale.x / 2;
+	positionVector[1].y = vase->Position().y;
+	positionVector[2].x = vase->Position().x;
+	positionVector[2].y = vase->Position().y - vase->TextureSize().y * scale.y / 2;
+	positionVector[3].x = vase->Position().x;
+	positionVector[3].y = vase->Position().y + vase->TextureSize().y * scale.y / 2;
 }
 
 Vase::~Vase()
@@ -157,6 +169,16 @@ void Vase::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 {
 	vase->Update(V, P);
 	item->Update(V, P);
+
+	// left right bottom top
+	positionVector[0].x = vase->Position().x - vase->TextureSize().x * scale.x / 2;
+	positionVector[0].y = vase->Position().y;
+	positionVector[1].x = vase->Position().x + vase->TextureSize().x * scale.x / 2;
+	positionVector[1].y = vase->Position().y;
+	positionVector[2].x = vase->Position().x;
+	positionVector[2].y = vase->Position().y - vase->TextureSize().y * scale.y / 2;
+	positionVector[3].x = vase->Position().x;
+	positionVector[3].y = vase->Position().y + vase->TextureSize().y * scale.y / 2;
 	
 	if (Sprite::Obb(player->GetSprite(), vase) && exist && !lifted) //항아리 아직 안 들린 상태
 	{
@@ -181,13 +203,13 @@ void Vase::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 		{
 			itemObtainable = true;
 
-			if (player->Direction() == "left")
+			if (player->GetDirection() == 1)
 				item->Position(player->Position().x - 50, player->Position().y);
-			else if (player->Direction() == "right")
+			else if (player->GetDirection() == 2)
 				item->Position(player->Position().x + 50, player->Position().y);
-			else if (player->Direction() == "top")
+			else if (player->GetDirection() == 4)
 				item->Position(player->Position().x, player->Position().y + 50);
-			else if (player->Direction() == "bottom")
+			else if (player->GetDirection() == 3)
 				item->Position(player->Position().x, player->Position().y - 50);
 		}
 	}

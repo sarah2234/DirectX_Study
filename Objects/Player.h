@@ -16,7 +16,7 @@ public:
 	void Scale(float x, float y);
 	void Scale(D3DXVECTOR2 scale);
 
-	string Direction();
+	//string Direction();
 
 	void Position(float x, float y);
 	void Position(D3DXVECTOR2 position);
@@ -47,25 +47,21 @@ public:
 	D3DXVECTOR2 RightPosition() { return positionVector[1]; }
 	D3DXVECTOR2 BottomPosition() { return positionVector[2]; }
 	D3DXVECTOR2 TopPosition() { return positionVector[3]; }
+
 	void LineCollision(bool b, int lineIndex, string direction, string type_of_line = "room");
-	int GetLeftBLineCollisionIndex() { return bLineCollisionIndex[0]; }
-	int GetRightBLineCollisionIndex() { return bLineCollisionIndex[1]; }
-	int GetBottomBLineCollisionIndex() { return bLineCollisionIndex[2]; }
-	int GetTopBLineCollisionIndex() { return bLineCollisionIndex[3]; }
+	int GetLeftBLineCollisionIndex(string type_of_line = "room");
+	int GetRightBLineCollisionIndex(string type_of_line = "room");
+	int GetBottomBLineCollisionIndex(string type_of_line = "room");
+	int GetTopBLineCollisionIndex(string type_of_line = "room");
 
-	void ObjectCollision(bool b, int objectIndex, string direction);
-	int GetLeftBObjectCollisionIndex() { return bObjectCollisionIndex[0]; }
-	int GetRightBObjectCollisionIndex() { return bObjectCollisionIndex[1]; }
-	int GetBottomBObjectCollisionIndex() { return bObjectCollisionIndex[2]; }
-	int GetTopBObjectCollisionIndex() { return bObjectCollisionIndex[3]; }
-
+	void MoveArea(bool b);
 	void NearBorder(bool b, string direction);
-	bool GetLeftBNearBorder() { return bNearBorder[0]; }
+	bool GetLeftBNearBorder() { return bNearBorder[0]; } // 카메라 움직임 제어 (경계선 기준으로 움직임 여부 확인)
 	bool GetRightBNearBorder() { return bNearBorder[1]; }
 	bool GetBottomBNearBorder() { return bNearBorder[2]; }
 	bool GetTopBNearBorder() { return bNearBorder[3]; }
 
-	void AutoMoving(string direction, float speed, float time); // 플레이어 자동 움직임(방 이동할 때 등)
+	void AutoMoving(string direction, float speed, float time, bool stair = false); // 플레이어 자동 움직임(방 이동할 때 등)
 	bool GetBAutoMoving();
 
 	float GetBInvincibleTime() { return invincibleTime; }
@@ -82,8 +78,12 @@ private:
 	D3DXVECTOR2 positionVector[4]; // left, right, bottom, top
 	D3DXVECTOR2 autoMovingPlace; // 자동으로 해당 위치까지 움직임
 	int bLineCollisionIndex[4];
+	int	bJumpCollisionIndex[4];
 	int bHallCollisionIndex[4];
+	int bStairCollisionIndex[4];
 	int bObjectCollisionIndex[4];
+
+	D3DXVECTOR2 pos;
 
 	bool bNearBorder[4];
 
@@ -117,6 +117,7 @@ private:
 	float invincibleTime;
 
 	bool bBase;
+	bool bStair;
 
 	D3DXVECTOR2 focusOffset;
 };

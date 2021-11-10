@@ -7,7 +7,7 @@ Player::Player(D3DXVECTOR2 position, D3DXVECTOR2 scale)
 	bAttack(false), bAttacked(false), bLifting(false), bThrowing(false), bPose(false), bStop(false),
 	bLeft(false), bRight(false), bBottom(false), bTop(true),
 	magic(0), rupee(0), bomb(0), arrow(0), key(0), stamina(10), bossKey(0), map(0), compass(0), bow(0),
-	invincibleTime(0.0), bBase(false)
+	invincibleTime(0.0), bBase(false), bStair(false)
 {
 	//얼굴 앞면이 보이면 bottom, 아니면 top
 	//오른쪽으로 향하면(왼쪽 얼굴) right, 아니면 left
@@ -252,7 +252,9 @@ Player::Player(D3DXVECTOR2 position, D3DXVECTOR2 scale)
 	for (int i = 0; i < 4; i++)
 	{
 		bLineCollisionIndex[i] = -1; // -1이면 충돌한 선이 없는 상태
+		bJumpCollisionIndex[i] = -1;
 		bHallCollisionIndex[i] = -1;
+		bStairCollisionIndex[i] = -1;
 		bObjectCollisionIndex[i] = -1;
 	}
 	// left right bottom top
@@ -276,6 +278,7 @@ Player::~Player()
 
 void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 {
+	pos = player->Position();
 	bMove = false;
 	D3DXVECTOR2 position = player->Position();
 
@@ -324,6 +327,10 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 			}
 			bAttacked = false;
 		}
+		else if (bStair == true) // 계단 오르내리기
+		{
+			bStair = false;
+		}
 	}
 	else if (autoMovingTime > 0) // 자동으로 플레이어가 정해진 시간(autoMovingTime)만큼 움직임
 	{
@@ -339,7 +346,7 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 		bMove = true;
 	}
 
-	if (!bAttack && !bPose /*&& !stop*/ && !bThrowing && !bJump && !autoMovingTime) // autoMovingTime이 0일 때 입력받기
+	if (!bAttack && !bPose && !bStop && !bThrowing && !bJump && !autoMovingTime) // autoMovingTime이 0일 때 입력받기
 	{
 		if (Key->Press('S')) // 아래쪽으로 이동
 		{
@@ -480,7 +487,7 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 		if (bBottom)
 		{
 			if ((bLineCollisionIndex[2] == -1 && bHallCollisionIndex[2] == -1 && bObjectCollisionIndex[2] == -1)
-				|| autoMovingTime > 0)
+ 				|| autoMovingTime > 0)
 			{
 				if (!bLeft && !bRight)
 					position.y -= moveSpeed * Timer->Elapsed();
@@ -548,7 +555,10 @@ void Player::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 	}
 
 	if (bJump && player->IsLastClip())
+	{
 		bJump = false;
+		bBase = true;
+	}
 
 	if (!bStop && stamina > 0)
 	{
@@ -580,7 +590,16 @@ void Player::Render()
 	if (ImGui::Button("Reset player's stamina") == true)
 		stamina = 10;
 	if (ImGui::Button("Reset player's position") == true)
+	{
 		player->Position(Width / 2, Height / 2);
+		bBase = false;
+		for (int i = 0; i < 4; i++)
+		{
+			bLineCollisionIndex[i] = -1;
+			bHallCollisionIndex[i] = -1;
+			bObjectCollisionIndex[i] = -1;
+		}
+	}
 
 	/*ImGui::SliderFloat("Player Move Speed", &moveSpeed, 50, 400);
 	ImGui::Text("Player.X: %f", player->Position().x);
@@ -611,17 +630,17 @@ void Player::Scale(D3DXVECTOR2 scale)
 	player->Scale(scale);
 }
 
-string Player::Direction()
-{
-	if (bLeft)
-		return "left";
-	else if (bRight)
-		return "right";
-	else if (bBottom)
-		return "bottom";
-	else if (bTop)
-		return "top";
-}
+//string Player::Direction()
+//{
+//	if (bLeft)
+//		return "left";
+//	else if (bRight)
+//		return "right";
+//	else if (bBottom)
+//		return "bottom";
+//	else if (bTop)
+//		return "top";
+//}
 
 void Player::Position(float x, float y)
 {
@@ -642,13 +661,13 @@ void Player::Jump()
 {
 	bJump = true;
 	if (bLeft)
-		AutoMoving("left", 1, 0.5);
+		AutoMoving("left", 1, 0.6);
 	else if (bRight)
-		AutoMoving("right", 1, 0.5);
+		AutoMoving("right", 1, 0.6);
 	else if (bTop)
-		AutoMoving("top", 1, 0.5);
+		AutoMoving("top", 1, 0.6);
 	else if (bBottom)
-		AutoMoving("bottom", 1, 0.5);
+		AutoMoving("bottom", 1, 0.6);
 }
 
 void Player::Attacked()
@@ -771,6 +790,12 @@ void Player::LineCollision(bool b, int lineIndex, string direction, string type_
 			bLineCollisionIndex[i] = -1;
 		else if (type_of_line == "hall")
 			bHallCollisionIndex[i] = -1;
+		else if (type_of_line == "jump")
+			bJumpCollisionIndex[i] = -1;
+		else if (type_of_line == "object")
+			bObjectCollisionIndex[i] = -1;
+		else if (type_of_line == "stair")
+			bStairCollisionIndex[i] = -1;
 		return;
 	}
 
@@ -778,28 +803,78 @@ void Player::LineCollision(bool b, int lineIndex, string direction, string type_
 		bLineCollisionIndex[i] = lineIndex;
 	else if (type_of_line == "hall")
 		bHallCollisionIndex[i] = lineIndex;
+	else if (type_of_line == "jump")
+		bJumpCollisionIndex[i] = lineIndex;
+	else if (type_of_line == "object")
+		bObjectCollisionIndex[i] = lineIndex;
+	else if (type_of_line == "stair")
+		bStairCollisionIndex[i] = lineIndex;
 }
 
-void Player::ObjectCollision(bool b, int objectIndex, string direction)
+int Player::GetLeftBLineCollisionIndex(string type_of_line)
 {
-	int i;
-	if (direction == "left")
-		i = 0;
-	else if (direction == "right")
-		i = 1;
-	else if (direction == "bottom")
-		i = 2;
-	else if (direction == "top")
-		i = 3;
-
-	if (b == false)
-	{
-		bObjectCollisionIndex[i] = -1;
-		return;
-	}
-
-	bObjectCollisionIndex[i] = objectIndex;
+	int i = -1;
+	if (type_of_line == "room")
+		i = bLineCollisionIndex[0];
+	else if (type_of_line == "hall")
+		i = bHallCollisionIndex[0];
+	else if (type_of_line == "jump")
+		i = bJumpCollisionIndex[0];
+	else if (type_of_line == "object")
+		i = bObjectCollisionIndex[0];
+	else if (type_of_line == "stair")
+		i = bStairCollisionIndex[0];
+	return i;
 }
+
+int Player::GetRightBLineCollisionIndex(string type_of_line)
+{
+	int i = -1;
+	if (type_of_line == "room")
+		i = bLineCollisionIndex[1];
+	else if (type_of_line == "hall")
+		i = bHallCollisionIndex[1];
+	else if (type_of_line == "jump")
+		i = bJumpCollisionIndex[1];
+	else if (type_of_line == "object")
+		i = bObjectCollisionIndex[1];
+	else if (type_of_line == "stair")
+		i = bStairCollisionIndex[1];
+	return i;
+}
+
+int Player::GetBottomBLineCollisionIndex(string type_of_line)
+{
+	int i = -1;
+	if (type_of_line == "room")
+		i = bLineCollisionIndex[2];
+	else if (type_of_line == "hall")
+		i = bHallCollisionIndex[2];
+	else if (type_of_line == "jump")
+		i = bJumpCollisionIndex[2];
+	else if (type_of_line == "object")
+		i = bObjectCollisionIndex[2];
+	else if (type_of_line == "stair")
+		i = bStairCollisionIndex[2];
+	return i;
+}
+
+int Player::GetTopBLineCollisionIndex(string type_of_line)
+{
+	int i = -1;
+	if (type_of_line == "room")
+		i = bLineCollisionIndex[3];
+	else if (type_of_line == "hall")
+		i = bHallCollisionIndex[3];
+	else if (type_of_line == "jump")
+		i = bJumpCollisionIndex[3];
+	else if (type_of_line == "object")
+		i = bObjectCollisionIndex[3];
+	else if (type_of_line == "stair")
+		i = bStairCollisionIndex[3];
+	return i;
+}
+
 
 void Player::NearBorder(bool b, string direction)
 {
@@ -816,7 +891,7 @@ void Player::NearBorder(bool b, string direction)
 	bNearBorder[i] = b;
 }
 
-void Player::AutoMoving(string direction, float speed, float time)
+void Player::AutoMoving(string direction, float speed, float time, bool stair)
 {
 	D3DXVECTOR2 position = player->Position();
 	float currentTime = 0;
@@ -824,13 +899,15 @@ void Player::AutoMoving(string direction, float speed, float time)
 	{
 		bLeft = true;
 		bRight = false;
-		/*bottom = false;
-		top = false;*/
+		bBottom = false;
+		bTop = false;
 	}
 	else if (direction == "right")
 	{
 		bLeft = false;
 		bRight = true;
+		bBottom = false;
+		bTop = false;
 	}
 	else if (direction == "bottom")
 	{
@@ -848,6 +925,12 @@ void Player::AutoMoving(string direction, float speed, float time)
 	}
 	autoMovingTime = time;
 	moveSpeed *= speed;
+
+	if (stair == true)
+	{
+		bStair = true;
+		bBase = !bBase;
+	}
 }
 
 bool Player::GetBAutoMoving()

@@ -86,4 +86,6 @@ typedef struct HallLine
 	Line* line;
 	D3DXVECTOR2 intersection;
 	bool open;
+	float time;
+	float speed;
 } HallLine;

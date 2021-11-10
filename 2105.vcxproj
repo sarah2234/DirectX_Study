@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Objects\Chest.cpp" />
+    <ClCompile Include="Objects\Door.cpp" />
     <ClCompile Include="Objects\Enemy.cpp" />
     <ClCompile Include="Objects\Fire.cpp" />
     <ClCompile Include="Objects\Player.cpp" />
@@ -185,6 +186,7 @@
   <ItemGroup>
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Objects\Chest.h" />
+    <ClInclude Include="Objects\Door.h" />
     <ClInclude Include="Objects\Enemy.h" />
     <ClInclude Include="Objects\Fire.h" />
     <ClInclude Include="Objects\Object.h" />

@@ -15,7 +15,7 @@ public:
 
 	int GetStamina() { return stamina; }
 
-	void Attacked(string direction);
+	void Attacked(int direction);
 	void Dead();
 	bool IsDead() { return dead; }
 
@@ -41,11 +41,11 @@ public:
 	D3DXVECTOR2 RightPosition() { return positionVector[1]; }
 	D3DXVECTOR2 BottomPosition() { return positionVector[2]; }
 	D3DXVECTOR2 TopPosition() { return positionVector[3]; }
-	void LineCollision(bool b, int lineIndex, string direction);
-	int GetLeftBLineCollisionIndex() { return bLineCollisionIndex[0]; }
-	int GetRightBLineCollisionIndex() { return bLineCollisionIndex[1]; }
-	int GetBottomBLineCollisionIndex() { return bLineCollisionIndex[2]; }
-	int GetTopBLineCollisionIndex() { return bLineCollisionIndex[3]; }
+	void LineCollision(bool b, int lineIndex, string direction, string type_of_line = "room");
+	int GetLeftBLineCollisionIndex(string type_of_line) { return bLineCollisionIndex[0]; }
+	int GetRightBLineCollisionIndex(string type_of_line) { return bLineCollisionIndex[1]; }
+	int GetBottomBLineCollisionIndex(string type_of_line) { return bLineCollisionIndex[2]; }
+	int GetTopBLineCollisionIndex(string type_of_line) { return bLineCollisionIndex[3]; }
 
 private:
 	Animation* enemy;

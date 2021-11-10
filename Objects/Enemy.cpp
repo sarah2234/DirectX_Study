@@ -287,6 +287,12 @@ Enemy::Enemy(string type, D3DXVECTOR2 scale, bool onScene)
 		// 0 ~ 3 : 위, 아래, 양 옆으로 움직이는 몬스터
 		// 4 ~ 7 : 대각선으로 움직이는 몬스터
 	}
+
+	if (type == "skeleton")
+		direction = Math::Random(0, 3);
+	else if (type == "flying object")
+		direction = Math::Random(4, 7);
+
 	// left right bottom top
 	positionVector[0].x = enemy->Position().x - enemy->TextureSize().x * scale.x / 2;
 	positionVector[0].y = enemy->Position().y;
@@ -326,12 +332,14 @@ void Enemy::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 		Dead();
 	}
 	if (Sprite::Obb(player->GetSprite(), enemy->GetSprite())
-		&& player->GetItem("stamina") > 0 && !player->GetBInvincibleTime())
+		&& player->GetItem("stamina") > 0 && player->GetBInvincibleTime() == 0)
 	{
-		if ((player->GetBBase() == true && bBase == true) || (player->GetBBase() == false && bBase == false))
+		if (player->GetBBase() == bBase)
 		{
-			if (player->GetBAttacking()) //선 & 면 충돌로 해결보기
-				Attacked(player->Direction());
+			if (player->GetBAttacking()) //선 & 면 충돌로 해결보기... 는 시간 부족
+			{
+				Attacked(player->GetDirection());
+			}
 			else if (stamina > 0)
 			{
 				player->Attacked();
@@ -348,8 +356,10 @@ void Enemy::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 			direction = Math::Random(4, 7);
 	}
 
-	if ((bLineCollisionIndex[0] != -1 && (direction == 0 || direction == 5 || direction == 7)) || (bLineCollisionIndex[1] != -1 && (direction == 1 || direction == 4 || direction == 6))
-		|| (bLineCollisionIndex[2] != -1 && (direction == 2 || direction == 6 || direction == 7)) || (bLineCollisionIndex[3] != -1 && (direction == 3 || direction == 4 || direction == 7)))
+	if ((bLineCollisionIndex[0] != -1 && (direction == 0 || direction == 5 || direction == 7)) 
+		|| (bLineCollisionIndex[1] != -1 && (direction == 1 || direction == 4 || direction == 6))
+		|| (bLineCollisionIndex[2] != -1 && (direction == 2 || direction == 6 || direction == 7)) 
+		|| (bLineCollisionIndex[3] != -1 && (direction == 3 || direction == 4 || direction == 5)))
 	{
 		if (type == "skeleton")
 			direction = (direction + 1) % 4; // 선 충돌(벽에 부딪힘) 했을 때 방향 다시 설정
@@ -382,7 +392,7 @@ void Enemy::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 		position.y += moveSpeed * Timer->Elapsed() / 3;
 		break;
 	case 5:
-		position.x -= moveSpeed * Timer->Elapsed() / 3; // 좌측 하단
+		position.x -= moveSpeed * Timer->Elapsed() / 3; // 좌측 상단
 		position.y += moveSpeed * Timer->Elapsed() / 3;
 		break;
 	case 6:
@@ -421,7 +431,7 @@ void Enemy::Position(D3DXVECTOR2 position)
 	enemy->Position(position);
 }
 
-void Enemy::Attacked(string direction)
+void Enemy::Attacked(int direction)
 {
 	if (type == "small ball" || type == "big ball")
 		return;
@@ -430,13 +440,13 @@ void Enemy::Attacked(string direction)
 	float time = 0;
 	while (time <= 1)
 	{
-		if (direction == "bottom")
+		if (direction == 3)
 			enemy->Position(enemy->Position().x, enemy->Position().y - 0.5);
-		else if (direction == "top")
+		else if (direction == 4)
 			enemy->Position(enemy->Position().x, enemy->Position().y + 0.5);
-		else if (direction == "left")
+		else if (direction == 1)
 			enemy->Position(enemy->Position().x - 0.5, enemy->Position().y);
-		else if (direction == "right")
+		else if (direction == 2)
 			enemy->Position(enemy->Position().x + 0.5, enemy->Position().y);
 		time += Timer->Elapsed();
 	}
@@ -456,6 +466,7 @@ void Enemy::Dead()
 		slash->Scale(0, 0);
 	}
 
+	direction = -1;
 	dead = true;
 }
 
@@ -489,7 +500,7 @@ void Enemy::Direction(int n)
 	direction = n;
 }
 
-void Enemy::LineCollision(bool b, int lineIndex, string direction)
+void Enemy::LineCollision(bool b, int lineIndex, string direction, string type_of_line)
 {
 	int i;
 	if (direction == "left")

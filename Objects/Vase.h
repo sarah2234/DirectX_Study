@@ -4,7 +4,7 @@
 class Vase : public Object
 {
 public:
-	Vase(string itemType);
+	Vase(string itemType, D3DXVECTOR2 scale, bool base);
 	~Vase();
 
 	void Update(D3DXMATRIX& V, D3DXMATRIX& P);

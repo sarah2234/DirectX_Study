@@ -20,4 +20,16 @@ public:
 	virtual Sprite* GetSprite() = 0;
 
 	virtual bool Exist() = 0;
+
+	D3DXVECTOR2 LeftPosition() { return positionVector[0]; }
+	D3DXVECTOR2 RightPosition() { return positionVector[1]; }
+	D3DXVECTOR2 BottomPosition() { return positionVector[2]; }
+	D3DXVECTOR2 TopPosition() { return positionVector[3]; }
+
+	bool GetBBase() { return bBase; }
+
+protected:
+	D3DXVECTOR2 positionVector[4]; // left, right, bottom, top
+	D3DXVECTOR2 scale;
+	bool bBase;
 };

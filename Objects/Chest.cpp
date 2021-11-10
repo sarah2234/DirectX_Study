@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Chest.h"
 
-Chest::Chest(string size, string itemType, D3DXVECTOR2 scale)
+Chest::Chest(string size, string itemType, D3DXVECTOR2 scale, bool base)
 	:Object(), exist(true)
 {
 	Clip* clip;
@@ -55,8 +55,19 @@ Chest::Chest(string size, string itemType, D3DXVECTOR2 scale)
 		item = new Sprite(textureFile, shaderFile, 69, 32, 76, 48);
 		item->Scale(0, 0);
 	}
-
+	bBase = base;
 	this->itemType = itemType;
+
+	this->scale = scale;
+	// left right bottom top
+	positionVector[0].x = chest->Position().x - chest->TextureSize().x * scale.x / 2;
+	positionVector[0].y = chest->Position().y;
+	positionVector[1].x = chest->Position().x + chest->TextureSize().x * scale.x / 2;
+	positionVector[1].y = chest->Position().y;
+	positionVector[2].x = chest->Position().x;
+	positionVector[2].y = chest->Position().y - chest->TextureSize().y * scale.y / 2;
+	positionVector[3].x = chest->Position().x;
+	positionVector[3].y = chest->Position().y + chest->TextureSize().y * scale.y / 2;
 }
 
 Chest::~Chest()
@@ -69,6 +80,15 @@ void Chest::Update(D3DXMATRIX& V, D3DXMATRIX& P)
 {
 	chest->Update(V, P);
 	item->Update(V, P);
+
+	positionVector[0].x = chest->Position().x - chest->TextureSize().x * scale.x / 2;
+	positionVector[0].y = chest->Position().y;
+	positionVector[1].x = chest->Position().x + chest->TextureSize().x * scale.x / 2;
+	positionVector[1].y = chest->Position().y;
+	positionVector[2].x = chest->Position().x;
+	positionVector[2].y = chest->Position().y - chest->TextureSize().y * scale.y / 2;
+	positionVector[3].x = chest->Position().x;
+	positionVector[3].y = chest->Position().y + chest->TextureSize().y * scale.y / 2;
 
 	if (Sprite::Obb(player->GetSprite(), chest->GetSprite()) && exist && Key->Down('C')) //chest 연 후에 if문 실행되지 않도록 조정하기
 	{//선 & 면 충돌로 해결보기
