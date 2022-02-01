@@ -4,6 +4,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
 {
 	if (Device::InitializeWindow(hInstance, 1280, 800, nCmdShow, L"Win32 API °øºÎ") == false)
 		exit(-1);
+	if (Device::InitializeDirectX() == false)
+		exit(-1);
 
 	MSG msg = {};
 	ZeroMemory(&msg, sizeof(msg));
