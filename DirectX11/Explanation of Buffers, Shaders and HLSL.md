@@ -16,5 +16,5 @@ A program with 60 fps will call your vertex shader 900,000 times a second to dra
 This is for doing the coloring of the polygons. It is run by the GPU, and the shader program includes coloring, texturing, lighting and other effects.
 It also has to be used efficiently due to the number of times it will be called by the GPU.
 
-### HLSL
+### HLSL (High Level Shader Language)
 DirectX 11 use this to code small vertex & pixel shader programs.
