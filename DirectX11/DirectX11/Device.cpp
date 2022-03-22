@@ -116,7 +116,7 @@ bool Device::InitializeDirectX()
 	// 2. Create a device(creating resources/enumerating the capabilities of a display adapter) and a swap chain
 	// * 아래의 인자들은 기본적으로 많이 쓰이므로 앞으로도 아래와 같이 쓰면 됨
 	HRESULT result = D3D11CreateDeviceAndSwapChain(
-		nullptr, // 디스플레이 디바이스(비디오 카드) 지정 (nullptr: 최초로 발견한 디바이스 사용)
+		nullptr, // 이 함수로 생성할 device를 나타내는 디스플레이 어댑터 지정 (nullptr: 기본 디스플레이 어댑터 사용)
 		D3D_DRIVER_TYPE_HARDWARE, // 생성할 DX11 디바이스 종류 지정 (D3Device will be created on hardware mode if the graphics card supports DX11 feature level)
 		nullptr, // A handle to a DLL that implements a software rasterizer
 		0, // runtime layers
@@ -156,7 +156,7 @@ bool Device::InitializeDirectX()
 	deviceContext->OMSetRenderTargets(
 		1, // number of render targets to bind
 		&renderTargetView, // pointer to an array of the render targets to bind to the device
-		nullptr // pointerto a depth-stencil view to bind to the device
+		nullptr // pointer to a depth-stencil view to bind to the device
 	);
 
 	// 7. Set viewports
