@@ -8,10 +8,9 @@
 //    matrix can be obtained.
 //***************************************************************************************
 
-#ifndef CAMERA_H
-#define CAMERA_H
+#pragma once
 
-#include "d3dUtil.h"
+
 
 class Camera
 {
@@ -89,5 +88,3 @@ private:
 	XMFLOAT4X4 mView;
 	XMFLOAT4X4 mProj;
 };
-
-#endif // CAMERA_H

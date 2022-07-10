@@ -7,21 +7,21 @@ https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-
 *** 
 Input Assembler Stage
 ---
-¸Ş¸ğ¸®¿¡¼­ ±âÇÏ ÀÚ·á(vertex, index)¸¦ ÀĞ¾î ±âº» µµÇüÀ» »ı¼ºÇÑ´Ù. ±âº» µµÇüÀº primitive topology(D3D_PRIMITIVE_TOPOLOGY)·Î »ı¼º °¡´ÉÇÏ´Ù.   
+ë©”ëª¨ë¦¬ì—ì„œ ê¸°í•˜ ìë£Œ(vertex, index)ë¥¼ ì½ì–´ ê¸°ë³¸ ë„í˜•ì„ ìƒì„±í•œë‹¤. ê¸°ë³¸ ë„í˜•ì€ primitive topology(D3D_PRIMITIVE_TOPOLOGY)ë¡œ ìƒì„± ê°€ëŠ¥í•˜ë‹¤.   
 
 ***
 Vertex Shader Stage
 ---
-Input assembler¿¡¼­ ¸¸µç vertices´Â vertex shaderÀ¸·Î ³Ñ¾î¿Í °¢ Á¤Á¡¿¡ ´ëÇÑ ¿¬»êµé(transformations, skinning, morphing, and per-vertex lighting)À» ¼öÇàÇÑ´Ù. ÇÑ Á¤Á¡¿¡¸¸ ¿¬»êÀÌ °¡´ÉÇÏ´Ù.   
+Input assemblerì—ì„œ ë§Œë“  verticesëŠ” vertex shaderìœ¼ë¡œ ë„˜ì–´ì™€ ê° ì •ì ì— ëŒ€í•œ ì—°ì‚°ë“¤(transformations, skinning, morphing, and per-vertex lighting)ì„ ìˆ˜í–‰í•œë‹¤. í•œ ì •ì ì—ë§Œ ì—°ì‚°ì´ ê°€ëŠ¥í•˜ë‹¤.   
 ***
 Tessellation
 --- 
 
-ÁÖ¾îÁø ¸Ş½ÃÀÇ »ï°¢ÇüÀ» ¼¼ºĞÈ­ÇÏ¿© ´õ ÀÛÀº »ï°¢Çüµé·Î ÀÌ·ç°Ô ÇÑ´Ù.   
-* ÀåÁ¡
-1. LOD(Level of Detail) ±¸Çö: Ä«¸Ş¶ó¿Í °Å¸®°¡ °¡±î¿î °÷¿¡¸¸ Å×¼¿·¹ÀÌ¼ÇÀ» Àû¿ëÇÏ¿© ¼¼ºÎµµ¸¦ ³ô¿©, »ï°¢ÇüÀ» È¿À²ÀûÀ¸·Î »ç¿ëÇÒ ¼ö ÀÖ´Ù.
-2. ¸Ş¸ğ¸®¿¡ Low-Poly ¸Ş½Ã¸¦ ÀúÀåÇÏ°í, ÇÊ¿äÇÒ ¶§¸¸ Áï¼®À¸·Î »ï°¢ÇüÀ» Ãß°¡ÇÏ´Â ¹æ½ÄÀ¸·Î ¸Ş¸ğ¸®¸¦ Àı¾àÇÒ ¼ö ÀÖ´Ù.
-3. ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ³ª ¹°¸® Ã³¸® °°Àº ¿¬»êµéÀ» Low-Poly ¸Ş½Ã¿¡¼­ ¼öÇàÇÏ¿© °è»ê·®À» ÁÙÀÌ°í, Å×¼¿·¹ÀÌ¼Ç µÈ High-Poly ¸Ş½Ã´Â ·»´õ¸µ¿¡¸¸ »ç¿ëÇÔÀ¸·Î½á °è»ê·®À» ÁÙÀÏ ¼ö ÀÖ´Ù.
+ì£¼ì–´ì§„ ë©”ì‹œì˜ ì‚¼ê°í˜•ì„ ì„¸ë¶„í™”í•˜ì—¬ ë” ì‘ì€ ì‚¼ê°í˜•ë“¤ë¡œ ì´ë£¨ê²Œ í•œë‹¤.   
+* ì¥ì 
+1. LOD(Level of Detail) êµ¬í˜„: ì¹´ë©”ë¼ì™€ ê±°ë¦¬ê°€ ê°€ê¹Œìš´ ê³³ì—ë§Œ í…Œì…€ë ˆì´ì…˜ì„ ì ìš©í•˜ì—¬ ì„¸ë¶€ë„ë¥¼ ë†’ì—¬, ì‚¼ê°í˜•ì„ íš¨ìœ¨ì ìœ¼ë¡œ ì‚¬ìš©í•  ìˆ˜ ìˆë‹¤.
+2. ë©”ëª¨ë¦¬ì— Low-Poly ë©”ì‹œë¥¼ ì €ì¥í•˜ê³ , í•„ìš”í•  ë•Œë§Œ ì¦‰ì„ìœ¼ë¡œ ì‚¼ê°í˜•ì„ ì¶”ê°€í•˜ëŠ” ë°©ì‹ìœ¼ë¡œ ë©”ëª¨ë¦¬ë¥¼ ì ˆì•½í•  ìˆ˜ ìˆë‹¤.
+3. ì• ë‹ˆë©”ì´ì…˜ì´ë‚˜ ë¬¼ë¦¬ ì²˜ë¦¬ ê°™ì€ ì—°ì‚°ë“¤ì„ Low-Poly ë©”ì‹œì—ì„œ ìˆ˜í–‰í•˜ì—¬ ê³„ì‚°ëŸ‰ì„ ì¤„ì´ê³ , í…Œì…€ë ˆì´ì…˜ ëœ High-Poly ë©”ì‹œëŠ” ë Œë”ë§ì—ë§Œ ì‚¬ìš©í•¨ìœ¼ë¡œì¨ ê³„ì‚°ëŸ‰ì„ ì¤„ì¼ ìˆ˜ ìˆë‹¤.
    
 * **Hull Shader Stage**   
 This produces Geometry Patch. Input control points define a low-order surface into control points that make up a patch. It also producese per patch calculation for the tessellation stage and the domain stage. The hull shader can be implemented using HLSL.   

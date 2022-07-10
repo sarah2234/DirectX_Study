@@ -8,8 +8,7 @@
 //-------------------------------------------------------------------------------------
 
 //#include "DXUT.h"
-#include <Windows.h>
-#include <cfloat>
+#include "stdafx.h"
 #include "xnacollision.h"
 
 namespace XNA

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "TextureMgr.h"
 
 TextureMgr::TextureMgr() : md3dDevice(0)

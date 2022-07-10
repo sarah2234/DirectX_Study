@@ -1,9 +1,8 @@
 //***************************************************************************************
 // GeometryGenerator.cpp by Frank Luna (C) 2011 All Rights Reserved.
 //***************************************************************************************
-
+#include "stdafx.h"
 #include "GeometryGenerator.h"
-#include "MathHelper.h"
 
 void GeometryGenerator::CreateBox(float width, float height, float depth, MeshData& meshData)
 {

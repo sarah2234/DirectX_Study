@@ -25,9 +25,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameTimer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Common\Camera.cpp">
       <Filter>Common\Source</Filter>
     </ClCompile>
@@ -37,13 +34,7 @@
     <ClCompile Include="Common\xnacollision.cpp">
       <Filter>Common\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Common\d3dApp.cpp">
-      <Filter>Common\Source</Filter>
-    </ClCompile>
     <ClCompile Include="Common\d3dUtil.cpp">
-      <Filter>Common\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\GameTimer.cpp">
       <Filter>Common\Source</Filter>
     </ClCompile>
     <ClCompile Include="Common\GeometryGenerator.cpp">
@@ -58,11 +49,26 @@
     <ClCompile Include="Common\TextureMgr.cpp">
       <Filter>Common\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Common\GameTimer.cpp">
+      <Filter>Common\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="InitDirect3DApp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\d3dApp.cpp">
+      <Filter>Common\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="StringConverter.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorLogger.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameTimer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Common\Waves.h">
       <Filter>Common\Header</Filter>
     </ClInclude>
@@ -72,16 +78,10 @@
     <ClInclude Include="Common\Camera.h">
       <Filter>Common\Header</Filter>
     </ClInclude>
-    <ClInclude Include="Common\d3dApp.h">
-      <Filter>Common\Header</Filter>
-    </ClInclude>
     <ClInclude Include="Common\d3dUtil.h">
       <Filter>Common\Header</Filter>
     </ClInclude>
     <ClInclude Include="Common\d3dx11effect.h">
-      <Filter>Common\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\GameTimer.h">
       <Filter>Common\Header</Filter>
     </ClInclude>
     <ClInclude Include="Common\GeometryGenerator.h">
@@ -95,6 +95,21 @@
     </ClInclude>
     <ClInclude Include="Common\TextureMgr.h">
       <Filter>Common\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\GameTimer.h">
+      <Filter>Common\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\d3dApp.h">
+      <Filter>Common\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="StringConverter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorLogger.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

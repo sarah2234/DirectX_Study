@@ -1,8 +1,8 @@
-//***************************************************************************************
+ï»¿//***************************************************************************************
 // d3dUtil.h by Frank Luna (C) 2011 All Rights Reserved.
 //***************************************************************************************
 
-// #include <d3dx11.h> ¿À·ù ¶ã ½Ã: https://stackoverflow.com/questions/21170944/d3dx11-h-in-windows-8-sdk
+// #include <d3dx11.h> ì˜¤ë¥˜ ëœ° ì‹œ: https://stackoverflow.com/questions/21170944/d3dx11-h-in-windows-8-sdk
 
 #ifndef D3DUTIL_H
 #define D3DUTIL_H
@@ -10,24 +10,8 @@
 #if defined(DEBUG) || defined(_DEBUG)
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
-#endif
- 
 #include <d3dx11.h>
-#include "d3dx11Effect.h"
-#include <xnamath.h>
-#include <dxerr.h>
-#include <cassert>
-#include <ctime>
-#include <algorithm>
-#include <string>
-#include <sstream>
-#include <fstream>
-#include <vector>
-#include "MathHelper.h"
-#include "LightHelper.h"
-
-#pragma comment(lib, "d3d11.lib")
-
+#endif
 
 //---------------------------------------------------------------------------------------
 // Simple d3d error checker for book demos.
@@ -40,7 +24,7 @@
 		HRESULT hr = (x);                                      \
 		if(FAILED(hr))                                         \
 		{                                                      \
-			DXTrace(__FILE__, (DWORD)__LINE__, hr, L#x, true); \
+			ErrorLogger::Log(hr, "TEST");                      \
 		}                                                      \
 	}
 	#endif
@@ -54,9 +38,10 @@
 
 //---------------------------------------------------------------------------------------
 // Convenience macro for releasing COM objects.
+// Release: similar to 'delete' keyword, but decreases the reference count of the specified interface
 //---------------------------------------------------------------------------------------
 
-#define ReleaseCOM(x) { if(x){ x->Release(); x = 0; } }
+#define ReleaseCOM(x) { if(x){ x->Release(); x = 0; } } 
 
 //---------------------------------------------------------------------------------------
 // Convenience macro for deleting objects.
