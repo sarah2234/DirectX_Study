@@ -473,6 +473,8 @@ bool D3DApp::InitDirect3D()
 	// (by calling CreateDXGIFactory), we get an error: "IDXGIFactory::CreateSwapChain: 
 	// This function is being called with a device from a different IDXGIFactory."
 
+	// 아래의 자료형에 대한 추가 메소드: p.153
+
 	IDXGIDevice* dxgiDevice = 0;
 	HR(md3dDevice->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice));
 
@@ -483,6 +485,9 @@ bool D3DApp::InitDirect3D()
 	HR(dxgiAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&dxgiFactory));
 
 	HR(dxgiFactory->CreateSwapChain(md3dDevice, &sd, &mSwapChain));
+	// CreateSwapChain 호출 후 아래의 코드에 DXGI_MWA_NO_WINDOW_CHANGES를 인자로 넣으면
+	// Alt+Enter로 창 모드 <-> 전체화면 모드 전환 금지
+	dxgiFactory->MakeWindowAssociation(mhMainWnd, DXGI_MWA_NO_WINDOW_CHANGES);
 
 	ReleaseCOM(dxgiDevice);
 	ReleaseCOM(dxgiAdapter);
