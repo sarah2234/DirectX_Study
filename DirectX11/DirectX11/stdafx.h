@@ -30,6 +30,7 @@ using namespace std;
 #pragma comment(lib, "d3dx10.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
+#include "Common/d3dApp.h"
 #include "Common/d3dx11Effect.h"
 #include "Common/MathHelper.h"
 #include "Common/LightHelper.h"

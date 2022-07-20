@@ -1,0 +1,20 @@
+// This pixel shader uses PixelInputType as input and returns a float4 as output which represents the final pixel color.
+// The pixel shader gets its input from the vertex shader output.
+
+//////////////
+// TYPEDEFS //
+//////////////
+struct PixelInputType
+{
+    float4 position : SV_POSITION;
+    float4 color : COLOR;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Pixel Shader
+////////////////////////////////////////////////////////////////////////////////
+float4 ColorPixelShader(PixelInputType input) : SV_TARGET
+{
+    return input.color;
+}

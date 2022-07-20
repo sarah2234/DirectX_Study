@@ -48,7 +48,6 @@ protected:
 	void CalculateFrameStats(); // 평균 초당 프레임 수(FPS)와 평균 프레임당 밀리초 계산
 
 protected:
-
 	HINSTANCE mhAppInst; // 응용 프로그램 인스턴스 핸들(HINSTANCE: identify the executable when loaded in memory)
 	HWND      mhMainWnd; // 주 창 핸들 (window handle: 이를 사용하여 윈도우 접근)
 	bool      mAppPaused; // 응용 프로그램이 일시 정지된 상태인지

@@ -52,9 +52,6 @@
     <ClCompile Include="Common\GameTimer.cpp">
       <Filter>Common\Source</Filter>
     </ClCompile>
-    <ClCompile Include="InitDirect3DApp.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Common\d3dApp.cpp">
       <Filter>Common\Source</Filter>
     </ClCompile>
@@ -65,6 +62,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ErrorLogger.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter 5 Drawing in DirectX\Box.h">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter 5 Drawing in DirectX\Box.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter 5 Drawing in DirectX\ColorShader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -111,5 +117,16 @@
     <ClInclude Include="ErrorLogger.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Chapter 5 Drawing in DirectX\ColorShader.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Chapter 5 Drawing in DirectX\Color.vs">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="Chapter 5 Drawing in DirectX\Color.ps">
+      <Filter>소스 파일</Filter>
+    </None>
   </ItemGroup>
 </Project>
