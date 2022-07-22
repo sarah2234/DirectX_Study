@@ -1,19 +1,16 @@
-**Pipeline**
-===
+# **Pipeline**
 https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-graphics-pipeline   
 
 <img src="https://docs.microsoft.com/en-us/windows/win32/direct3d11/images/d3d11-pipeline-stages.jpg"></img></br>
 
 ----------------------------------------
 
-**Input Assembler Stage**
----
+## **Input Assembler Stage**
 메모리에서 기하 자료(vertex, index)를 읽어 기본 도형을 생성한다. 기본 도형은 primitive topology(D3D_PRIMITIVE_TOPOLOGY)로 생성 가능하다.   
 
 ----------------------------------------
 
-**Vertex Shader Stage**
----
+## **Vertex Shader Stage**
 Input assembler에서 만든 vertices는 vertex shader으로 넘어와 각 정점에 대한 연산들(transformations, skinning, morphing, and per-vertex lighting)을 수행한다.   
    
 <a href="http://ycpcs.github.io/cs470-fall2014/labs/lab07-2.html">변환 행렬 설명</a>
@@ -59,8 +56,7 @@ z 좌표는 [0, 1] 구간으로 정규화 => 정점 사이의 상대적인 깊�
 
 ----------------------------------------
 
-**Tessellation** *(생략 가능한 단계)*
---- 
+## **Tessellation** *(생략 가능한 단계)*
 
 주어진 메시의 삼각형을 세분화하여 더 작은 삼각형들로 이루게 한다.   
 * 장점
@@ -81,8 +77,7 @@ This shader calculates the positions of vertices using  the data made from the h
 
 ----------------------------------------
 
-**Geometry Shader Stage** *(생략 가능한 단계)*
----
+## **Geometry Shader Stage** *(생략 가능한 단계)*
 This stage operates on the vertices for a full primitives and generates vertices forming a single topolgy as an output.   
 A geometry shader outputs data one vertex at a time by appending vertices to an output stream object(PointStream, LineStream, TriangleStream).   
 * __PointStream__   
@@ -94,8 +89,7 @@ A sequence of triangle primitives
 
 ----------------------------------------
 
-**Rasterizer Stage**
----
+## **Rasterizer Stage**
 The rasterization stage converts vector information (composed of shapes or primitives) into a raster image (composed of pixels) for the purpose of displaying real-time 3D graphics. Rasterization includes clipping vertices to the view frustum, performing a divide by z to provide perspective, mapping primitives to a 2D viewport, and determining how to invoke the pixel shader.   
 You can disable rasterization by setting the pixel shader stage to NULL(ID3D11DeviceContext::PSSetShader) and disabling depth and stencil test(set DepthEnable and StencilEnable to FALSE in D3D11_DEPTH_STENCIL_DESC).   
    
@@ -116,14 +110,12 @@ __가시성 판단__
 
 ----------------------------------------
 
-**Pixel Shader Stage**
----
+## **Pixel Shader Stage**
 A pixel shader is a program that combines constant variables, texture data, interpolated per-vertex values, and other data to produce per-pixel outputs. The rasterizer stage can invoke a pixel shader once for each pixel. This is executed by GPU.
 
 ----------------------------------------
 
-**Output Merger Stage (OM Stage)**
----
+## **Output Merger Stage (OM Stage)**
 This generates the final rendered pixel color using a combination of pipeline state, the pixel data produced by the pixel shader, the contents of render targets and the contents of depth/stencil buffers. 8 seperate render targets with the same type and size in all dimensions can be rendered simultaneously. (However, a resource view cannot be bound to multiple render target slots at the same time.)
 
 * __Depth-Stencil Buffer__   

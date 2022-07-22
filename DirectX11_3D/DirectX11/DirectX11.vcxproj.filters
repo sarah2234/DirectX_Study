@@ -73,6 +73,9 @@
     <ClCompile Include="Chapter 5 Drawing in DirectX\ColorShader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Chapter 5 Drawing in DirectX\WinMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Waves.h">

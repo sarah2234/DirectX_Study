@@ -22,6 +22,7 @@
     <ClCompile Include="Chapter 5 Drawing in DirectX\Box.cpp" />
     <ClCompile Include="Chapter 5 Drawing in DirectX\Box.h" />
     <ClCompile Include="Chapter 5 Drawing in DirectX\ColorShader.cpp" />
+    <ClCompile Include="Chapter 5 Drawing in DirectX\WinMain.cpp" />
     <ClCompile Include="Common\Camera.cpp" />
     <ClCompile Include="Common\d3dApp.cpp" />
     <ClCompile Include="Common\d3dUtil.cpp" />

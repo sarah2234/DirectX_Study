@@ -1,5 +1,7 @@
 참고: https://mingyu0403.tistory.com/218
 프로젝트 생성 시: Windows 데스크톱 마법사 -> 응용 프로그램 종류: 콘솔 응용 프로그램, 추가 옵션: 빈 프로젝트 -> 상단에 Debug가 x84(32bit)일 시 x64(64bit)로 변경
-프로젝트 생성 후 프로젝트 우클릭으로 속성: 1. 링커 -> 입력 -> 추가 종속성에서 'd3d11.lib'와 'd3dcompiler.lib' 추가하기
+프로젝트 생성 후 프로젝트 우클릭으로 속성: 1. 링커 -> 입력 -> 추가 종속성에서 추가해야할 파일 (*.lib) 작성
                                                        2. 링커 -> 시스템 -> 하위 시스템: 창
                                                        3. 상단에 구성: 모든 구성 / 플랫폼: 모든 플랫폼
+						       4. VC++ 디렉터리 -> 포함 디렉터리에 'C:\Program Files (x86)\Microsoft DirectX SDK June 2010\Include'
+									      -> 라이브러리 디렉터리에 'C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86'

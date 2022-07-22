@@ -18,3 +18,6 @@ It also has to be used efficiently due to the number of times it will be called 
 
 ### HLSL (High Level Shader Language)
 DirectX 11 use this to code small vertex & pixel shader programs.
+
+### Constant Buffer
+Constant Buffer(cbuffer) allows you to efficiently supply shader constants data to the pipeline. You can use a cbuffer to store results of stream-output stage.

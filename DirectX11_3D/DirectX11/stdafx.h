@@ -35,5 +35,6 @@ using namespace std;
 #include "Common/MathHelper.h"
 #include "Common/LightHelper.h"
 #include "Common/d3dUtil.h"
+#include "Common/Camera.h"
 #include "StringConverter.h"
 #include "ErrorLogger.h"
