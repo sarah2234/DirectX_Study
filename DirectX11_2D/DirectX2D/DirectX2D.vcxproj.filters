@@ -42,6 +42,9 @@
     <ClCompile Include="systemclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="textureclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraclass.h">
@@ -65,12 +68,21 @@
     <ClInclude Include="systemclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="textureclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="HLSL\color.ps">
       <Filter>HLSL</Filter>
     </None>
     <None Include="HLSL\color.vs">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\texture.vs">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\texture.ps">
       <Filter>HLSL</Filter>
     </None>
   </ItemGroup>

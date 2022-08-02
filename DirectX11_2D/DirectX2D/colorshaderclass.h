@@ -48,7 +48,7 @@ private:
 private:
 	ID3D11VertexShader* m_vertexShader;
 	ID3D11PixelShader* m_pixelShader;
-	ID3D11InputLayout* m_layout;
+	ID3D11InputLayout* m_layout; // define how to feed vertex data that is laid out in memory into the input-assembler stage
 	ID3D11Buffer* m_matrixBuffer;
 };
 
