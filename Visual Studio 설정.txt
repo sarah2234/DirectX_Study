@@ -3,5 +3,5 @@
 프로젝트 생성 후 프로젝트 우클릭으로 속성: 1. 링커 -> 입력 -> 추가 종속성에서 추가해야할 파일 (*.lib) 작성
                                                        2. 링커 -> 시스템 -> 하위 시스템: 창
                                                        3. 상단에 구성: 모든 구성 / 플랫폼: 모든 플랫폼
-						       4. VC++ 디렉터리 -> 포함 디렉터리에 'C:\Program Files (x86)\Microsoft DirectX SDK June 2010\Include'
+						       4. VC++ 디렉터리 -> 포함 디렉터리에 'C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include' 
 									      -> 라이브러리 디렉터리에 'C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86'

@@ -6,9 +6,9 @@
 
 ModelClass::ModelClass()
 {
-	m_vertexBuffer = 0;
-	m_indexBuffer = 0;
-	m_Texture = 0;
+	m_vertexBuffer = NULL;
+	m_indexBuffer = NULL;
+	m_Texture = NULL;
 }
 
 
@@ -101,6 +101,7 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 		return false;
 	}
 
+	// texture vector: (u, v)
 	// Load the vertex array with data.
 	vertices[0].position = D3DXVECTOR3(-1.0f, -1.0f, 0.0f);  // Bottom left.
 	vertices[0].texture = D3DXVECTOR2(0.0f, 1.0f);
@@ -195,7 +196,6 @@ void ModelClass::RenderBuffers(ID3D11DeviceContext* deviceContext)
 	unsigned int stride;
 	unsigned int offset;
 
-
 	// Set vertex buffer stride and offset.
 	stride = sizeof(VertexType); 
 	offset = 0;
@@ -231,4 +231,12 @@ bool ModelClass::LoadTexture(ID3D11Device* device, WCHAR* filename)
 
 void ModelClass::ReleaseTexture()
 {
+	if (m_Texture)
+	{
+		m_Texture->Shutdown();
+		delete m_Texture;
+		m_Texture = 0;
+	}
+
+	return;
 }

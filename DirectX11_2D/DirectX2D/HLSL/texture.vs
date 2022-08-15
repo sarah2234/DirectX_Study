@@ -6,7 +6,7 @@ cbuffer MatrixBuffer
 };
 
 // Texture coordinates take a U and V float coordinate.
-struct VertextInputType
+struct VertexInputType
 {
 	float4 position : POSITION;
 	float2 tex : TEXCOORD0;

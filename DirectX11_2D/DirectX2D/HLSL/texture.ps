@@ -1,5 +1,5 @@
 Texture2D shaderTexture; // texture resource that will be used for rendering the texture on the model
-SampleState SampleType; // let us modify how the pixels are written to the polygon face when shaded
+SamplerState SampleType; // let us modify how the pixels are written to the polygon face when shaded
 // ex) if the polygon is really far away and only makes up 8 pixels on the screen,
 //     we use the sample state to figure out which pixels or what combination of pixels will actually be drawn from the original texture.
 
@@ -9,7 +9,7 @@ struct PixelInputType
 	float2 tex : TEXCOORD0;
 };
 
-float4 TexturePixelShader(PixelInputTupe input) : SV_TARGET
+float4 TexturePixelShader(PixelInputType input) : SV_TARGET
 {
 	float4 textureColor;
 

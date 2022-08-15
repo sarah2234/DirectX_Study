@@ -9,7 +9,8 @@ GraphicsClass::GraphicsClass()
 	m_D3D = 0;
 	m_Camera = 0;
 	m_Model = 0;
-	m_ColorShader = 0;
+	//m_ColorShader = 0;
+	m_TextureShader = 0;
 }
 
 
@@ -26,7 +27,6 @@ GraphicsClass::~GraphicsClass()
 bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
 	bool result;
-
 
 	// Create the Direct3D object.
 	m_D3D = new D3DClass;
@@ -61,13 +61,15 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Initialize the model object.
-	result = m_Model->Initialize(m_D3D->GetDevice());
+	WCHAR imageFile[50] = L"../DirectX2D/image/sea.jpg";
+	result = m_Model->Initialize(m_D3D->GetDevice(), imageFile);
 	if(!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
 		return false;
 	}
 
+	/*
 	// Create the color shader object.
 	m_ColorShader = new ColorShaderClass;
 	if(!m_ColorShader)
@@ -82,6 +84,22 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		MessageBox(hwnd, L"Could not initialize the color shader object.", L"Error", MB_OK);
 		return false;
 	}
+	*/
+
+	// Create the texture shader object.
+	m_TextureShader = new TextureShaderClass;
+	if (!m_TextureShader)
+	{
+		return false;
+	}
+
+	// Initialize the texture shader object.
+	result = m_TextureShader->Initialize(m_D3D->GetDevice(), hwnd);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the texture shader object.", L"Error", MB_OK);
+		return false;
+	}
 
 	return true;
 }
@@ -89,12 +107,22 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 
 void GraphicsClass::Shutdown()
 {
+	/*
 	// Release the color shader object.
 	if(m_ColorShader)
 	{
 		m_ColorShader->Shutdown();
 		delete m_ColorShader;
 		m_ColorShader = 0;
+	}
+	*/
+
+	// Release the texture shader object.
+	if (m_TextureShader)
+	{
+		m_TextureShader->Shutdown();
+		delete m_TextureShader;
+		m_TextureShader = 0;
 	}
 
 	// Release the model object.
@@ -128,7 +156,6 @@ bool GraphicsClass::Frame()
 {
 	bool result;
 
-
 	// Render the graphics scene.
 	result = Render();
 	if(!result)
@@ -160,9 +187,19 @@ bool GraphicsClass::Render()
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
 	m_Model->Render(m_D3D->GetDeviceContext());
 
+	/*
 	// Render the model using the color shader.
 	result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 	if(!result)
+	{
+		return false;
+	}
+	*/
+
+	// Render the model using the texture shader.
+	result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
+		m_Model->GetTexture());
+	if (!result)
 	{
 		return false;
 	}

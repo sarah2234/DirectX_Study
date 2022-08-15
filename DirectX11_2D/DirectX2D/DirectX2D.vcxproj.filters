@@ -9,12 +9,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="HLSL">
       <UniqueIdentifier>{162bf41b-e320-466a-a0d6-82ba1ec88b6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="image">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -45,6 +45,9 @@
     <ClCompile Include="textureclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="textureshaderclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraclass.h">
@@ -71,19 +74,36 @@
     <ClInclude Include="textureclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="textureshaderclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="HLSL\color.ps">
-      <Filter>HLSL</Filter>
-    </None>
-    <None Include="HLSL\color.vs">
-      <Filter>HLSL</Filter>
-    </None>
     <None Include="HLSL\texture.vs">
       <Filter>HLSL</Filter>
     </None>
     <None Include="HLSL\texture.ps">
       <Filter>HLSL</Filter>
     </None>
+    <None Include="HLSL\color.ps">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\color.vs">
+      <Filter>HLSL</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="image\signature.png">
+      <Filter>image</Filter>
+    </Image>
+    <Image Include="image\sea.jpg">
+      <Filter>image</Filter>
+    </Image>
+    <Image Include="image\stone01.tga">
+      <Filter>image</Filter>
+    </Image>
+    <Image Include="image\seafloor.dds">
+      <Filter>image</Filter>
+    </Image>
   </ItemGroup>
 </Project>
